@@ -176,6 +176,12 @@ header {
     padding: 2rem;
 }
 
+
+.banner>h2 {
+    font-size: 14px;
+    text-align: center;
+    
+}
 /*/////////MainCSS////////////////*/
 
 
@@ -290,28 +296,33 @@ header>div>h2 {
     width: 100%;
 }
 
-.articleText {
-    grid-area: articleText;
-    height: 100%;
+.articleRight {
+    grid-area: articleRight;
+    width: 100%;
     padding-left: 3rem;
 }
 
+.articleLeft {
+    grid-area: articleLeft;
+    widows: 100%; 
+}
+
 .suplText {
-    padding-top: 3rem;
+    padding-top: 1rem;
     padding-right: 2rem;
     grid-area: suplText;
-    height: 100%;
+    height: auto;
     font-weight: bold;
     font-size: 14px;
 }
 
-.articleText>h1 {
+.articleRight>h1 {
     font-size: 32px;
     font-weight: 700;
 
 }
 
-.articleText>p {
+.articleRight>p {
     padding-top: 1rem;
     font-size: 18px;
 }
@@ -325,15 +336,15 @@ footer {
     .container .subitems {
         padding-top: 1rem;
         grid-template-areas:
-            "articleText"
-            "heroImage"
+            "articleRight"
             "suplText"
+            "articleLeft"
             "suplImage";
         grid-template-columns: 1fr;
     }
 
 
-    .articleText {
+    .articleRight {
         height: 100%;
         padding-left: 0rem;
         padding-bottom: 1rem;
@@ -348,7 +359,7 @@ footer {
     .banner>p {
         font-size: 18px;
         font-family: "Open Sans";
-        text-align: left;
+        font-weight: bold;
     }
 
 }
@@ -400,7 +411,7 @@ footer {
         padding-top: 4rem;
         padding-bottom: 6rem;
         grid-template-areas:
-            "heroImage articleText"
+            "articleLeft articleRight"
             "suplText suplImage";
         grid-template-columns: 1fr 1fr;
 
