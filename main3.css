@@ -131,7 +131,7 @@ header>div>h2 {
     z-index: -1;
     /*overflow: hidden;*/
     background-color: white;
-    border-top: 6px solid #4b4542;
+    
     
 }
  .banner .card {
@@ -158,16 +158,21 @@ header>div>h2 {
     padding-top: 2rem;
 }
 
+  .cardDivider {
+    width: 32px;
+    border-top: 2px solid #4b4542;
+}
+
 .cardElement>h1 {
-       font-size: 24px;
-       font-weight: 600;
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 0.7rem;
 }
 
 .cardElement>p{
     padding-top: 1rem;
     font-size: 16px;
 }
-
 
 .heroImage {
     grid-area: heroImage;
@@ -208,10 +213,7 @@ header>div>h2 {
     font-size: 12px;
     font-weight: 300;
     padding-bottom: 0.3rem;
-
 }
-
-
 .articleRight>p {
     padding-top: 1rem;
     font-size: 16px;
@@ -260,6 +262,9 @@ footer {
         padding-top: 1rem;
         width: 100%;
     }
+
+
+  
 
     .banner>p {
         font-size: 18px;
@@ -319,10 +324,9 @@ footer {
         grid-template-columns: 1fr 1fr;
          grid-gap: 4rem;
     }
-    
+      
     .cardElement {
-        
-        padding-top: 2rem;
+        padding-top: 1rem;
     }
 
      .banner .card{
