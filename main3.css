@@ -32,10 +32,6 @@ header {
 }
 /*/////////MainCSS////////////////*/
 
-
-
-
-
 *,
 *:before,
 *:after {
@@ -47,7 +43,6 @@ body {
     background-color: #fff;
     color: #444;
     line-height: 1.5em;
-
 }
 
 a {
@@ -66,7 +61,6 @@ h1 {
 p {
     margin: 0 0 0.3em 0;
     line-height: 1.4em;
-
 }
 
 header {
@@ -122,18 +116,20 @@ header>div>h2 {
     border-top: 2px solid #4b4542;
 }
 
-
 .banner {
     grid-area: banner;
     height: auto;
     margin-bottom: 3rem;
-    padding-top: 5rem;
+    padding-top: 2rem;
     z-index: -1;
     /*overflow: hidden;*/
-    background-color: white;
-    
-    
+    background-color:white;
 }
+
+.bannerDivider {
+    border-top: 1px solid #4b4542;
+}
+
  .banner .card {
     display: grid;
     grid-gap: 2.5rem;
@@ -264,8 +260,13 @@ footer {
     }
 
 
-  
+    .bannerDivider {
+        padding-bottom: 1rem;
+    }
 
+    .banner {
+        padding-top:2rem;
+    }
     .banner>p {
         font-size: 18px;
         font-family: "Open Sans";
@@ -283,6 +284,10 @@ footer {
         font-size: 24px;
         font-family: "Open Sans";
         font-weight: 600;
+    }
+
+    .bannerDivider {
+        padding-bottom: 4rem;
     }
 
     nav {
