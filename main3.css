@@ -113,7 +113,7 @@ header>div>h2 {
 .container .subitems {
     display: grid;
     padding-bottom: 4rem;
-    border-top: 2px solid #4b4542;
+    border-top: 1px solid #4b4542;
 }
 
 .banner {
@@ -136,7 +136,7 @@ header>div>h2 {
 }
 
   .logo {
-     border-top: 2px solid #4b4542;
+     border-top: 1px solid #4b4542;
      display: grid;
      grid-gap: 2.5rem;
  }
