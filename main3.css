@@ -1,0 +1,373 @@
+
+
+/*/////////Fonts////////////////*/
+
+@import url("//fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+@import url("//fonts.googleapis.com/css?family=Open+Sans:700&display=swap");
+
+body {
+    font-family: "Open Sans", Helvetica, sans-serif;
+}
+
+header {
+    font-size: 32px;
+}
+
+.articleText {
+    font-size: 10px;
+}
+
+.banner {
+    font-size: 32px;
+    text-align: left;
+    padding: 2rem;
+}
+
+
+.banner>h2 {
+    font-size: 14px;
+    text-align: left;
+    
+}
+/*/////////MainCSS////////////////*/
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 40px;
+    background-color: #fff;
+    color: #444;
+    line-height: 1.5em;
+}
+
+a {
+    color: #00FFCC;
+}
+
+main {
+    background-color: white;
+}
+
+h1 {
+    margin: 0 0 0.3em 0;
+    line-height: 1em;
+}
+
+p {
+    margin: 0 0 0.3em 0;
+    line-height: 1.4em;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: -1;
+    width: auto;
+}
+
+.imageAvatar {
+    grid-area: imageAvatar; 
+    border: 0;
+    width: 20%;
+    height: auto;
+}
+
+.headerText {
+    grid-area: headerText;
+}
+
+header>div {
+    display: grid;
+    padding: 0 2rem 0 2rem;
+    grid-template-areas: "imageAvatar"
+        "headerText";
+    height: 100%;
+    grid-template-columns: repeat(1fr);
+    grid-gap: 0.2rem;
+    justify-items: center;
+}
+
+header>div>h1 {
+    font-size: 16px;
+    text-align: center;
+}
+
+header>div>h2 {
+    font-size: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 20px;
+    display: grid;
+    grid-gap: 10px;
+}
+
+.container .subitems {
+    display: grid;
+    padding-bottom: 4rem;
+    border-top: 1px solid #4b4542;
+}
+
+.banner {
+    grid-area: banner;
+    height: auto;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+    z-index: -1;
+    /*overflow: hidden;*/
+    background-color:white;
+}
+
+.bannerDivider {
+    border-top: 1px solid #4b4542;
+}
+
+ .banner .card {
+    display: grid;
+    grid-gap: 2.5rem;
+}
+
+  .logo {
+     border-top: 1px solid #4b4542;
+     display: grid;
+     grid-gap: 2.5rem;
+ }
+
+ .logo>h1 {
+     grid-area: headline;
+     font-size: 24px;
+     font-weight: 600;
+ }
+.logoImg {
+    width: 100%;
+}
+
+.cardElement {
+    padding-top: 2rem;
+}
+
+  .cardDivider {
+    width: 32px;
+    border-top: 2px solid #4b4542;
+}
+
+.cardElement>h1 {
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 0.7rem;
+}
+
+.cardElement>p{
+    padding-top: 1rem;
+    font-size: 16px;
+}
+
+.heroImage {
+    grid-area: heroImage;
+    width: 100%;
+}
+
+.articleImageSmall {
+    grid-area: articleImageSmall;
+    padding-top: 1rem;
+    width: 100%;
+}
+
+.articleRight {
+    grid-area: articleRight;
+    width: 100%;
+}
+
+.articleLeft {
+    grid-area: articleLeft;
+    widows: 100%; 
+}
+
+.articleTags {
+    padding-top: 1rem;
+    padding-right: 2rem;
+    grid-area: suplText;
+    height: auto;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.articleRight>h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.articleRight>h2 {
+    font-size: 12px;
+    font-weight: 300;
+    padding-bottom: 0.3rem;
+}
+.articleRight>p {
+    padding-top: 1rem;
+    font-size: 16px;
+}
+
+footer {
+    text-align: center;
+}
+
+@media screen and (max-width: 799px) {
+    .container .subitems {
+        padding-top: 1rem;
+        grid-template-areas:
+            "articleRight"
+            "suplText"
+            "articleLeft"
+            "articleImageSmall";
+        grid-template-columns: 1fr;
+         grid-gap: 1rem;
+    }
+
+    .banner .card {
+        padding-top: 1rem;
+        grid-template-areas:
+            "card";
+        grid-template-columns:1fr;
+    }
+
+    .banner .logo {
+        margin-top:2rem;
+        padding-top: 2rem;
+         grid-template-areas: 
+         "headline headline"
+         "img img";
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .articleRight {
+        height: 100%;
+        padding-left: 0rem;
+        padding-bottom: 1rem;
+    }
+
+
+    .articleImageSmall {
+        padding-top: 1rem;
+        width: 100%;
+    }
+
+
+    .bannerDivider {
+        padding-bottom: 1rem;
+    }
+
+    .banner {
+        padding-top:2rem;
+    }
+    .banner>p {
+        font-size: 18px;
+        font-family: "Open Sans";
+        font-weight: bold;
+    }
+
+}
+
+
+
+@media screen and (min-width: 800px) {
+
+    /* no grid support? */
+    .banner>p {
+        font-size: 24px;
+        font-family: "Open Sans";
+        font-weight: 600;
+    }
+
+    .bannerDivider {
+        padding-bottom: 4rem;
+    }
+
+    nav {
+        grid-area: nav;
+        float: left;
+        position: sticky;
+        top: 0;
+        width: 19.1489%;
+    }
+
+    main {
+        grid-area: content;
+        float: right;
+        width: 79.7872%;
+        height: 100%;
+    }
+
+    .banner {
+        border-image-repeat: stretch;
+    }
+
+    .container {
+        margin: 0 auto;
+        grid-template-areas:
+            "header header"
+            "content content "
+            "footer  footer ";
+        height: 100%;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .container .subitems {
+        margin: 0 auto;
+        padding-top: 4rem;
+        padding-bottom: 6rem;
+        grid-template-areas:
+            "articleLeft articleRight"
+            "suplText articleImageSmall";
+        grid-template-columns: 1fr 1fr;
+         grid-gap: 4rem;
+    }
+      
+    .cardElement {
+        padding-top: 1rem;
+    }
+
+     .banner .card{
+        padding-top: 4rem;
+        grid-template-areas: 
+        "card";
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+     .banner .logo {
+        margin-top:4rem;
+        padding-top: 2.5rem;
+        grid-template-areas: 
+        "headline headline headline headline headline headline" 
+        "img img img img img img";
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+     }
+}
+
+.container>* {
+    padding: 10px;
+    /* needed for the floated layout*/
+    margin-bottom: 10px;
+}
+
+header,footer {
+    grid-column: -1 / 1;
+    /* needed for the floated layout */
+    clear: both;
+}
+
+/* We need to set the widths used on floated items back to auto, and remove the bottom margin as when we have grid we have gaps. */
+@supports (display: grid) {
+    .container>* {
+        width: auto;
+        margin: 0;
+    }
+
+}
