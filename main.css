@@ -13,10 +13,10 @@
 
 .color-rectangle-small {
     width: 10%;
-    height: 8px;
+    height: 4px;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    border-top: 1px solid #59768F;
+    background: #59768F;
 }
 
 
