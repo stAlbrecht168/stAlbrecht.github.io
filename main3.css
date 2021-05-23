@@ -1,9 +1,8 @@
-
+    
 
 /*/////////Fonts////////////////*/
 
 @import url("//fonts.googleapis.com/css?family=Open+Sans&display=swap");
-
 @import url("//fonts.googleapis.com/css?family=Open+Sans:700&display=swap");
 
 body {
@@ -30,7 +29,147 @@ header {
     text-align: left;
     
 }
-/*/////////MainCSS////////////////*/
+
+/*/////////////MainCSS////////////////////////////////////////*/
+/*
+#showcaseAMG{
+    background-image:url("/img/02_AMG.png");
+    background-size: cover;
+    background-position: right;
+    height:100vh;
+   
+}
+*/
+
+#textColorBig{
+    color: #cfcfcf;
+    font-weight: 100;
+    font-size: 30px;
+}
+
+#showcaseAMG{
+    border-top: 2px solid #cfcfcf;
+    padding-top: 12rem;
+
+}
+
+#showcaseAMG h1{
+    font-size: 48px;
+    font-weight: 700;
+}
+
+#showcaseAMG h2 {
+    font-size: 16px;
+    font-weight: 300;
+    padding-bottom: 0.3rem;
+}
+
+#showcaseAMG p {
+    padding-top: 1rem;
+    font-size: 24px;
+}
+
+
+
+#circleElement {  
+    width: 100%;
+}
+
+
+#imageHero{
+    size: 40%;
+}
+
+#showcaseHelaba h1 {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+#showcaseHelaba h2 {
+    font-size: 16px;
+    font-weight: 300;
+    padding-bottom: 0.3rem;
+}
+
+#showcaseHelaba p {
+    padding-top: 1rem;
+    font-size: 24px;
+}
+
+#showcaseHelaba {
+    border-top: 2px solid #cfcfcf;
+    padding-top: 12rem;
+}
+
+#showcaseCoreTeam p {
+     font-weight: bold;
+     font-size: 16px;
+}
+
+#imagePadding {
+    padding-bottom: 1rem;
+}
+
+
+
+
+
+#subSection{
+    border-top: 1px dashed #cfcfcf;
+}
+
+.articleLeft{
+    padding-top: 1rem;
+
+}
+.articleRight{
+    padding-top: 1rem;
+}
+
+
+.articleLeft>h1 {
+    padding-top: 1rem;    
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.articleLeft>h2 {
+    font-size: 16px;
+    font-weight: 300;
+    padding-bottom: 0.3rem;
+}
+
+.articleLeft>p {
+    padding-top: 1rem;
+
+    font-size: 24px;
+}
+
+
+.articleRight>h1 {
+    padding-top: 1rem;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.articleRight>h2 {
+    font-size: 16px;
+    font-weight: 300;
+    padding-bottom: 0.3rem;
+    padding-top: 1rem;
+}
+
+.articleRight>p {
+    padding-top: 1rem;
+    font-size: 24px;
+}
+
+
+
+
+
+
+
 
 *,
 *:before,
@@ -112,8 +251,8 @@ header>div>h2 {
 
 .container .subitems {
     display: grid;
-    padding-bottom: 4rem;
-    border-top: 1px solid #4b4542;
+    /*border-top: 1px solid #4b4542;*/
+
 }
 
 .banner {
@@ -124,6 +263,7 @@ header>div>h2 {
     z-index: -1;
     /*overflow: hidden;*/
     background-color:white;
+    text-align: center;
 }
 
 .bannerDivider {
@@ -134,6 +274,8 @@ header>div>h2 {
     display: grid;
     grid-gap: 2.5rem;
 }
+
+ledw;led
 
   .logo {
      border-top: 1px solid #4b4542;
@@ -176,10 +318,13 @@ header>div>h2 {
 }
 
 .articleImageSmall {
-    grid-area: articleImageSmall;
-    padding-top: 1rem;
+    grid-area: articleImageSmall;   
+    
     width: 100%;
 }
+
+
+
 
 .articleRight {
     grid-area: articleRight;
@@ -197,23 +342,10 @@ header>div>h2 {
     grid-area: suplText;
     height: auto;
     font-weight: bold;
-    font-size: 14px;
-}
-
-.articleRight>h1 {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.articleRight>h2 {
-    font-size: 12px;
-    font-weight: 300;
-    padding-bottom: 0.3rem;
-}
-.articleRight>p {
-    padding-top: 1rem;
     font-size: 16px;
 }
+
+
 
 footer {
     text-align: center;
@@ -228,7 +360,7 @@ footer {
             "articleLeft"
             "articleImageSmall";
         grid-template-columns: 1fr;
-         grid-gap: 1rem;
+        grid-gap: 1rem;
     }
 
     .banner .card {
@@ -268,9 +400,11 @@ footer {
         padding-top:2rem;
     }
     .banner>p {
+        text-align: center;
         font-size: 18px;
         font-family: "Open Sans";
         font-weight: bold;
+        
     }
 
 }
@@ -281,6 +415,7 @@ footer {
 
     /* no grid support? */
     .banner>p {
+        text-align: center;
         font-size: 24px;
         font-family: "Open Sans";
         font-weight: 600;
@@ -321,15 +456,15 @@ footer {
 
     .container .subitems {
         margin: 0 auto;
-        padding-top: 4rem;
+        padding-top: 1rem;
         padding-bottom: 6rem;
         grid-template-areas:
             "articleLeft articleRight"
-            "suplText articleImageSmall";
+            "articleImageSmall articleImageSmall";
         grid-template-columns: 1fr 1fr;
-         grid-gap: 4rem;
+        grid-gap: 4rem;
     }
-      
+
     .cardElement {
         padding-top: 1rem;
     }
