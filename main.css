@@ -11,6 +11,15 @@
     border-top: 2px solid #59768F;
 }
 
+.color-rectangle-small {
+    width: 10%;
+    height: 8px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid #59768F;
+}
+
+
 .sectionHeadline {
     font-weight: 800;
     font-size: 4rem;
