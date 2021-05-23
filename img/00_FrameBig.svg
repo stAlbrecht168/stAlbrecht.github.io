@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="5661 504 1362 826.5431" width="1362" height="826.5431">
+  <defs/>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-05-17 12:16:53 +0000</metadata>
+  <g id="Canvas_1" stroke="none" stroke-opacity="1" fill="none" fill-opacity="1" stroke-dasharray="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_1595">
+        <path d="M 7022 1323.4051 C 7022 1326.782 7019.067 1329.5431 7015.4824 1329.5431 L 5668.5176 1329.5431 C 5664.933 1329.5431 5662 1326.782 5662 1323.4051 L 5662 511.13804 C 5662 507.7621 5664.933 505 5668.5176 505 L 7015.4824 505 C 7019.067 505 7022 507.7621 7022 511.13804 Z" fill="white"/>
+        <path d="M 7022 1323.4051 C 7022 1326.782 7019.067 1329.5431 7015.4824 1329.5431 L 5668.5176 1329.5431 C 5664.933 1329.5431 5662 1326.782 5662 1323.4051 L 5662 511.13804 C 5662 507.7621 5664.933 505 5668.5176 505 L 7015.4824 505 C 7019.067 505 7022 507.7621 7022 511.13804 Z" stroke="#59768f" stroke-linecap="butt" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Graphic_1594">
+        <path d="M 7022 589.58336 L 7022 544.7 L 5977.6 544.7 C 5973.734 544.7 5970.6 541.566 5970.6 537.7 L 5970.6 528 L 5970.6 526 C 5970.6 522.134 5967.466 519 5963.6 519 L 5754.725 519 C 5750.859 519 5747.725 522.134 5747.725 526 L 5747.725 528 L 5747.725 537.7 C 5747.725 541.566 5744.591 544.7 5740.725 544.7 L 5662 544.7 L 5662 589.58336 Z" fill="white"/>
+        <path d="M 7022 589.58336 L 7022 544.7 L 5977.6 544.7 C 5973.734 544.7 5970.6 541.566 5970.6 537.7 L 5970.6 528 L 5970.6 526 C 5970.6 522.134 5967.466 519 5963.6 519 L 5754.725 519 C 5750.859 519 5747.725 522.134 5747.725 526 L 5747.725 528 L 5747.725 537.7 C 5747.725 541.566 5744.591 544.7 5740.725 544.7 L 5662 544.7 L 5662 589.58336 Z" stroke="#58768f" stroke-linecap="butt" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Graphic_1593">
+        <path d="M 7014.758 575.0639 C 7014.758 576.85625 7013.29 578.3227 7011.499 578.3227 L 5765.738 578.3227 C 5763.946 578.3227 5762.479 576.85625 5762.479 575.0639 L 5762.479 556.3259 C 5762.479 554.5336 5763.946 553.0671 5765.738 553.0671 L 7011.499 553.0671 C 7013.29 553.0671 7014.758 554.5336 7014.758 556.3259 Z" fill="white"/>
+        <path d="M 7014.758 575.0639 C 7014.758 576.85625 7013.29 578.3227 7011.499 578.3227 L 5765.738 578.3227 C 5763.946 578.3227 5762.479 576.85625 5762.479 575.0639 L 5762.479 556.3259 C 5762.479 554.5336 5763.946 553.0671 5765.738 553.0671 L 7011.499 553.0671 C 7013.29 553.0671 7014.758 554.5336 7014.758 556.3259 Z" stroke="#58768f" stroke-linecap="butt" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+      <g id="Group_1579">
+        <title>Browser_-_foreground</title>
+        <g id="Graphic_1592">
+          <circle cx="5682.096" cy="526.18213" r="6.51758555821568" stroke="#58768f" stroke-linecap="butt" stroke-linejoin="round" stroke-width="2"/>
+        </g>
+        <g id="Graphic_1591">
+          <circle cx="5703.821" cy="526.18213" r="6.51758555821604" stroke="#58768f" stroke-linecap="butt" stroke-linejoin="round" stroke-width="2"/>
+        </g>
+        <g id="Graphic_1590">
+          <circle cx="5725.546" cy="526.18213" r="6.51758555821592" stroke="#58768f" stroke-linecap="butt" stroke-linejoin="round" stroke-width="2"/>
+        </g>
+        <g id="Group_1580">
+          <g id="Group_1587">
+            <g id="Line_1589">
+              <path d="M 5682.096 560.218 L 5676.416 565.89804 L 5682.2544 571.7378" stroke="#58768f" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            </g>
+            <g id="Line_1588">
+              <line x1="5688.976" y1="565.9784" x2="5676.416" y2="565.9784" stroke="#58768f" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            </g>
+          </g>
+          <g id="Group_1584">
+            <g id="Line_1586">
+              <path d="M 5712.625 571.7378 L 5718.305 566.05664 L 5712.4666 560.218" stroke="#58768f" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            </g>
+            <g id="Line_1585">
+              <line x1="5705.745" y1="565.97734" x2="5718.305" y2="565.97734" stroke="#58768f" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            </g>
+          </g>
+          <g id="Group_1581">
+            <g id="Graphic_1583">
+              <path d="M 5748.1384 569.6 C 5746.9924 571.363 5745.007 572.5297 5742.746 572.5297 C 5739.196 572.5297 5736.319 569.65216 5736.319 566.10226 C 5736.319 562.55236 5739.196 559.67485 5742.746 559.67485 C 5745.235 559.67485 5747.393 561.08916 5748.461 563.1585" stroke="#58768f" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            </g>
+            <g id="Graphic_1582">
+              <path d="M 5750.712 558.317 L 5750.712 565.6949 L 5744.014 565.6949 Z" fill="#58768f"/>
+              <path d="M 5750.712 558.317 L 5750.712 565.6949 L 5744.014 565.6949 Z" stroke="#58768f" stroke-linecap="butt" stroke-linejoin="round" stroke-width="1"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
