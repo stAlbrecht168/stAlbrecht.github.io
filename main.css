@@ -28,6 +28,20 @@
     padding-bottom: 2rem;
 }
 
+.sectionPartHeadline {
+    font-size: 2rem;
+    line-height: .96;
+    font-weight: 700;
+    letter-spacing: -.025em !important;
+}
+
+.text-highlight-sub {
+
+
+    letter-spacing: -.025em !important;
+
+}
+
 .title-Headline {
     -webkit-text-fill-color: #59768F;
     font-weight: 600;
@@ -190,13 +204,6 @@
 }
 
 
-.text-highlight-sub {
-    color: #627597 !important;
-    line-height: .96;
-    letter-spacing: -.025em !important;
-    font-weight: 600!important;
-
-}
 
 .text-highlight-dark {
     color: #040d21 !important;
