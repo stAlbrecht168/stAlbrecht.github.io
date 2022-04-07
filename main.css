@@ -34,19 +34,21 @@
     font-style: normal;
 }
 
-
-.color-bg-footer {
-    background-color: #4F6A83;
-}
-
-
-
-.title-Headline-1{
+/*Fonts//////////////////////////////////////////////////*/
+.site-Headline{
     font-family:'72 Black Headline';
     -webkit-text-fill-color: #6A6A6A;
     font-size: 4rem;
     line-height: .96;
     letter-spacing: -.025em !important;
+}
+
+.title-Headline-3 {
+    font-family:'72 Black';
+    font-weight: 900;
+    color: #4F6A83 !important;
+    font-size: 50px !important;
+    line-height: 44px !important;
 }
 
 .title-Headline-2 {
@@ -57,29 +59,12 @@
     line-height: 24px !important;
 }
 
-.title-Headline-3 {
-    font-family:'72 Black';
-    font-weight: 900;
-    color: #0A6ED1 !important;
-    font-size: 50px !important;
-    line-height: 44px !important;
-}
-
 .emphasizedHeadline{
     font-family:'72 Black';
     font-weight: 700;
-    color: #0A6ED1 !important;
+    color: #4F6A83 !important;
     font-size: 35px !important;
     line-height: 34px !important;
-}
-
-
-.emphasized-sub-headline{
-    font-family:'72 Regular';
-    font-weight: 400;
-    color: #595959 !important;
-    font-size: 18px !important;
-    line-height: 24px !important;
 }
 
 .expertise-text{
@@ -90,8 +75,6 @@
     line-height: 27px !important;
 }
 
-
-
 .header-Text {
     font-family:'72 Regular';
     font-weight: 400;
@@ -100,36 +83,6 @@
     color: #6A6A6A;
 }
 
-.sectionHeadline {
-    font-family:'72 Black';
-    font-weight: 800;
-    font-size: 4rem;
-    line-height: .96;
-    letter-spacing: -.025em !important;
-    padding-bottom: 2rem;
-}
-
-.sectionPartHeadline {
-    font-family:'72';
-    font-size: 2rem;
-    line-height: .96;
-    font-weight: 700;
-    letter-spacing: -.025em !important;
-}
-
-.text-highlight-sub {
-    font-family:'72';
-    letter-spacing: -.025em !important;
-}
-
-.text-support{
-    font-family:'72 Regular';
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    color: #595959
-    ;
-}
 .case-headline-2 {
     font-family:'72 Black';
     font-weight: 900;
@@ -142,7 +95,7 @@
 .case-headline-3 {
     font-family:'72 Black';
     font-weight: 900;
-    color: #0A6ED1 !important;
+    color: #4F6A83 !important;
     font-size: 25px !important;
     line-height: 24px !important;
 }
@@ -198,14 +151,14 @@
     font-size: 20px !important;
     line-height: 28px !important;
 }
-.bg-color {
-    background-color: aquamarine;
+
+.color-bg-footer {
+    background-color: #4F6A83;
 }
 
 .color-bg-subCanvas {
     background-color:#F4F4F4;
 }
-
 
 .list {
     list-style-type: disc;
@@ -273,7 +226,7 @@ background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 
 
 .rounded-tag {
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .section-Text {
