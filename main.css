@@ -35,7 +35,7 @@
 }
 
 /*Fonts//////////////////////////////////////////////////*/
-.site-Headline{
+.site-Headline-1{
     font-family:'72 Black Headline';
     -webkit-text-fill-color: #6A6A6A;
     font-size: 4rem;
@@ -138,7 +138,7 @@
 }
 
 .detail-headline-2{
-    font-family:'72 Black';
+    font-family:'72 Regular';
     font-weight: 700 !important;
     color: #6A6A6A !important;
     font-size: 20px !important;
