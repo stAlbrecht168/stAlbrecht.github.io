@@ -215,6 +215,11 @@ background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 .separator-line-2 {
     border-top: 2px solid #4F6A83;
 }
+
+.separator-line-footer {
+    border-right: 2px solid #FFF;
+}
+
 .color-rectangle-small {
     width: 10%;
     height: 4px;
