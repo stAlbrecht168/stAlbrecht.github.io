@@ -581,7 +581,7 @@ background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 .footerDiv {
     background-size: cover;
     height: 346px;
-    background-image: url("./img/00_BG-06.png");
+    background-image: url("/img/00_BG-06.png");
     background-repeat: no-repeat;
     background-position: center;
 }
