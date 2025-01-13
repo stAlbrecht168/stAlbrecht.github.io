@@ -136,7 +136,7 @@
 .case-headline-footer {
     font-family:'72 Black';
     font-weight: 900;
-    color: #FFF !important;
+    color: #6A6A6A !important;
     font-size: 25px !important;
     line-height: 24px !important;
 }
@@ -144,7 +144,7 @@
 .expertise-text-footer{
     font-family:'72 Regular';
     font-weight: 400;
-    color: #FFF !important;
+    color: #6A6A6A !important;
     font-size: 20px !important;
     line-height: 27px !important;
 }
@@ -152,7 +152,7 @@
 .link-text{
     font-family:'72 Emphasized Headline';
     font-weight: 700 !important;
-    color: #FFF !important;
+    color: #6A6A6A !important;
     font-size: 20px !important;
     line-height: 27px !important;
 }
@@ -576,4 +576,12 @@ background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
         opacity: 1;
         transform: scaleX(1) translateY(0)
     }
+}
+
+.footerDiv {
+    background-size: cover;
+    height: 346px;
+    background-image: url("./img/00_BG-06.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
