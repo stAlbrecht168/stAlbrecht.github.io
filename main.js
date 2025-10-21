@@ -91,9 +91,16 @@ observeIds.forEach(id => {
 // Collapsible triggers (Show Details / Hide Details)
 (function initChevronToggles() {
   document.querySelectorAll('.collapsible-trigger').forEach(btn => {
+    const id = btn.getAttribute('data-target') || btn.getAttribute('aria-controls');
+    const panel = document.getElementById(id);
+    if (panel) {
+      // Force default state: hidden panel, button reads "Show Details"
+      panel.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      const labelEl = btn.querySelector('.Button-label');
+      if (labelEl) labelEl.textContent = 'Show Details';
+    }
     btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-target') || btn.getAttribute('aria-controls');
-      const panel = document.getElementById(id);
       if (!panel) return;
       const open = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!open));
