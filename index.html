@@ -843,9 +843,7 @@
     var lastPhase = null;
 
     // Ease in-out within each segment so the circle decelerates at tips
-    function easeInOut(t) {
-      return t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-    }
+
 
     function getPhase(segIdx) {
       for (var j = 0; j < PHASE_SEGS.length; j++) {
