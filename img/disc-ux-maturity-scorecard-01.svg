@@ -1,0 +1,164 @@
+<svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Arial,sans-serif">
+  <defs>
+    <filter id="cs" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(10,60,160,0.09)"/>
+    </filter>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="480" height="270" fill="#eef3fb"/>
+
+  <!-- ═══════════════════════════════════════
+       LEFT CARD  –  UX Maturity Roll-Up
+       x=14 y=14 w=224 h=242
+  ════════════════════════════════════════ -->
+  <rect x="14" y="14" width="224" height="242" rx="8" fill="white" filter="url(#cs)"/>
+
+  <!-- Header (light blue, like Figma) -->
+  <rect x="14" y="14" width="224" height="36" rx="8" fill="#EDF4FF"/>
+  <rect x="14" y="38" width="224" height="12" fill="#EDF4FF"/>
+  <text x="23" y="30" font-size="9.5" font-weight="700" fill="#0A6ED1">UX Maturity Roll-Up</text>
+  <text x="23" y="43" font-size="6" fill="#5a8fc0">SAP · Epic Estimation Card v02</text>
+
+  <!-- Guardrail box -->
+  <rect x="22" y="52" width="208" height="26" rx="4" fill="#ffe8e8"/>
+  <text x="30" y="63" font-size="6.5" font-weight="700" fill="#cc2222">🚫  ANY Category = 1 → Cannot be S or M</text>
+  <text x="30" y="72" font-size="5.5" fill="#cc2222">Minimum size is L (Large)</text>
+
+  <!-- Column headers -->
+  <line x1="22" y1="84" x2="230" y2="84" stroke="#dde8f5" stroke-width="0.75"/>
+  <text x="23"  y="93" font-size="6" font-weight="700" fill="#0A6ED1">Dimension</text>
+  <text x="174" y="93" font-size="6" font-weight="700" fill="#0A6ED1" text-anchor="middle">Score</text>
+
+  <!-- Row 1: Problem Clarity -->
+  <rect x="14" y="95" width="224" height="25" fill="white"/>
+  <text x="23" y="110" font-size="7" fill="#222">Problem Clarity</text>
+  <circle cx="159" cy="108" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="170" cy="108" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="181" cy="108" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="192" cy="108" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="203" cy="108" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <text x="215" y="111" font-size="6.5" fill="#aaa">–/5</text>
+
+  <!-- Row 2: User Understanding -->
+  <rect x="14" y="120" width="224" height="25" fill="#fafcff"/>
+  <text x="23" y="135" font-size="7" fill="#222">User Understanding</text>
+  <circle cx="159" cy="133" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="170" cy="133" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="181" cy="133" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="192" cy="133" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="203" cy="133" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <text x="215" y="136" font-size="6.5" fill="#aaa">–/5</text>
+
+  <!-- Row 3: Solution Definition -->
+  <rect x="14" y="145" width="224" height="25" fill="white"/>
+  <text x="23" y="160" font-size="7" fill="#222">Solution Definition</text>
+  <circle cx="159" cy="158" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="170" cy="158" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="181" cy="158" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="192" cy="158" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="203" cy="158" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <text x="215" y="161" font-size="6.5" fill="#aaa">–/5</text>
+
+  <!-- Row 4: Workflow Impact -->
+  <rect x="14" y="170" width="224" height="25" fill="#fafcff"/>
+  <text x="23" y="185" font-size="7" fill="#222">Workflow Impact</text>
+  <circle cx="159" cy="183" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="170" cy="183" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="181" cy="183" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="192" cy="183" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="203" cy="183" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <text x="215" y="186" font-size="6.5" fill="#aaa">–/5</text>
+
+  <!-- Row 5: UX Risk & Unknowns -->
+  <rect x="14" y="195" width="224" height="25" fill="white"/>
+  <text x="23" y="210" font-size="7" fill="#222">UX Risk &amp; Unknowns</text>
+  <circle cx="159" cy="208" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="170" cy="208" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="181" cy="208" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="192" cy="208" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <circle cx="203" cy="208" r="3.5" fill="none" stroke="#a0bde8" stroke-width="1"/>
+  <text x="215" y="211" font-size="6.5" fill="#aaa">–/5</text>
+
+  <!-- Total row -->
+  <line x1="22" y1="222" x2="230" y2="222" stroke="#dde8f5" stroke-width="0.75"/>
+  <rect x="14" y="222" width="224" height="34" fill="#EDF4FF"/>
+  <rect x="14" y="222" width="224" height="8" fill="#EDF4FF"/> <!-- clip top corners -->
+  <rect x="14" y="238" width="224" height="18" rx="8" fill="#EDF4FF"/> <!-- round bottom -->
+  <rect x="14" y="222" width="224" height="34" fill="#EDF4FF"/>
+  <text x="23"  y="243" font-size="7.5" font-weight="700" fill="#0A6ED1">Total UX Maturity Score:</text>
+  <text x="195" y="243" font-size="11" font-weight="700" fill="#0A6ED1">–/25</text>
+
+  <!-- ═══════════════════════════════════════
+       RIGHT CARD  –  Interpretation table
+       x=250 y=14 w=216 h=242
+  ════════════════════════════════════════ -->
+  <rect x="250" y="14" width="216" height="242" rx="8" fill="white" filter="url(#cs)"/>
+
+  <!-- Header -->
+  <rect x="250" y="14" width="216" height="36" rx="8" fill="#EDF4FF"/>
+  <rect x="250" y="38" width="216" height="12" fill="#EDF4FF"/>
+  <text x="259" y="30" font-size="9.5" font-weight="700" fill="#0A6ED1">Interpretation</text>
+  <text x="259" y="43" font-size="6" fill="#5a8fc0">Score → Maturity → Sizing implication</text>
+
+  <!-- Column headers -->
+  <rect x="250" y="52" width="216" height="14" fill="#f2f7ff"/>
+  <text x="258"  y="62" font-size="5.5" font-weight="700" fill="#0A6ED1">Score</text>
+  <text x="291"  y="62" font-size="5.5" font-weight="700" fill="#0A6ED1">Maturity</text>
+  <text x="345"  y="62" font-size="5.5" font-weight="700" fill="#0A6ED1">Implication</text>
+  <text x="444"  y="62" font-size="5.5" font-weight="700" fill="#0A6ED1" text-anchor="middle">Size</text>
+
+  <!-- Separator lines -->
+  <line x1="286" y1="52" x2="286" y2="256" stroke="#e0ecfa" stroke-width="0.75"/>
+  <line x1="336" y1="52" x2="336" y2="256" stroke="#e0ecfa" stroke-width="0.75"/>
+  <line x1="424" y1="52" x2="424" y2="256" stroke="#e0ecfa" stroke-width="0.75"/>
+
+  <!-- Row 1: 22–25 Very High -->
+  <rect x="250" y="66" width="216" height="36" fill="white"/>
+  <text x="258" y="79"  font-size="7"   font-weight="700" fill="#0a6ed1">22–25</text>
+  <text x="258" y="90"  font-size="5.5" fill="#888">Execution</text>
+  <text x="291" y="79"  font-size="7"   font-weight="700" fill="#057a55">Very High</text>
+  <text x="345" y="79"  font-size="6.5" fill="#333">Execution-ready</text>
+  <rect x="428" y="70" width="32" height="16" rx="3" fill="#057a55"/>
+  <text x="444" y="81"  font-size="7" font-weight="700" fill="white" text-anchor="middle">S</text>
+
+  <!-- Row 2: 18–21 High -->
+  <rect x="250" y="102" width="216" height="36" fill="#fafcff"/>
+  <text x="258" y="115" font-size="7"   font-weight="700" fill="#0a6ed1">18–21</text>
+  <text x="258" y="126" font-size="5.5" fill="#888">Controlled</text>
+  <text x="291" y="115" font-size="7"   font-weight="700" fill="#1d6fa5">High</text>
+  <text x="345" y="115" font-size="6.5" fill="#333">Controlled delivery</text>
+  <rect x="428" y="106" width="32" height="16" rx="3" fill="#0A6ED1"/>
+  <text x="444" y="117" font-size="7" font-weight="700" fill="white" text-anchor="middle">M</text>
+
+  <!-- Row 3: 14–17 Moderate -->
+  <rect x="250" y="138" width="216" height="36" fill="white"/>
+  <text x="258" y="151" font-size="7"   font-weight="700" fill="#0a6ed1">14–17</text>
+  <text x="258" y="162" font-size="5.5" fill="#888">Design</text>
+  <text x="291" y="151" font-size="7"   font-weight="700" fill="#8a6f00">Moderate</text>
+  <text x="345" y="151" font-size="6.5" fill="#333">Design + validation</text>
+  <rect x="428" y="142" width="32" height="16" rx="3" fill="#b38a00"/>
+  <text x="444" y="153" font-size="7" font-weight="700" fill="white" text-anchor="middle">L</text>
+
+  <!-- Row 4: 10–13 Low -->
+  <rect x="250" y="174" width="216" height="36" fill="#fafcff"/>
+  <text x="258" y="187" font-size="7"   font-weight="700" fill="#0a6ed1">10–13</text>
+  <text x="258" y="198" font-size="5.5" fill="#888">Discovery</text>
+  <text x="291" y="187" font-size="7"   font-weight="700" fill="#b54800">Low</text>
+  <text x="345" y="187" font-size="6.5" fill="#333">Discovery-heavy</text>
+  <rect x="428" y="178" width="32" height="16" rx="3" fill="#cc5500"/>
+  <text x="444" y="189" font-size="7" font-weight="700" fill="white" text-anchor="middle">XL</text>
+
+  <!-- Row 5: <10 Very Low (highlighted yellow like Figma) -->
+  <rect x="250" y="210" width="216" height="46" rx="0" fill="#fff8e0"/>
+  <rect x="250" y="210" width="216" height="46" fill="#fff8e0"/>
+  <rect x="250" y="228" width="216" height="28" rx="8" fill="#fff8e0"/>
+  <rect x="250" y="210" width="216" height="46" fill="#fff8e0"/>
+  <text x="258" y="227" font-size="7"   font-weight="700" fill="#cc5500">&lt; 10</text>
+  <text x="258" y="238" font-size="5.5" fill="#b38a00">Not ready</text>
+  <text x="291" y="227" font-size="7"   font-weight="700" fill="#cc0000">Very Low</text>
+  <text x="345" y="227" font-size="6.5" font-weight="700" fill="#cc0000">Not Scored</text>
+  <rect x="428" y="214" width="32" height="16" rx="3" fill="#ffe0a0"/>
+  <text x="444" y="225" font-size="6" font-weight="700" fill="#b38a00" text-anchor="middle">—</text>
+
+</svg>

@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_figjam",
+      "Bash(open \"http://localhost:5503/design-4.html\")",
+      "Bash(ls /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/img/amg*)",
+      "Bash(perl -pi -e 's|/img/02_AMG\\\\.png|/img/amg-02.png|g' /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/main3.css)",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/90b8fc06-09a1-49d7-9d45-fd64f87c5ff5\" -o \"/Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/img/syn-joule-eval-framework-01.png\")",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/ef4da8d8-2af1-41c9-ba58-21f11d4497d1\" -o \"/tmp/syn-joule-test.png\")",
+      "Read(//tmp/**)",
+      "Read(//Users/I556959/Library/**)",
+      "Bash(ls /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/img/baur*)",
+      "Bash(python3 -c \"from PIL import Image, ImageDraw, ImageFont; print\\(''PIL available''\\)\")",
+      "Bash(pip3 install:*)",
+      "Bash(python3 -c \"from PIL import Image; print\\(''PIL ready''\\)\")",
+      "Bash(python3:*)",
+      "Bash(ls -lh /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/img/baur*)",
+      "Bash(open /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/img/disc-ux-maturity-scorecard-01.svg)",
+      "Bash(open /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/img/syn-joule-eval-framework-01.svg)",
+      "Bash(open /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/design-4.html)",
+      "Bash(ls img/syn-analytics*)",
+      "Bash(ls img/[Ss]yn-workflow*)",
+      "Bash(ls img/baur-03*)",
+      "Bash(ls img/zeiss-smartzoom*)",
+      "Bash(ls img/ctsm-03*)",
+      "Bash(ls img/complexloans-02*)",
+      "Bash(ls img/bosch-02*)",
+      "Bash(ls img/proto-01*)",
+      "Bash(grep -v \"^clients$\")",
+      "Bash(open index.html)",
+      "Read(//Users/I556959/Documents/**)",
+      "Bash(open /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/index.html)",
+      "Bash(grep -v \"^[0-9]*:.*work-entry-title {$\\\\|^[0-9]*:.*work-entry-tag {$\")"
+    ]
+  }
+}

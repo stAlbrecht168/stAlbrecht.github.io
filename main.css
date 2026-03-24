@@ -171,7 +171,7 @@
 .footerDiv {
     background-size:cover;
     height:600px;
-    background-image:url("./img/00_BG-06.png");
+    background-image:url("./img/bg-pattern.png");
     background-repeat:no-repeat;
     background-position:center;
 }
@@ -248,10 +248,10 @@
 .position-complex-middle { width:70%; margin:3% 21% -53%; }
 .position-back-frame { width:70%; margin:0 4% -34%; }
 
-.device-frame { background-size:contain; background-image:url("/img/00_frame.svg"); background-repeat:no-repeat; }
+.device-frame { background-size:contain; background-image:url("/img/device-frame.svg"); background-repeat:no-repeat; }
 
 .vision-background {
-    background-image: url("./img/00_BG-06.png");
+    background-image: url("./img/bg-pattern.png");
     border-top:1px solid #0A6ED1;
     border-bottom:1px solid #0A6ED1;
 }
@@ -273,38 +273,37 @@
 }
 .pill-nav .tray {
     display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:.5rem .75rem;
+    justify-content:stretch;
+    flex-wrap:nowrap;
+    gap:0;
     padding:.6rem 0 .9rem;
     margin:0 auto;
     max-width:1200px;
+    width:100%;
 }
 .pill-link {
     display:inline-block;
     white-space:nowrap;
     padding:.35rem .7rem;
-    font-family:'72 Black';
-    font-weight:900;
+    flex:1;
+    text-align:center;
+    font-family:'72 Regular';
+    font-weight:400;
     color:#6A6A6A !important;
-    font-size:20px !important;
+    font-size:18px !important;
     line-height:24px !important;
     background:var(--color-canvas-default,#fff);
     text-decoration:none;
 }
-.pill-link.is-active,
 .pill-link:focus-visible {
   outline:none;
   box-shadow:0 0 0 2px var(--color-accent-emphasis,#0969da);
 }
 .pill-link.is-active {
-  background:var(--color-accent-emphasis,#0969da);
   color:#fff !important;
-  border-color:var(--color-accent-emphasis,#0969da);
 }
 .pill-link.is-active:hover {
-  background:#0757b6;
-  border-color:#0757b6;
+  opacity:.9;
 }
 
 .collapsible-trigger {
@@ -410,7 +409,7 @@ a.link-text:hover { text-decoration:underline; }
   }
 }
 
-/* About section color haze (approx from 00_BG-05.png) */
+/* About section color haze (approx from bg-pattern-2.png) */
 /* About section color haze (no bottom border) */
 .about-haze {
   position:relative;
@@ -482,3 +481,31 @@ a.link-text:hover { text-decoration:underline; }
   }
 }
 .about-haze > * { position:relative; z-index:1; }
+
+/* ── New content highlights ──────────────────────────────────────── */
+/* Wraps newly added/improved content blocks to make them stand out  */
+.new-content {
+  position: relative;
+  border-left: 3px solid #f59e0b;
+  padding-left: 1rem;
+  margin-left: -.25rem;
+}
+.new-content::before {
+  content: 'New';
+  position: absolute;
+  top: 0;
+  left: -3px;
+  transform: translateX(-100%) translateX(-6px);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: #f59e0b;
+  color: #fff;
+  padding: .15rem .4rem;
+  border-radius: 3px 0 0 3px;
+}
+@media (max-width: 768px) {
+  .new-content::before { display: none; }
+  .new-content { margin-left: 0; }
+}

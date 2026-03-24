@@ -3,647 +3,1724 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="null.css">
   <link rel="stylesheet" href="https://unpkg.com/@primer/css@^16.0.0/dist/primer.css" />
   <link rel="stylesheet" href="main.css">
   <script src="main.js" defer></script>
-  <title>Stephan Albrecht</title>
+  <title>Stephan Albrecht — Process</title>
+  <style>
+    /* ── Section label chip ── */
+    .phase-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-family: '72 Black';
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      border: 1.5px solid;
+      border-radius: 4px;
+      padding: .2rem .6rem;
+      margin-bottom: 1rem;
+    }
+    .phase-label.phase-discovery  { color: #0A6ED1; border-color: #0A6ED1; }
+    .phase-label.phase-synthesis  { color: #6E33C8; border-color: #6E33C8; }
+    .phase-label.phase-ideation   { color: #00827A; border-color: #00827A; }
+    .phase-label.phase-validation { color: #CC5500; border-color: #CC5500; }
+    .phase-label.phase-delivery   { color: #3D7317; border-color: #3D7317; }
+    .phase-label.phase-impact     { color: #B54800; border-color: #B54800; }
+
+    /* ── Process section header ── */
+    .process-section-header {
+      border-top: 2px solid #0A6ED1;
+      padding-top: 2rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+    .process-section-header.synthesis  { border-color: #6E33C8; }
+    .process-section-header.ideation   { border-color: #00827A; }
+    .process-section-header.validation { border-color: #CC5500; }
+    .process-section-header.delivery   { border-color: #3D7317; }
+    .process-section-header.impact     { border-color: #B54800; }
+
+    /* ── Work-entry card grid ── */
+    .work-entries {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 0;
+    }
+    .work-entry {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      border: 1px solid #e8e8e8;
+      display: flex;
+      flex-direction: column;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .work-entry:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+    }
+    .work-entry-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #f0f4f8;
+    }
+    .work-entry-media img,
+    .work-entry-media svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .work-entry-phase-bar {
+      height: 3px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .work-entry-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .work-entry-title {
+      font-family: '72 Black';
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: .35rem;
+    }
+    .work-entry-client {
+      font-family: '72 Regular';
+      font-size: 14px;
+      color: #6A6A6A;
+      margin-bottom: .85rem;
+    }
+    .work-entry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem .4rem;
+      margin-bottom: .9rem;
+    }
+    .work-entry-tag {
+      font-family: '72 Regular';
+      font-size: 12px;
+      color: #6A6A6A;
+      border: 1px solid #d8d8d8;
+      border-radius: 4px;
+      padding: .15rem .5rem;
+    }
+    .work-entry-text {
+      font-family: '72 Regular';
+      font-size: 15px;
+      line-height: 22px;
+      color: #595959;
+      flex: 1;
+    }
+    /* Phase accent color on title */
+    .work-entry.discovery  .work-entry-title { color: #0A6ED1; }
+    .work-entry.synthesis  .work-entry-title { color: #6E33C8; }
+    .work-entry.ideation   .work-entry-title { color: #00827A; }
+    .work-entry.validation .work-entry-title { color: #CC5500; }
+    .work-entry.delivery   .work-entry-title { color: #3D7317; }
+    .work-entry.impact     .work-entry-title { color: #B54800; }
+    /* Phase accent bar */
+    .work-entry.discovery  .work-entry-phase-bar { background: #0A6ED1; }
+    .work-entry.synthesis  .work-entry-phase-bar { background: #6E33C8; }
+    .work-entry.ideation   .work-entry-phase-bar { background: #00827A; }
+    .work-entry.validation .work-entry-phase-bar { background: #CC5500; }
+    .work-entry.delivery   .work-entry-phase-bar { background: #3D7317; }
+    .work-entry.impact     .work-entry-phase-bar { background: #B54800; }
+    @media (max-width: 1024px) {
+      .work-entries { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .work-entries { grid-template-columns: 1fr; }
+    }
+
+    /* ── Process grid layout ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0 3rem;
+      align-items: start;
+    }
+    .process-sidebar {
+      position: sticky;
+      top: 5rem;
+    }
+    @media (max-width: 900px) {
+      .process-grid { grid-template-columns: 1fr; }
+      .process-sidebar { position: static; }
+    }
+
+    /* ── Phase nav (left sidebar) ── */
+    .phase-nav { list-style: none; padding: 0; margin: 0; }
+    .phase-nav li { margin-bottom: .25rem; }
+    .phase-nav a {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-family: '72 Black';
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #6A6A6A;
+      text-decoration: none;
+      padding: .4rem .6rem;
+      border-radius: 4px;
+      transition: background .15s, color .15s;
+    }
+    .phase-nav a:hover { background: #F4F4F4; color: #0A6ED1; }
+    .phase-nav a.is-active { background: #EAF3FC; color: #0A6ED1; }
+    .phase-nav .dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: currentColor;
+    }
+
+    /* ── Phase-mapped expertise ── */
+    .phase-expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem 2rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+    .phase-expertise-col { display: flex; flex-direction: column; }
+    .phase-expertise-list { list-style: none; padding: 0; margin: .6rem 0 0; }
+    .phase-expertise-list li {
+      font-family: '72 Regular';
+      font-size: .9rem !important;
+      line-height: 1.5 !important;
+      color: #595959 !important;
+      padding: .3rem 0;
+      border-bottom: 1px solid #ebebeb;
+    }
+    .phase-expertise-list li:last-child { border-bottom: none; }
+    .vision-statement {
+      font-family: '72 Black Headline';
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      -webkit-text-fill-color: #0A6ED1;
+      max-width: 820px;
+      margin: 0;
+    }
+    @media (max-width: 1024px) { .phase-expertise-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px)  { .phase-expertise-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ── Work entry image/text gap — legacy, kept for safety ── */
+
+    /* ── About hero ── */
+    .about-hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+    }
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('img/calm-hero.png');
+      background-size: cover;
+      background-position: center right;
+      z-index: 0;
+    }
+    .about-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(255,255,255,1.00) 0%,
+          rgba(255,255,255,0.80) 12%,
+          rgba(255,255,255,0.00) 30%
+        ),
+        linear-gradient(
+          to right,
+          rgba(255,255,255,0.98) 0%,
+          rgba(255,255,255,0.96) 38%,
+          rgba(255,255,255,0.72) 58%,
+          rgba(255,255,255,0.08) 100%
+        );
+    }
+    .about-hero.about-hero-inner,
+    .about-hero .about-hero-inner {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    .about-hero-inner {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .about-hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      max-width: 680px;
+    }
+    .about-hero-namerow {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+      width: 100%;
+    }
+    .about-hero-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 18px rgba(10,110,209,.18);
+      border: 3px solid #fff;
+    }
+    .about-hero-role {
+      font-family: '72 Regular';
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #6A6A6A;
+      letter-spacing: .04em;
+      margin-bottom: .5rem;
+      
+    }
+    .about-hero-name {
+      margin-bottom: 0 !important;
+    }
+    .about-hero-bio {
+      color: #595959 !important;
+    }
+    .about-hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.25rem 2.5rem;
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(10,110,209,.18);
+      width: 100%;
+    }
+    .about-stat { display: flex; flex-direction: column; }
+    .about-stat-num {
+      font-family: '72 Black';
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #0A6ED1;
+      -webkit-text-fill-color: #0A6ED1;
+      line-height: 1;
+    }
+    .about-stat-desc {
+      font-family: '72 Regular';
+      font-size: 20px;
+      line-height: 27px;
+      color: #6A6A6A;
+      margin-top: .4rem;
+    }
+    .about-hero-cta { margin-top: 2rem; }
+    @media (max-width: 900px) {
+      .about-hero-bg { background-position: 70% center; }
+      .about-hero-bg::after {
+        background:
+          linear-gradient(
+            to top,
+            rgba(255,255,255,1.00) 0%,
+            rgba(255,255,255,0.80) 12%,
+            rgba(255,255,255,0.00) 30%
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.55) 0%,
+            rgba(255,255,255,0.92) 40%,
+            rgba(255,255,255,0.98) 100%
+          );
+      }
+    }
+    @media (max-width: 560px) {
+      .about-hero-name { font-size: 3.2rem !important; }
+      .about-hero-img { width: 80px; height: 80px; }
+    }
+    @media (max-width: 560px) {
+      .about-hero-name { font-size: 3.2rem !important; }
+      .about-hero-img { width: 80px; height: 80px; }
+    }
+
+    /* ── Phase-colored pill nav ── */
+    .pill-link.btn { border: none !important; box-shadow: none !important; }
+    .pill-discovery { color: #0A6ED1 !important; }
+    .pill-discovery:hover, .pill-discovery.is-active { background: #0A6ED1 !important; color: #fff !important; }
+    .pill-synthesis { color: #6E33C8 !important; }
+    .pill-synthesis:hover, .pill-synthesis.is-active { background: #6E33C8 !important; color: #fff !important; }
+    .pill-ideation { color: #00827A !important; }
+    .pill-ideation:hover, .pill-ideation.is-active { background: #00827A !important; color: #fff !important; }
+    .pill-validation { color: #CC5500 !important; }
+    .pill-validation:hover, .pill-validation.is-active { background: #CC5500 !important; color: #fff !important; }
+    .pill-delivery { color: #3D7317 !important; }
+    .pill-delivery:hover, .pill-delivery.is-active { background: #3D7317 !important; color: #fff !important; }
+    .pill-impact { color: #B54800 !important; }
+    .pill-impact:hover, .pill-impact.is-active { background: #B54800 !important; color: #fff !important; }
+
+    /* ── Impact stat strip ── */
+    .stat-strip {      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      padding: 2rem 0;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+      margin: 2rem 0 3rem;
+    }
+    .stat-item .stat-num {
+      font-family: '72 Black';
+      font-size: 2rem;
+      font-weight: 900;
+      color: #0A6ED1;
+      line-height: 1;
+    }
+    .stat-item .stat-desc {
+      font-family: '72 Regular';
+      font-size: .85rem;
+      color: #6A6A6A;
+      margin-top: .2rem;
+    }
+  </style>
 </head>
 <body>
 <main>
 
-    <!-- ============================= Content Header (empty placeholder) ============================= -->
-  <div class="aboutDiv about-haze "></div>
-  
-  <div id="about" class="container-xl pb-8 p-responsive ">
-    
-    <!-- About -->  
-    <div class="expvision d-flex col-12 flex-column flex-md-row flex-items-center flex-md-items-start pt-9 pb-12">
-      <div class="animate-wrapper col-lg-4 col-md-4 mt-md-n4 mt-sm-n4 pr-lg-6 pr-md-3">
-        <img class="animate width-fit" src="img/Stephan.png" alt="Stephan Albrecht" />
-      </div>
-      <div class="col-lg-8 col-md-8 animate-wrapper pt-lg-4 pt-md-1 pt-sm-4">
-        <h1 class="text-md-left text-sm-center animate site-Headline-2">Stephan Albrecht</h1>
-        <div class="d-flex pb-5 flex-column flex-md-row flex-items-start flex-sm-items-center">
-          <h1 class="animate site-title-Headline-3 text-xl-left text-lg-left text-md-left">UX Design Lead @ SAP</h1>
-          <div class="d-flex flex-column flex-sm-row mt-3">
-            <a class="btn btn-outline btn-xl ml-3 mr-sm-2 mb-3" href="mailto:sha@s-albrecht.com">Contact me</a>
+  <!-- ===== About ===== -->
+  <section id="about" class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-inner container-xl p-responsive">
+      <div class="about-hero-text">
+        <div class="about-hero-namerow">
+          <img src="img/stephan.png" alt="Stephan Albrecht" class="about-hero-img" />
+          <div style="flex:1; min-width:0;">
+            <p class="about-hero-role">UX Design Lead @ SAP</p>
+            <h1 class="site-Headline-2 about-hero-name">Stephan Albrecht</h1>
           </div>
         </div>
-        <h3 class="expertise-text mb-3 col-5-max">
-          Product Design leader with 17 years of experience designing complex enterprise and multi-workflow SaaS products across cloud platforms, operations, payroll, logistics, financials, life sciences, and industry solutions.
-        </h3>
-        <p class="expertise-text">
-          Currently leading UX for SAP Cloud Application Lifecycle Management (CALM), shaping platform-level experiences across six agile teams. Strong background in systems thinking, interaction design, UX strategy, research-informed product development, design systems, and cross-functional collaboration with product managers, engineers, and designers. Experienced in shaping AI-enabled product opportunities, building code-aware design workflows, and using frontend knowledge and prototyping to reduce ambiguity and move ideas into implementation.
+        <p class="expertise-text about-hero-bio">
+          Product Design leader with 17 years of experience designing complex enterprise and
+          multi-workflow SaaS products across cloud platforms, operations, payroll, logistics,
+          financials, life sciences, and industry solutions.
         </p>
-      </div>
-    </div>
-  
-
-  
-  <!-- Experience Vision & Expertise -->
-  <div id="expvision" class="pt-12 pb-12 experience-wrapper ">
-    <section id="experience-vision" class="container-xl p-responsive exp-wrapper">
-      <!-- Hero -->
-      <div class="exp-hero text-center mb-8">
-        <h1 class="title-Headline-2 mb-4">Experience Vision & Expertise</h1>
-        <p class="expertise-text lead-intro mx-auto col-6-max">
-          Designing agentic, AI‑driven enterprise experiences that amplify human decision‑making and align with measurable outcomes.
+        <p class="expertise-text about-hero-bio" style="margin-top:.75rem;">
+          Currently leading UX for SAP CALM, shaping platform-level experiences across six agile teams.
+          Experienced in systems thinking, UX strategy, research-informed product development,
+          design systems, and AI-enabled product opportunities.
         </p>
-      </div>
-
-      <!-- Vision + Pillars -->
-      <div class="exp-vision  d-flex flex-column flex-lg-row gap-lg">
-
-         <!-- Column 1: Vision -->
-        <div class="d-flex flex-column flex-md-row flex-items-start col-lg-12 mb-5 mb-lg-0 pr-lg-6 ">
-
-          <div class="animate-wrapper" id="vision">
-          <h2 class="case-headline-2 mb-3">Vision</h2>
-          <p class="expertise-text mb-4">
-            Enterprise software is entering a collaborative, agentic era. I lead UX strategies that align AI‑first principles
-            with human trust, governance, and business value across planning, operations, lifecycle management, and service.
-          </p>
-          </div>
-
-          <div id="goal">
-          <h2 class=" case-headline-2 mb-3">Goal</h2>
-          <p class="expertise-text mb-0">
-            Systems that actively partner with people—surfacing guidance, anticipating risk, and accelerating
-            outcomes through explainable automation patterns grounded in trusted data and research-informed design.
-          </p>
-          </div>
+        <div class="about-hero-stats">
+          <div class="about-stat"><span class="about-stat-num">17+</span><span class="about-stat-desc">years in enterprise design</span></div>
+          <div class="about-stat"><span class="about-stat-num">18+</span><span class="about-stat-desc">client organisations</span></div>
+          <div class="about-stat"><span class="about-stat-num">24+</span><span class="about-stat-desc">Fiori apps delivered</span></div>
+          <div class="about-stat"><span class="about-stat-num">6</span><span class="about-stat-desc">engineering teams led simultaneously</span></div>
+          <div class="about-stat"><span class="about-stat-num">5</span><span class="about-stat-desc">designers mentored remotely</span></div>
+        </div>
+        <div class="about-hero-cta">
+          <a class="btn btn-outline btn-xl" href="mailto:sha@s-albrecht.com">Contact me</a>
         </div>
       </div>
-
-      <!-- Expertise Grid -->
-      <div class="exp-grid mt-6">
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">Enterprise & Platform Design</h3>
-          <p class="expertise-text small mb-0">End-to-end SaaS workflows for complex enterprise and multi-team products.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">AI‑Enabled Product Experience</h3>
-          <p class="expertise-text small mb-0">Identifying AI use cases, prompt evaluation, and UX benchmarking for AI outputs.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">UX Strategy & Roadmap</h3>
-          <p class="expertise-text small mb-0">Defining and executing UX roadmaps grounded in research, analytics, and product priorities.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">Systems Thinking & IA</h3>
-          <p class="expertise-text small mb-0">Information architecture and interaction design for scalable, coherent product ecosystems.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">Research & Validation</h3>
-          <p class="expertise-text small mb-0">Analytics-informed design decisions through stakeholder interviews, usability studies, and iterative testing.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">Design Systems & Governance</h3>
-          <p class="expertise-text small mb-0">Creating scalable, governed patterns—strong user of SAP Fiori Design System.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">Cross-functional Leadership</h3>
-          <p class="expertise-text small mb-0">Aligning product, engineering, and design across six agile scrum teams.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">Mentorship & Craft Leadership</h3>
-          <p class="expertise-text small mb-0">Raising UX maturity and advocating for high standards across product lines.</p>
-        </article>
-        <article class="exp-card">
-          <h3 class="detail-headline-3 mb-1">Frontend Collaboration</h3>
-          <p class="expertise-text small mb-0">Coding fluency in HTML, CSS, JS, UI5 — reducing ambiguity between design and engineering.</p>
-        </article>
-      </div>
-
-    </section>
-  </div>
-  
-<!-- Selected Projects -->
-  <div class="color-bg-canvas container-xl clearfix">
-    <div class="color-bg-canvas pt-12 d-flex flex-column flex-justify-center flex-items-center flex-md-items-center">
-      <h1 class="animate title-Headline-2 text-center pb-8">Selected Projects</h1>
     </div>
-  </div>
+  </section>
 
-  <!-- In-page nav pills -->
-  <nav class="pill-nav px-3 px-md-5 pb-2" aria-label="Project sections">
-    <div class="container-lg tray">
-      <a class="pill-link btn btn-sm btn-outline" href="#case-calm">ISD Hub</a>
-      <a class="pill-link btn btn-sm btn-outline" href="#case-loans">Complex Loans</a>
-      <a class="pill-link btn btn-sm btn-outline" href="#case-ictsm">ICTSM</a>
-      <a class="pill-link btn btn-sm btn-outline" href="#case-baur">Baur</a>
-      <a class="pill-link btn btn-sm btn-outline" href="#case-zeiss">Zeiss</a>
-      <a class="pill-link btn btn-sm btn-outline" href="#case-bbva">BBVA</a>
-      <a class="pill-link btn btn-sm btn-outline" href="#case-bosch">Bosch</a>
-      <a class="pill-link btn btn-sm btn-outline" href="#clients">Clients</a>
-    </div>
-  </nav>
-
+  <!-- ===== How I Work ===== -->
   <div class="color-bg-canvas container-xl clearfix">
+    <div class="color-bg-canvas pt-12 pb-2 d-flex flex-column flex-justify-center flex-items-center">
+      <h1 class="animate title-Headline-2 text-center pb-4">How I Work</h1>
+      <p class="expertise-text text-center pb-6" style="max-width:60ch; margin: 0 auto">
+        Work organized by design process — not by project or client. Across the Problem Space I partner with Product Management to frame the right problem before committing to solutions. Across the Solution Space I work with Engineering to validate concepts early and deliver with quality. Each phase shows what I produce, how I think, and where I take the lead.
+      </p>
 
-    <!-- CALM -->
-    <section id="case-calm">
-      <div class="d-flex flex-column flex-lg-row flex-wrap">
-        <div class="animate-wrapper hero-block col-12 col-lg-12">
-          <div class="animate">
-            <picture><img class="width-full bg-gray" src="img/01_ISDH_Hero.png" alt="ISD Hub Hero"></picture>
-          </div>
-        </div>
-        <div class="color-bg-canvas hero-block col-12 col-lg-4 mt-n12 pb-3 pt-3 pl-3 pr-3">
-          <h1 class="title-Headline-3 mt-3 mb-3">ISD Hub</h1>
-          <p class="case-headline-2 mb-6 pb-2">Cloud Application Lifecycle Management</p>
-          <div class="text-task d-flex flex-column flex-wrap flex-md-row flex-items-start">
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Application Lifecycle Management</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Cloud</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">UI5</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">CXS</div></div>
-          </div>
-        </div>
+      <!-- PDLC Zone Diagram -->
+      <div class="p-responsive pt-2 pb-4" style="width:100%">
+        <style>
+          /* ── PDLC diagram ── */
+          .pdlc-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            font-family: '72 Regular', sans-serif;
+          }
+          /* Top row: three zone labels */
+          .pdlc-zones {
+            display: flex;
+            gap: 8px;
+          }
+          .pdlc-zone-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+          }
+          .pdlc-zone-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+          }
+          .pdlc-zone-label {
+            text-align: center;
+            font-family: '72 Regular';
+            font-size: 13px;
+            letter-spacing: .04em;
+            padding: 4px 8px;
+            border-radius: 4px 4px 0 0;
+            opacity: .82;
+          }
+          .pdlc-zone-label.problem  { background: #EDF4FF; color: #0A6ED1; border-top: 2px solid #c8ddf6; }
+          .pdlc-zone-label.solution { background: #E6F4F3; color: #00827A; border-top: 2px solid #b0dbd8; }
+          .pdlc-zone-label.outcome  { background: #EEF5E9; color: #3D7317; border-top: 2px solid #bcd9ac; }
 
-        <div class="color-bg-canvas content-block clearfix container-xl col-12 pb-2 pt-2 p-responsive">
-          <div class="pt-4 d-flex flex-column flex-md-row flex-items-start">
-            <div class="animate-wrapper col-12  d-flex flex-column flex-justify-center flex-items-start pb-8 pr-lg-5 pr-md-5" id="project-isdhub">
-              <p class="expertise-text pt-3">
-                Led UX strategy for SAP Cloud Application Lifecycle Management Services Market, managing and mentoring 5 designers remotely. Supervised baseline usability studies, implemented usage tracking to define success metrics,
-                and partnered with product teams to introduce the first agentic AI use cases within SAP’s enterprise ecosystem. Defined AI-assisted workflows that improved user efficiency and product insight across the lifecycle.
-              <button class="btn btn-invisible collapsible-trigger" type="button" aria-expanded="false" aria-controls="process-services" data-target="process-services">
-                  <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" class="octicon octicon-chevron-down ml-1">
-                    <path fill="currentColor" d="M4.22 5.47a.75.75 0 0 1 1.06 0L8 8.19l2.72-2.72a.75.75 0 1 1 1.06 1.06L8.53 9.78a.75.75 0 0 1-1.06 0L4.22 6.53a.75.75 0 0 1 0-1.06Z"/>
-                  </svg>
-                  <span class="Button-label">Show Details</span>
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div id="process-services" class="color-bg-canvas content-block clearfix container-xl col-12 pb-12 p-responsive" hidden>
-            <!-- Design Leadership & Process -->
-            <div class="content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-4 pb-6">
-              <div class="slide-left-animate col-12 col-lg-4 mb-4">
-                <div class="slide-left fluid-deepDive mb-5 mb-md-6">
-                  <p class="case-headline-2 pb-1 mb-lg-1">Design Leadership</p>
-                  <p class="expertise-text slist col-5-max pt-3">
-                    Guided a distributed team of five product designers to define and execute an AI-driven design strategy for
-                    Cloud Application Lifecycle Management Services. Promoted a culture of collaboration, continuous learning, and
-                    measurable design impact across global product teams.
-                  </p>
+
+          .pdlc-phase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 8px 14px;
+            border-radius: 8px;
+            border: 1.5px solid transparent;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s cubic-bezier(.16,1,.3,1),
+                        box-shadow .3s ease,
+                        border-color .3s ease,
+                        background .3s ease;
+          }
+          .pdlc-phase:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,.08);
+            z-index: 1;
+          }
+
+          /* Zone coloring for cards */
+          .pdlc-phase.discovery  { border-top: 2px solid #c8ddf6; background: #EDF4FF; border-color: #c8ddf6; }
+          .pdlc-phase.synthesis  { border-top: 2px solid #d4bef7; background: #F3EEFF; border-color: #d4bef7; }
+          .pdlc-phase.ideation   { border-top: 2px solid #b0dbd8; background: #E6F4F3; border-color: #b0dbd8; }
+          .pdlc-phase.validation { border-top: 2px solid #f0c09a; background: #FFF0E6; border-color: #f0c09a; }
+          .pdlc-phase.delivery   { border-top: 2px solid #bcd9ac; background: #EEF5E9; border-color: #bcd9ac; }
+          .pdlc-phase.impact     { border-top: 2px solid #f0b888; background: #FFF3EC; border-color: #f0b888; }
+
+          /* Active phase (cycling animation) */
+          .pdlc-phase.pdlc-active {
+            transform: translateY(-3px) scale(1.02);
+            z-index: 2;
+          }
+          .pdlc-phase.discovery.pdlc-active  { border-color: #0A6ED1; box-shadow: 0 6px 24px rgba(10,110,209,.22);  background: #ddeeff; }
+          .pdlc-phase.synthesis.pdlc-active  { border-color: #6E33C8; box-shadow: 0 6px 24px rgba(110,51,200,.22);  background: #e8d8ff; }
+          .pdlc-phase.ideation.pdlc-active   { border-color: #00827A; box-shadow: 0 6px 24px rgba(0,130,122,.22);   background: #cfeae8; }
+          .pdlc-phase.validation.pdlc-active { border-color: #CC5500; box-shadow: 0 6px 24px rgba(204,85,0,.22);    background: #ffe3cc; }
+          .pdlc-phase.delivery.pdlc-active   { border-color: #3D7317; box-shadow: 0 6px 24px rgba(61,115,23,.22);   background: #d8edca; }
+          .pdlc-phase.impact.pdlc-active     { border-color: #B54800; box-shadow: 0 6px 24px rgba(181,72,0,.22);    background: #ffdfc4; }
+
+          /* Progress bar sweeps left to right during dwell */
+          .pdlc-progress {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: none;
+            border-radius: 0 0 8px 8px;
+          }
+          .pdlc-phase.pdlc-active .pdlc-progress {
+            transform: scaleX(1);
+            transition: transform 0.85s linear;
+          }
+          .pdlc-phase.discovery  .pdlc-progress { background: #0A6ED1; }
+          .pdlc-phase.synthesis  .pdlc-progress { background: #6E33C8; }
+          .pdlc-phase.ideation   .pdlc-progress { background: #00827A; }
+          .pdlc-phase.validation .pdlc-progress { background: #CC5500; }
+          .pdlc-phase.delivery   .pdlc-progress { background: #3D7317; }
+          .pdlc-phase.impact     .pdlc-progress { background: #B54800; }
+
+          /* Number badge */
+          .pdlc-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: '72 Black', sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .02em;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+          }
+          .pdlc-phase.discovery  .pdlc-num { background: #0A6ED1; color: #fff; }
+          .pdlc-phase.synthesis  .pdlc-num { background: #6E33C8; color: #fff; }
+          .pdlc-phase.ideation   .pdlc-num { background: #00827A; color: #fff; }
+          .pdlc-phase.validation .pdlc-num { background: #CC5500; color: #fff; }
+          .pdlc-phase.delivery   .pdlc-num { background: #3D7317; color: #fff; }
+          .pdlc-phase.impact     .pdlc-num { background: #B54800; color: #fff; }
+
+          .pdlc-phase-name {
+            font-family: '72 Black';
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: .02em;
+            text-align: center;
+            margin-bottom: 8px;
+          }
+          .pdlc-phase.discovery  .pdlc-phase-name { color: #0A6ED1; }
+          .pdlc-phase.synthesis  .pdlc-phase-name { color: #6E33C8; }
+          .pdlc-phase.ideation   .pdlc-phase-name { color: #00827A; }
+          .pdlc-phase.validation .pdlc-phase-name { color: #CC5500; }
+          .pdlc-phase.delivery   .pdlc-phase-name { color: #3D7317; }
+          .pdlc-phase.impact     .pdlc-phase-name { color: #B54800; }
+
+          .pdlc-divider {
+            width: 24px;
+            height: 1px;
+            background: currentColor;
+            opacity: .2;
+            margin-bottom: 8px;
+          }
+
+          .pdlc-tags {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+          }
+          .pdlc-tag {
+            font-family: '72 Regular';
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            line-height: 1.3;
+          }
+
+          /* Scroll-triggered animation */
+          .pdlc-zone-group {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.55s cubic-bezier(.16,1,.3,1),
+                        transform 0.55s cubic-bezier(.16,1,.3,1);
+          }
+          .pdlc-zone-group.pdlc-visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          /* Responsive: stack zone groups vertically */
+          @media (max-width: 680px) {
+            .pdlc-zones { flex-direction: column; }
+          }
+        </style>
+
+        <div id="pdlc-diagram" class="pdlc-wrapper">
+
+          <!-- Zone groups: label always above its 2 cards -->
+          <div class="pdlc-zones">
+
+            <!-- Problem Space -->
+            <div class="pdlc-zone-group">
+              <div class="pdlc-zone-label problem">Problem Space</div>
+              <div class="pdlc-zone-cards">
+                <div class="pdlc-phase discovery">
+                      <div class="pdlc-phase-name">Discovery</div>
+                  <div class="pdlc-divider"></div>
+                  <div class="pdlc-tags">
+                    <span class="pdlc-tag">Field research</span>
+                    <span class="pdlc-tag">Maturity frameworks</span>
+                    <span class="pdlc-tag">Domain immersion</span>
+                  </div>
                 </div>
-              </div>
-              <div class="animate-wrapper fluid-deepDive col-12 col-lg-8 p-4">
-                <div class="animate position-back z-2">
-                  <picture><img src="img/06_ISDH.png" class="width-fit box-shadow-active-border-mktg" alt="AI Strategy Visualization" loading="lazy"></picture>
-                </div>
-                <div class="animate position-front z-3">
-                  <picture><img src="img/07_ISDH.png" class="width-fit box-shadow-active-border-mktg" alt="Team Collaboration" loading="lazy"></picture>
-                </div>
-                <div class="animate position-top z-4">
-                  <picture><img src="img/08_ISDH.png" class="width-fit box-shadow-active-border-mktg" alt="Design Leadership Workshop" loading="lazy"></picture>
-                </div>
-              </div>
-            </div>
-
-            <!-- Research & AI Integration -->
-            <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-5 pb-6 pl-3 pr-3">
-              <div class="animate-wrapper col-12 col-lg-8 pb-sm-6">
-                <div class="animate position-relative p-4">
-                  <picture><img src="img/11_ISDH.png" class="width-fit" alt="AI Agent Prototype" loading="lazy"></picture>
-                </div>
-              </div>
-              <div class="slide-right-animate col-12 col-lg-4 mb-4">
-                <div class="slide-right fluid-deepDive mb-5 mb-md-6">
-                  <p class="case-headline-2 pb-1 mb-lg-1">AI Integration & Research</p>
-                  <p class="expertise-text slist col-5-max pt-3">
-                    Partnered with Product Management and Engineering to identify AI opportunities across teams, including
-                    the first agentic assistant prototypes. Conducted baseline usability studies, integrated usage analytics to
-                    establish success metrics, and validated design assumptions through iterative testing.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Systems & Consistency -->
-            <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-4 pb-8 pl-3 pr-3">
-              <div class="slide-left-animate col-12 col-lg-4 mb-4">
-                <div class="slide-left fluid-deepDive mb-5 mb-md-6">
-                  <p class="case-headline-2 pb-1 mb-lg-1">Design Systems & Standards</p>
-                  <p class="expertise-text slist col-5-max pt-3">
-                    Contributed to the evolution of SAP’s design system by introducing AI-specific interaction patterns and
-                    scalable components. Ensured visual and behavioral consistency across product teams and improved
-                    accessibility through standardized Fiori Elements adoption.
-                  </p>
-                </div>
-              </div>
-              <div class="animate-wrapper fluid-deepDive col-12 col-lg-8 pb-sm-6">
-                <div class="animate position-complex-back z-4">
-                  <picture><img src="img/09_ISDH.png" class="width-fit box-shadow-active-border-mktg" alt="Design System Patterns" loading="lazy"></picture>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Complex Loans -->
-    <section id="case-loans" class="color-bg-canvas separator-line pt-8 pt-md-9">
-      <div class="d-flex flex-column flex-lg-row flex-wrap">
-        <div class="animate-wrapper hero-block col-12">
-          <div class="animate"><picture><img class="width-full bg-gray" src="img/01_ComplexLoans.png" alt="Complex Loans Hero"></picture></div>
-        </div>
-        <div class="color-bg-canvas hero-block col-12 col-lg-4 mt-n12 pb-3 pt-3 pl-3 pr-3">
-          <h1 class="title-Headline-3 mt-3 mb-3">S/4 HANA</h1>
-          <p class="case-headline-2 mb-6 pb-2">Banking for complex loans</p>
-          <div class="text-task d-flex flex-column flex-wrap flex-md-row flex-items-start">
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Web application</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">UI5</div></div>
-          </div>
-        </div>
-
-        <div class="color-bg-canvas content-block clearfix container-xl col-12 pb-2 pt-2 p-responsive">
-          <div class="pt-4 d-flex flex-column flex-md-row flex-items-start">
-            <div class="animate-wrapper col-12  d-flex flex-column flex-justify-center flex-items-start pb-8 pr-lg-5 pr-md-5">
-              <h1 class="case-headline-3">Project</h1>
-              <p class="expertise-text mb-6 pt-3">
-                Delivered UX leadership for S/4HANA’s Complex Loans suite — a system of 24 integrated Fiori applications supporting complex financial products. 
-                Drove design consistency and user flow simplification through collaborative UX processes with Product Management and Engineering, aligning solutions to measurable business and user goals.
-                <button class="btn btn-invisible collapsible-trigger" type="button" aria-expanded="false" aria-controls="process-loans" data-target="process-loans">
-                  <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" class="octicon octicon-chevron-down ml-1">
-                    <path fill="currentColor" d="M4.22 5.47a.75.75 0 0 1 1.06 0L8 8.19l2.72-2.72a.75.75 0 1 1 1.06 1.06L8.53 9.78a.75.75 0 0 1-1.06 0L4.22 6.53a.75.75 0 0 1 0-1.06Z"/>
-                  </svg>
-                  <span class="Button-label">Show Details</span>
-                </button>
-              </p>
-    
-            </div>
-          </div>
-        </div>
-
-
-
-        <div id="process-loans" class="color-bg-canvas content-block clearfix container-xl col-12 pb-12 p-responsive" hidden>
-          <!-- Discovery & Research -->
-          <div class="content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-4 pb-6">
-            <div class="slide-left-animate col-12 col-lg-4 mb-4">
-              <div class="slide-left fluid-deepDive mb-5">
-                <p class="case-headline-2 pb-1 mb-lg-1">Discovery & Research</p>
-                <p class="expertise-text slist col-5-max pt-3">
-                  Partnered with business and technical stakeholders to validate complex loan workflows through workshops,
-                  interviews, and usability studies. Defined the design scope using real user behavior and performance data
-                  to align financial logic with human decision flows.
-                </p>
-              </div>
-            </div>
-            <div class="animate-wrapper fluid-deepDive col-12 col-lg-8 p-4">
-              <picture><img src="img/03_ComplexLoans.png" class="width-fit box-shadow-active-border-mktg" alt="Research Workshops" loading="lazy"></picture>
-            </div>
-          </div>
-
-          <!-- Iterative Design & Prototyping -->
-          <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-5 pb-6 pl-3 pr-3">
-            <div class="animate-wrapper col-12 col-lg-8 pb-sm-6">
-              <picture><img src="img/02_ComplexLoans.gif" class="width-full box-shadow-active-border-mktg" alt="Interactive Prototype" loading="lazy"></picture>
-            </div>
-            <div class="slide-right-animate col-12 col-lg-4 mb-4">
-              <div class="slide-right fluid-deepDive mb-5">
-                <p class="case-headline-2 pb-1 mb-lg-1">Iterative Design</p>
-                <p class="expertise-text slist col-5-max pt-3">
-                  Created high-fidelity prototypes and interaction storyboards to visualize multi-stakeholder financial flows.
-                  Partnered with engineers to validate feasibility and performance early in the process.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Delivery & Alignment -->
-          <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-4 pb-8 pl-3 pr-3">
-            <div class="slide-left-animate col-12 col-lg-4 mb-4">
-              <div class="slide-left fluid-deepDive mb-5">
-                <p class="case-headline-2 pb-1 mb-lg-1">Delivery & System Consistency</p>
-                <p class="expertise-text slist col-5-max pt-3">
-                  Delivered complete UX specifications and contributed reusable Fiori Elements patterns to ensure alignment
-                  across the S/4HANA portfolio. Established design review checkpoints to maintain quality and consistency.
-                </p>
-              </div>
-            </div>
-            <div class="animate-wrapper fluid-deepDive col-12 col-lg-8 pb-sm-6">
-              <picture><img src="img/08_ComplexLoans.png" class="width-fit box-shadow-active-border-mktg" alt="Design Documentation" loading="lazy"></picture>
-            </div>
-          </div>
-      </div>
-
-      </div>
-    </section>
-
-    <!-- ICTSM -->
-    <section id="case-ictsm" class="color-bg-canvas separator-line pt-8 pt-md-9">
-      <div class="d-flex flex-column flex-lg-row flex-wrap">
-        <div class="d-flex flex-column flex-md-row flex-lg-row flex-items-start">
-          
-          
-          
-          <div class="content-block-ictsm color-bg-canvas d-flex col-12 col-lg-6 flex-column flex-items-start pl-3 pr-8">
-            
-            
-            <div class="color-bg-canvas hero-block col-12 animate-wrapper d-flex flex-column flex-items-start pb-8 pt-4">
-              <h1 class="title-Headline-3 mt-3 mb-3">iCTSM</h1>
-              <p class="case-headline-2 mb-6 pb-4">Clinical Trial Supply Management</p>
-              <div class="text-task d-flex flex-column flex-wrap flex-md-row flex-items-start">
-                <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Life sciences</div></div>
-                <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Web application</div></div>
-                <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">UI5</div></div>
-              </div>
-            </div>
-
-            <div class="color-bg-canvas content-block clearfix container-xl col-12 pb-2 pt-2 ">
-                <div class="pt-4 d-flex flex-column flex-md-row flex-items-start">
-                  <div class="animate-wrapper col-12  d-flex flex-column flex-justify-center flex-items-start pb-8 pr-lg-5 pr-md-5">
-                    <p class="expertise-text mb-6 pt-3">
-                      Designed and validated end-to-end UX for Clinical Trial Supply Management (iCTSM), extending S/4HANA for life sciences. 
-                      Collaborated with global consulting partners to improve user workflows in blinding, randomization, and logistics. Contributed to AI-readiness exploration for predictive forecasting and manufacturing optimization.
-                      <button class="btn btn-invisible collapsible-trigger" type="button" aria-expanded="false" aria-controls="process-loans" data-target="process-ictsm">
-                        <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" class="octicon octicon-chevron-down ml-1">
-                          <path fill="currentColor" d="M4.22 5.47a.75.75 0 0 1 1.06 0L8 8.19l2.72-2.72a.75.75 0 1 1 1.06 1.06L8.53 9.78a.75.75 0 0 1-1.06 0L4.22 6.53a.75.75 0 0 1 0-1.06Z"/>
-                        </svg>
-                        <span class="Button-label">Show Details</span>
-                      </button>
-                    </p>
-          
+                <div class="pdlc-phase synthesis">
+                      <div class="pdlc-phase-name">Synthesis</div>
+                  <div class="pdlc-divider"></div>
+                  <div class="pdlc-tags">
+                    <span class="pdlc-tag">Analytics to insight</span>
+                    <span class="pdlc-tag">AI benchmarking</span>
+                    <span class="pdlc-tag">Workflow analysis</span>
                   </div>
                 </div>
               </div>
+            </div>
 
-
-           
-          </div>
-          <div class="animate-wrapper hero-block col-12 col-lg-6 pb-12">
-            <div class="animate"><picture><img class="width-full bg-gray" src="img/01_CTSM.png" alt="CTSM Hero"></picture></div>
-          </div>
-        </div>
-        <div id="process-ictsm" class="color-bg-canvas content-block clearfix container-xl col-12 pb-12 p-responsive" hidden>
-          <!-- Research & Definition -->
-          <div class="content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-4 pb-6">
-            <div class="slide-left-animate col-12 col-lg-4 mb-4">
-              <div class="slide-left fluid-deepDive mb-5">
-                <p class="case-headline-2 pb-1 mb-lg-1">Research & Definition</p>
-                <p class="expertise-text slist col-5-max pt-3">
-                  Conducted domain research with pharmaceutical partners to uncover pain points in trial logistics.
-                  Synthesized findings into user journeys, revealing opportunities for automation and predictive planning.
-                </p>
+            <!-- Solution Space -->
+            <div class="pdlc-zone-group">
+              <div class="pdlc-zone-label solution">Solution Space</div>
+              <div class="pdlc-zone-cards">
+                <div class="pdlc-phase ideation">
+                      <div class="pdlc-phase-name">Ideation</div>
+                  <div class="pdlc-divider"></div>
+                  <div class="pdlc-tags">
+                    <span class="pdlc-tag">AI interaction models</span>
+                    <span class="pdlc-tag">UX strategy</span>
+                    <span class="pdlc-tag">Concept &amp; prototyping</span>
+                  </div>
+                </div>
+                <div class="pdlc-phase validation">
+                      <div class="pdlc-phase-name">Validation</div>
+                  <div class="pdlc-divider"></div>
+                  <div class="pdlc-tags">
+                    <span class="pdlc-tag">Usability testing</span>
+                    <span class="pdlc-tag">Heuristic evaluation</span>
+                    <span class="pdlc-tag">Evidence iteration</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="animate-wrapper fluid-deepDive col-12 col-lg-8 p-4">
-              <picture><img src="img/03_CTSM.png" class="width-fit box-shadow-active-border-mktg" alt="Clinical UX Research" loading="lazy"></picture>
-            </div>
-          </div>
 
-          <!-- Prototype & Validation -->
-          <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-5 pb-6 pl-3 pr-3">
-            <div class="animate-wrapper col-12 col-lg-8 pb-sm-6">
-              <picture><img src="img/01_Proto.gif" class="width-fit box-shadow-active-border-mktg" alt="Prototype Animation" loading="lazy"></picture>
-            </div>
-            <div class="slide-right-animate col-12 col-lg-4 mb-4">
-              <div class="slide-right fluid-deepDive mb-5">
-                <p class="case-headline-2 pb-1 mb-lg-1">Prototype & Validation</p>
-                <p class="expertise-text slist col-5-max pt-3">
-                  Created interactive prototypes integrating AI-ready forecasting and scenario modeling. Validated design
-                  decisions through user feedback sessions and applied insights to improve usability in complex workflows.
-                </p>
+            <!-- Outcome -->
+            <div class="pdlc-zone-group">
+              <div class="pdlc-zone-label outcome">Outcome</div>
+              <div class="pdlc-zone-cards">
+                <div class="pdlc-phase delivery">
+                      <div class="pdlc-phase-name">Delivery</div>
+                  <div class="pdlc-divider"></div>
+                  <div class="pdlc-tags">
+                    <span class="pdlc-tag">Fiori design system</span>
+                    <span class="pdlc-tag">Cross-functional lead</span>
+                    <span class="pdlc-tag">Frontend collab</span>
+                  </div>
+                </div>
+                <div class="pdlc-phase impact">
+                      <div class="pdlc-phase-name">Impact</div>
+                  <div class="pdlc-divider"></div>
+                  <div class="pdlc-tags">
+                    <span class="pdlc-tag">UX metrics &amp; OKRs</span>
+                    <span class="pdlc-tag">Mentorship &amp; craft</span>
+                    <span class="pdlc-tag">Strategic influence</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Handover & Implementation -->
-          <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse flex-lg-items-center pt-4 pb-8 pl-3 pr-3">
-            <div class="slide-left-animate col-12 col-lg-4 mb-4">
-              <div class="slide-left fluid-deepDive mb-5">
-                <p class="case-headline-2 pb-1 mb-lg-1">Delivery & Implementation</p>
-                <p class="expertise-text slist col-5-max pt-3">
-                  Delivered end-to-end UX documentation and collaborated with distributed engineering teams to ensure
-                  consistent implementation. Enabled reuse of validated design patterns across the life-sciences portfolio.
-                </p>
-              </div>
-            </div>
-            <div class="animate-wrapper fluid-deepDive col-12 col-lg-8 pb-sm-6">
-              <picture><img src="img/CTSM_06.png" class="width-fit box-shadow-active-border-mktg" alt="Implementation UI" loading="lazy"></picture>
-            </div>
-          </div>
-        </div>
+          </div><!-- /pdlc-zones -->
 
-      </div>
-    </section>
 
-    <!-- Baur -->
-    <section id="case-baur" class="color-bg-canvas separator-line pt-8 pt-md-9">
-      <div class="d-flex flex-column flex-lg-row flex-wrap">
-        <div class="animate-wrapper hero-block col-12">
-          <div class="animate"><picture><img class="width-full bg-gray" src="img/baur_03.png" alt="Baur Triton"></picture></div>
-        </div>
-        <div class="color-bg-canvas hero-block col-12 col-lg-4 mt-n12 pb-3 pt-3 pl-3 pr-3">
-          <h1 class="title-Headline-3 mt-3 mb-3">Baur</h1>
-          <p class="case-headline-2 mb-6 pb-3">High Voltage Measurement Systems</p>
-          <div class="text-task d-flex flex-column flex-md-row flex-items-start">
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Embedded application</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">C#</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Android</div></div>
-          </div>
-        </div>
-        <div class="color-bg-canvas content-block clearfix container-xl col-12 pb-6 p-responsive">
-          <div class="pt-8 d-flex flex-column flex-md-row flex-items-start">
-            <div class="animate-wrapper col-12  d-flex flex-column flex-justify-center flex-items-start pb-8 pr-lg-5 pr-md-5">
-              <p class="expertise-text mb-6">Led field research and contextual inquiries for BAUR’s high-voltage measurement technology 
-                to inform stakeholders about emerging opportunities in connected systems. Delivered design concepts for in-car and mobile applications, 
-                establishing new interaction models grounded in observed user behaviors and real-world usage contexts.
-                <button class="btn btn-invisible collapsible-trigger" type="button" aria-expanded="false" aria-controls="process-baur" data-target="process-baur">
-                  <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" class="octicon octicon-chevron-down ml-1">
-                    <path fill="currentColor" d="M4.22 5.47a.75.75 0 0 1 1.06 0L8 8.19l2.72-2.72a.75.75 0 1 1 1.06 1.06L8.53 9.78a.75.75 0 0 1-1.06 0L4.22 6.53a.75.75 0 0 1 0-1.06Z"/>
-                  </svg>
-                  <span class="Button-label">Show Details</span>
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div id="process-baur" class="color-bg-canvas content-block clearfix container-xl col-12 pb-12 p-responsive" hidden>
-          <!-- Field Research -->
-          <div class="content-block d-flex flex-column flex-lg-row-reverse pt-4 pb-6">
-            <div class="slide-left-animate col-12 col-lg-4 mb-4">
-              <div class="slide-left fluid-deepDive mb-5">
-                <p class="case-headline-2 pb-1 mb-lg-1">Field Research & Insight</p>
-                <p class="expertise-text slist col-5-max pt-3">
-                  Led extensive field research to observe technicians in real environments and uncover new opportunities for
-                  digital integration. Presented findings to stakeholders, influencing strategic product directions.
-                </p>
-              </div>
-            </div>
-            <div class="animate-wrapper fluid-deepDive col-12 col-lg-8 p-4">
-              <picture><img src="img/baur_09.png" class="width-fit box-shadow-active-border-mktg" alt="Field Research" loading="lazy"></picture>
-            </div>
-          </div>
-
-  <!-- Ideation & Design -->
-  <div class="content-block d-flex flex-column flex-lg-row-reverse pt-4 pb-6 pl-3 pr-3">
-    <div class="animate-wrapper col-12 col-lg-8 pb-sm-6">
-      <picture><img src="img/baur_05.png" class="width-full box-shadow-active-border-mktg" alt="Prototype" loading="lazy"></picture>
-    </div>
-    <div class="slide-right-animate col-12 col-lg-4 mb-4">
-      <div class="slide-right fluid-deepDive mb-5">
-        <p class="case-headline-2 pb-1 mb-lg-1">Concept Design</p>
-        <p class="expertise-text slist col-5-max pt-3">
-          Defined the interaction model for in-vehicle and mobile diagnostic tools. Established a unified design
-          language for embedded and companion applications.
-        </p>
+        </div><!-- /pdlc-wrapper -->
       </div>
     </div>
   </div>
 
-  <!-- Design System -->
-  <div class="content-block d-flex flex-column flex-lg-row-reverse pt-5 pb-8 pl-3 pr-3">
-    <div class="slide-left-animate col-12 col-lg-4 mb-4">
-      <div class="slide-left fluid-deepDive mb-5">
-        <p class="case-headline-2 pb-1 mb-lg-1">System & Scalability</p>
-        <p class="expertise-text slist col-5-max pt-3">
-          Created a modular design system supporting both mobile and in-vehicle platforms. Improved consistency,
-          accessibility, and development velocity across product variants.
+  <!-- ===== Phase Nav ===== -->
+  <nav class="pill-nav" aria-label="Process phases">
+    <div class="tray px-3 px-md-5">
+      <a class="pill-link btn btn-sm pill-discovery" href="#phase-discovery">Discovery</a>
+      <a class="pill-link btn btn-sm pill-synthesis" href="#phase-synthesis">Synthesis</a>
+      <a class="pill-link btn btn-sm pill-ideation" href="#phase-ideation">Ideation</a>
+      <a class="pill-link btn btn-sm pill-validation" href="#phase-validation">Validation</a>
+      <a class="pill-link btn btn-sm pill-delivery" href="#phase-delivery">Delivery</a>
+      <a class="pill-link btn btn-sm pill-impact" href="#phase-impact">Impact</a>
+      <a class="pill-link btn btn-sm" href="#clients">Clients</a>
+    </div>
+  </nav>
+
+  <script>
+  (function () {
+    // ── PDLC diagram entrance animation ──────────────────────────────────
+    const pdlcRoot = document.getElementById('pdlc-diagram');
+    if (pdlcRoot) {
+      const groups    = pdlcRoot.querySelectorAll('.pdlc-zone-group');
+      const revealAll = () => {
+        groups.forEach((g, i) => {
+          setTimeout(() => g.classList.add('pdlc-visible'), i * 160);
+        });
+      };
+
+      const io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) { revealAll(); io.disconnect(); }
+      }, { threshold: 0.15 });
+      io.observe(pdlcRoot);
+    }
+  })();
+  </script>
+
+  <script>
+  (function () {
+    const diagram = document.getElementById('pdlc-diagram');
+    const nav = document.querySelector('.pill-nav');
+    if (!diagram || !nav) return;
+
+    // Hide pill nav initially — appears once the diagram scrolls off the top
+    nav.style.opacity = '0';
+    nav.style.transform = 'translateY(-10px)';
+    nav.style.pointerEvents = 'none';
+    nav.style.transition = 'opacity .4s ease, transform .4s cubic-bezier(.16,1,.3,1)';
+
+    function updateNavVisibility() {
+      const svgGone = diagram.getBoundingClientRect().bottom < 0;
+      nav.style.opacity       = svgGone ? '1' : '0';
+      nav.style.transform     = svgGone ? 'translateY(0)' : 'translateY(-10px)';
+      nav.style.pointerEvents = svgGone ? 'auto' : 'none';
+    }
+
+    window.addEventListener('scroll', updateNavVisibility, { passive: true });
+    updateNavVisibility();
+
+    // ── Scroll-spy ──────────────────────────────────────────────────────────
+    const sections = [
+      { id: 'phase-discovery',  link: nav.querySelector('[href="#phase-discovery"]') },
+      { id: 'phase-synthesis',  link: nav.querySelector('[href="#phase-synthesis"]') },
+      { id: 'phase-ideation',   link: nav.querySelector('[href="#phase-ideation"]') },
+      { id: 'phase-validation', link: nav.querySelector('[href="#phase-validation"]') },
+      { id: 'phase-delivery',   link: nav.querySelector('[href="#phase-delivery"]') },
+      { id: 'phase-impact',     link: nav.querySelector('[href="#phase-impact"]') },
+    ].filter(s => s.link && document.getElementById(s.id));
+
+    const navHeight = 60; // approximate nav bar height
+
+    function setActive(id) {
+      sections.forEach(s => {
+        s.link.classList.toggle('is-active', s.id === id);
+      });
+    }
+
+    // Use IntersectionObserver with a top margin to fire when section enters ~top third
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    }, {
+      rootMargin: `-${navHeight}px 0px -60% 0px`,
+      threshold: 0
+    });
+
+    sections.forEach(s => observer.observe(document.getElementById(s.id)));
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var root = document.getElementById('pdlc-diagram');
+    if (!root) return;
+    var ORDER = ['discovery','synthesis','ideation','validation','delivery','impact'];
+    var DWELL = 900;
+    var PAUSE = 2200;
+    var idx = 0;
+    var timer = null;
+
+    ORDER.forEach(function(name) {
+      var card = root.querySelector('.pdlc-phase.' + name);
+      if (!card) return;
+      var bar = document.createElement('div');
+      bar.className = 'pdlc-progress';
+      card.appendChild(bar);
+    });
+
+    function deactivateAll() {
+      root.querySelectorAll('.pdlc-phase').forEach(function(c) {
+        var b = c.querySelector('.pdlc-progress');
+        if (b) { b.style.transition = 'none'; b.style.transform = 'scaleX(0)'; }
+        c.classList.remove('pdlc-active');
+      });
+    }
+
+    function activate(i) {
+      deactivateAll();
+      var card = root.querySelector('.pdlc-phase.' + ORDER[i]);
+      if (!card) return;
+      var bar = card.querySelector('.pdlc-progress');
+      if (bar) { bar.offsetHeight; bar.style.transition = ''; }
+      card.classList.add('pdlc-active');
+    }
+
+    function step() {
+      activate(idx);
+      idx++;
+      if (idx < ORDER.length) {
+        timer = setTimeout(step, DWELL);
+      } else {
+        timer = setTimeout(function() {
+          deactivateAll();
+          idx = 0;
+          timer = setTimeout(step, PAUSE);
+        }, DWELL);
+      }
+    }
+
+    var startObs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        setTimeout(step, 1300);
+        startObs.disconnect();
+      }
+    }, { threshold: 0.15 });
+    startObs.observe(root);
+  })();
+  </script>
+
+  <div class="color-bg-canvas container-xl clearfix">
+
+    <!-- ══════════════════════════════════════════════════
+         DISCOVERY
+    ══════════════════════════════════════════════════ -->
+    <section id="phase-discovery" class="p-responsive pt-10 pb-10">
+
+      <div class="process-section-header">
+        <span class="phase-label phase-discovery">Discovery</span>
+        <h2 class="title-Headline-3 mb-2">Making uncertainty visible</h2>
+        <p class="expertise-text col-5-max">
+          I turn fuzzy briefs into focused design problems. Before committing to solutions I map what is known,
+          what is assumed, and what must be learned — whether through field research, domain immersion, or
+          structured readiness frameworks.
         </p>
       </div>
-    </div>
-    <div class="animate-wrapper fluid-deepDive col-12 col-lg-7">
-      <picture><img src="img/baur_08.png" class="width-full box-shadow-active-border-mktg" alt="Design System" loading="lazy"></picture>
-    </div>
-  </div>
-</div>
 
-      </div>
+      <!-- Work entries grid -->
+      <div class="work-entries">
+
+        <!-- Card 1: UX Maturity Scorecard & Tracking -->
+        <div class="work-entry discovery">
+          <div class="work-entry-media">
+            <img src="img/disc-ux-maturity-scorecard-01.svg" alt="UX Maturity radar chart and quarterly tracking heat-map" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top left;">
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">UX Maturity Scorecard & Quarterly Tracking</p>
+            <p class="work-entry-client">SAP · CALM · In Progress</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Maturity frameworks</span><span class="work-entry-tag">Field research</span><span class="work-entry-tag">Domain immersion</span></div>
+            <p class="work-entry-text">Epics were committed to quarterly planning without design readiness — causing late scope changes and rework. I created a 5-dimension readiness framework scored per epic, then defined 5 tracking metrics to measure whether it improves planning quality over time.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Field Research BAUR -->
+        <div class="work-entry discovery">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="disc-baur-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f0fa"/><stop offset="100%" stop-color="#d0e4f8"/></linearGradient>
+                <pattern id="disc-baur-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#7ab0e0" opacity=".5"/></pattern>
+                <filter id="disc-baur-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0A6ED1" flood-opacity=".2"/></filter>
+                <clipPath id="disc-baur-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#disc-baur-bg)"/>
+              <rect width="480" height="270" fill="url(#disc-baur-dots)"/>
+              <g filter="url(#disc-baur-shadow)">
+                <image href="img/baur-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#disc-baur-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#7ab0e0" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Field Research &amp; Contextual Inquiry</p>
+            <p class="work-entry-client">Baur · High Voltage Measurement Systems</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Field research</span><span class="work-entry-tag">Domain immersion</span></div>
+            <p class="work-entry-text">
+              BAUR's diagnostic devices were designed for expert use only — but a strategic shift toward service technicians
+              in the field required understanding entirely new usage contexts: vehicle cabs, substations, outdoor environments.
+              Led contextual inquiries and field research sessions with cable-testing engineers in real operating environments.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: iCTSM Domain Research -->
+        <div class="work-entry discovery">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="disc-ctsm-bg" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#deeaf8"/>
+                  <stop offset="100%" stop-color="#EDF4FF"/>
+                </linearGradient>
+                <pattern id="disc-ctsm-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#7ab0e0" opacity=".5"/>
+                </pattern>
+                <filter id="disc-ctsm-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0A6ED1" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="disc-ctsm-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#disc-ctsm-bg)"/>
+              <rect width="480" height="270" fill="url(#disc-ctsm-dots)"/>
+              <g filter="url(#disc-ctsm-shadow)">
+                <image href="img/ctsm-03.png"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#disc-ctsm-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#7ab0e0" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Domain Research — Regulated Industry</p>
+            <p class="work-entry-client">SAP · iCTSM · Clinical Trial Supply Management</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Domain immersion</span><span class="work-entry-tag">Field research</span></div>
+            <p class="work-entry-text">
+              Clinical trial supply chains involve tight regulatory compliance, global logistics coordination, and risk-critical
+              decisions around drug supply. Before designing a single screen, I immersed in the domain: GxP compliance requirements,
+              blinding and randomisation protocols, and the operational reality of clinical supply managers.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /work-entries -->
+
     </section>
 
-    <!-- Zeiss -->
-    <section id="case-zeiss" class="color-bg-canvas separator-line pt-8 pt-md-9">
-      <div class="d-flex flex-column flex-lg-row flex-wrap">
-        <div class="animate-wrapper hero-block col-12">
-          <div class="animate"><picture><img class="width-full bg-gray" src="img/smartzoom.png" alt="Zeiss microscope"></picture></div>
-        </div>
-        <div class="color-bg-canvas hero-block col-12 col-lg-4 mt-n12 pb-3 pt-3 pl-3 pr-3">
-          <h1 class="title-Headline-3 mt-3 mb-3">Zeiss</h1>
-          <p class="case-headline-2 mb-6 pb-3">Microscopy</p>
-          <div class="text-task d-flex flex-column flex-md-row flex-items-start">
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Embedded application</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">C#</div></div>
-          </div>
-        </div>
-        <div class="color-bg-canvas content-block clearfix container-xl col-12 pb-4 p-responsive">
-          <div class="pt-8 d-flex flex-column flex-md-row flex-items-start">
-            <div class="animate-wrapper col-12  d-flex flex-column flex-justify-center flex-items-start pb-8 pr-lg-5 pr-md-5">
-              <p class="expertise-text mb-6">
-                Developed UX concepts for Zeiss microscopy systems, focusing on intelligent automation for image acquisition and analysis. 
-                Collaborated with engineering to create streamlined workflows and UI patterns that enhance productivity and reduce operational complexity.
-                <button class="btn btn-invisible collapsible-trigger" type="button" aria-expanded="false" aria-controls="process-zeiss" data-target="process-zeiss">
-                  <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" class="octicon octicon-chevron-down ml-1">
-                    <path fill="currentColor" d="M4.22 5.47a.75.75 0 0 1 1.06 0L8 8.19l2.72-2.72a.75.75 0 1 1 1.06 1.06L8.53 9.78a.75.75 0 0 1-1.06 0L4.22 6.53a.75.75 0 0 1 0-1.06Z"/>
-                  </svg>
-                  <span class="Button-label">Show Details</span>
-                </button>
-              </p>
-              
-            </div>
-           
-          </div>
-        </div>
-        <div id="process-zeiss" class="color-bg-canvas content-block clearfix container-xl col-12 pb-8 p-responsive" hidden>
-          <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse pt-4">
-            <div class="animate-wrapper col-12">
-              <div class="animate"><picture><img class="width-full bg-gray" src="img/zeiss01.png" alt="Zeiss UI"></picture></div>
-            </div>
-          </div>
-        </div>
+    <!-- ══════════════════════════════════════════════════
+         SYNTHESIS
+    ══════════════════════════════════════════════════ -->
+    <section id="phase-synthesis" class="p-responsive pt-10 pb-10">
+
+      <div class="process-section-header synthesis" style="border-color:#6E33C8">
+        <span class="phase-label phase-synthesis">Synthesis</span>
+        <h2 class="title-Headline-3 mb-2" style="color:#6E33C8 !important">Turning signal into direction</h2>
+        <p class="expertise-text col-5-max">
+          I extract patterns from research that make design decisions defensible. Synthesis turns raw data — user interviews,
+          heuristic evaluations, analytics — into clear problem statements, frameworks, and evaluation criteria.
+        </p>
       </div>
+
+      <div class="work-entries">
+        <div class="work-entry synthesis">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="syn-j-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f3eefc"/>
+                  <stop offset="100%" stop-color="#e2d4f5"/>
+                </linearGradient>
+                <pattern id="syn-j-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#9b72d8" opacity=".5"/>
+                </pattern>
+                <filter id="syn-j-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#6E33C8" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="syn-j-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#syn-j-bg)"/>
+              <rect width="480" height="270" fill="url(#syn-j-dots)"/>
+              <g filter="url(#syn-j-shadow)">
+                <image href="img/syn-joule-eval-framework-01.png"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#syn-j-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#9b72d8" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">AI Agent Output Evaluation Framework</p>
+            <p class="work-entry-client">SAP · CALM · Joule</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">AI benchmarking</span><span class="work-entry-tag">Analytics to insight</span></div>
+            <p class="work-entry-text">Developed a 6-dimension benchmark framework (Value Alignment, Output Completeness, Format Accuracy, Cognitive Load, Trust, and Interaction Efficiency) and applied it to assess Joule's service result guidance outputs — turning qualitative review into a structured quality assessment before release.</p>
+          </div>
+        </div>
+        <div class="work-entry synthesis">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="syn-w-bg" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ede8fa"/>
+                  <stop offset="100%" stop-color="#e0d8f7"/>
+                </linearGradient>
+                <pattern id="syn-w-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#9b72d8" opacity=".5"/>
+                </pattern>
+                <filter id="syn-w-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#6E33C8" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="syn-w-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#syn-w-bg)"/>
+              <rect width="480" height="270" fill="url(#syn-w-dots)"/>
+              <g filter="url(#syn-w-shadow)">
+                <image href="img/syn-workflow-analysis-03.png"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#syn-w-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#9b72d8" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Workflow Analysis &amp; Problem Framing</p>
+            <p class="work-entry-client">SAP · S/4HANA Banking for Complex Loans </p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Workflow analysis</span><span class="work-entry-tag">Analytics to insight</span></div>
+            <p class="work-entry-text">Analysed 24 existing Fiori applications to map the navigational load imposed on bank relationship managers: up to 12 separate screens per transaction, with frequent context-switching and data loss. This synthesis surfaced the core architectural problem that guided all redesign decisions.</p>
+          </div>
+        </div>
+      </div><!-- /work-entries -->
+
     </section>
 
-    <!-- BBVA -->
-    <section id="case-bbva" class="color-bg-canvas separator-line pt-8 pt-md-9">
-      <div class="d-flex flex-column flex-lg-row flex-wrap">
-        <div class="animate-wrapper hero-block col-12">
-          <div class="animate"><picture><img class="width-full bg-gray" src="img/bbva_01.png" alt="BBVA app"></picture></div>
-        </div>
-        <div class="color-bg-canvas hero-block col-12 col-lg-4 mt-n12 pb-3 pt-3 pl-3 pr-3">
-          <h1 class="title-Headline-3 mt-3 mb-3">BBVA</h1>
-          <p class="case-headline-2 mb-6 pb-3">Private Wealth Management</p>
-          <div class="text-task d-flex flex-column flex-md-row flex-items-start">
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Mobile</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">iOS</div></div>
-          </div>
-        </div>
-        <div class="color-bg-canvas content-block clearfix container-xl col-12 pb-4 p-responsive">
-          <div class="pt-8 d-flex flex-column flex-md-row flex-items-start">
-            <div class="animate-wrapper col-12  d-flex flex-column flex-justify-center flex-items-start pb-8 pr-lg-5 pr-md-5">
-              <p class="expertise-text mb-6">Defined UX strategy and design for BBVA’s private wealth management mobile applications. 
-                Focused on translating financial interactions into intuitive, high-trust experiences through data visualization and platform-native interaction standards.
-                <button class="btn btn-invisible collapsible-trigger" type="button" aria-expanded="false" aria-controls="process-bbva" data-target="process-bbva">
-                  <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" class="octicon octicon-chevron-down ml-1">
-                    <path fill="currentColor" d="M4.22 5.47a.75.75 0 0 1 1.06 0L8 8.19l2.72-2.72a.75.75 0 1 1 1.06 1.06L8.53 9.78a.75.75 0 0 1-1.06 0L4.22 6.53a.75.75 0 0 1 0-1.06Z"/>
-                  </svg>
-                  <span class="Button-label">Show Details</span>
-                </button>
-              </p>
-              
-            </div>
-            
-          </div>
-        </div>
-        <div id="process-bbva" class="color-bg-canvas content-block clearfix container-xl col-12 pb-8 p-responsive" hidden>
-          <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse pt-4">
-            <div class="animate-wrapper col-12">
-              <div class="animate"><picture><img class="width-full bg-gray" src="img/bbva_03.png" alt="BBVA iOS app"></picture></div>
-            </div>
-          </div>
-        </div>
+    <!-- ══════════════════════════════════════════════════
+         IDEATION
+    ══════════════════════════════════════════════════ -->
+    <section id="phase-ideation" class="p-responsive pt-10 pb-10">
+
+      <div class="process-section-header ideation" style="border-color:#00827A">
+        <span class="phase-label phase-ideation">Ideation</span>
+        <h2 class="title-Headline-3 mb-2" style="color:#00827A !important">Shaping solutions before committing to them</h2>
+        <p class="expertise-text col-5-max">
+          I design for outcomes, not screens. Ideation means exploring the solution space — generating concepts,
+          testing directions with low-fidelity artefacts, and converging on an approach that is both user-centred and
+          technically feasible before full design investment begins.
+        </p>
       </div>
+
+      <div class="work-entries">
+
+        <!-- Card: AI-First UX Strategy -->
+        <div class="work-entry ideation">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="ide-joule-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f5f0"/><stop offset="100%" stop-color="#c8ece6"/></linearGradient>
+                <pattern id="ide-joule-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#5ab8ae" opacity=".5"/></pattern>
+                <filter id="ide-joule-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00827A" flood-opacity=".2"/></filter>
+                <clipPath id="ide-joule-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#ide-joule-bg)"/>
+              <rect width="480" height="270" fill="url(#ide-joule-dots)"/>
+              <g filter="url(#ide-joule-shadow)">
+                <image href="img/ideate-joule-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#ide-joule-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#5ab8ae" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">AI-First Enterprise UX Strategy</p>
+            <p class="work-entry-client">SAP · CALM · Platform Level</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">AI interaction models</span><span class="work-entry-tag">UX strategy</span></div>
+            <p class="work-entry-text">Defined AI-assisted workflow concepts across SAP CALM — including the first agentic assistant prototypes. Shaped trust-first patterns for explainable automation across planning, lifecycle, and service workflows.</p>
+          </div>
+        </div>
+
+        <!-- Card: Zeiss intelligent automation -->
+        <div class="work-entry ideation">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="ide-zeiss-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#e8f5f0"/>
+                  <stop offset="100%" stop-color="#cce8e3"/>
+                </linearGradient>
+                <pattern id="ide-zeiss-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#5ab8ae" opacity=".5"/>
+                </pattern>
+                <filter id="ide-zeiss-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00827A" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="ide-zeiss-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#ide-zeiss-bg)"/>
+              <rect width="480" height="270" fill="url(#ide-zeiss-dots)"/>
+              <g filter="url(#ide-zeiss-shadow)">
+                <image href="img/zeiss-smartzoom-01.png"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#ide-zeiss-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#5ab8ae" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Intelligent Automation Concepts</p>
+            <p class="work-entry-client">Zeiss · SmartZoom Microscopy</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Concept & prototyping</span></div>
+            <p class="work-entry-text">Developed UX concepts for Zeiss SmartZoom microscopy focused on intelligent automation of image acquisition. Explored models reducing operational complexity while preserving expert control.</p>
+          </div>
+        </div>
+
+        <!-- Card: BAUR mobile interaction models -->
+        <div class="work-entry ideation">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="ide-baur-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#e6f4f1"/>
+                  <stop offset="100%" stop-color="#d0ece7"/>
+                </linearGradient>
+                <pattern id="ide-baur-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#5ab8ae" opacity=".5"/>
+                </pattern>
+                <filter id="ide-baur-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00827A" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="ide-baur-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#ide-baur-bg)"/>
+              <rect width="480" height="270" fill="url(#ide-baur-dots)"/>
+              <g filter="url(#ide-baur-shadow)">
+                <image href="img/baur-03.png"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#ide-baur-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#5ab8ae" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">New Interaction Models for the Field</p>
+            <p class="work-entry-client">Baur · Mobile &amp; In-Vehicle</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Concept & prototyping</span><span class="work-entry-tag">UX strategy</span></div>
+            <p class="work-entry-text">Conceived new interaction models for BAUR's in-vehicle diagnostic app and Android companion — replacing desktop-derived paradigms with patterns for gloved use and time-critical field conditions.</p>
+          </div>
+        </div>
+
+      </div><!-- /work-entries -->
+
     </section>
 
-    <!-- Bosch -->
-    <section id="case-bosch" class="color-bg-canvas separator-line pt-8 pt-md-9">
-      <div class="d-flex flex-column flex-lg-row flex-wrap">
-        <div class="animate-wrapper hero-block col-12">
-          <div class="animate"><picture><img class="width-full bg-gray" src="img/boschsmarthome_post_2.jpg" alt="Bosch Smart Home"></picture></div>
-        </div>
-        <div class="color-bg-canvas hero-block col-12 col-lg-4 mt-n12 pb-3 pt-3 pl-3 pr-3">
-          <h1 class="title-Headline-3 mt-3 mb-3">Bosch</h1>
-          <p class="case-headline-2 mb-6 pb-3">Smart Home Division</p>
-          <div class="text-task d-flex flex-column flex-md-row flex-items-start">
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Mobile</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">iOS</div></div>
-            <div class="d-md-inline-flex text-mono mb-1 pr-2"><div class="rounded-tag border p-1 pl-2 pr-2">Android</div></div>
-          </div>
-        </div>
-        <div class="color-bg-canvas content-block clearfix container-xl col-12 pb-4 p-responsive">
-          <div class="pt-8 d-flex flex-column flex-md-row flex-items-start">
-            <div class="animate-wrapper col-12  d-flex flex-column flex-justify-center flex-items-start pb-8 pr-lg-5 pr-md-5">
-              <p class="expertise-text mb-6">Designed cross-platform Smart Home experiences for Bosch, ensuring consistency across Android and iOS ecosystems.
-                Guided the product team through design system alignment, interaction model refinement, and user testing to drive cohesive, scalable mobile experiences.
-                <button class="btn btn-invisible collapsible-trigger" type="button" aria-expanded="false" aria-controls="process-bosch" data-target="process-bosch">
-                  <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" class="octicon octicon-chevron-down ml-1">
-                    <path fill="currentColor" d="M4.22 5.47a.75.75 0 0 1 1.06 0L8 8.19l2.72-2.72a.75.75 0 1 1 1.06 1.06L8.53 9.78a.75.75 0 0 1-1.06 0L4.22 6.53a.75.75 0 0 1 0-1.06Z"/>
-                  </svg>
-                  <span class="Button-label">Show Details</span>
-                </button>
-              </p>
-              
-            </div>
-            
-          </div>
-        </div>
-        <div id="process-bosch" class="color-bg-canvas content-block clearfix container-xl col-12 pb-8 p-responsive" hidden>
-          <div class="color-bg-canvas content-block d-flex flex-column flex-lg-row-reverse pt-4">
-            <div class="animate-wrapper col-12">
-              <div class="animate"><picture><img class="width-full bg-gray" src="img/boschsmarthome_3.png" alt="Bosch Smart Home Screens"></picture></div>
-            </div>
-          </div>
-        </div>
+    <!-- ══════════════════════════════════════════════════
+         VALIDATION
+    ══════════════════════════════════════════════════ -->
+    <section id="phase-validation" class="p-responsive pt-10 pb-10">
+
+      <div class="process-section-header validation" style="border-color:#CC5500">
+        <span class="phase-label phase-validation">Validation</span>
+        <h2 class="title-Headline-3 mb-2" style="color:#CC5500 !important">Learning before shipping</h2>
+        <p class="expertise-text col-5-max">
+          I test assumptions, not aesthetics. Validation means putting designs in front of real users before
+          development investment is locked in — through usability studies, prototype testing, heuristic evaluation,
+          and structured benchmarking.
+        </p>
       </div>
+
+      <div class="work-entries">
+
+        <!-- Card: iCTSM usability testing -->
+        <div class="work-entry validation">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="val-proto-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fdf0e8"/>
+                  <stop offset="100%" stop-color="#f8dfc8"/>
+                </linearGradient>
+                <pattern id="val-proto-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#d88850" opacity=".5"/>
+                </pattern>
+                <filter id="val-proto-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#CC5500" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="val-proto-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#val-proto-bg)"/>
+              <rect width="480" height="270" fill="url(#val-proto-dots)"/>
+              <g filter="url(#val-proto-shadow)">
+                <image href="img/proto-01.gif"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#val-proto-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#d88850" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Prototype &amp; Concept Validation</p>
+            <p class="work-entry-client">SAP · iCTSM · Life Sciences</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Concept Validation</span><span class="work-entry-tag">Evidence iteration</span></div>
+            <p class="work-entry-text">Ran multiple rounds of moderated concept validation with clinical supply managers. Each round produced prioritised findings fed directly into design iteration. Validated patterns later reused across the clinical domain.</p>
+          </div>
+        </div>
+
+        <!-- Card: ISD Hub baseline studies -->
+        <div class="work-entry validation">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="val-sus-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fdf0e8"/>
+                  <stop offset="100%" stop-color="#f8dfc8"/>
+                </linearGradient>
+                <pattern id="val-sus-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#d88850" opacity=".4"/>
+                </pattern>
+                <!-- Score badge gradient: orange ring -->
+                <radialGradient id="val-sus-badge" cx="50%" cy="40%" r="55%">
+                  <stop offset="0%" stop-color="#ffcc44"/>
+                  <stop offset="100%" stop-color="#f5a200"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Background -->
+              <rect width="480" height="270" fill="url(#val-sus-bg)"/>
+              <rect width="480" height="270" fill="url(#val-sus-dots)"/>
+
+              <!-- Title area -->
+              <text x="28" y="34" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing=".12em" fill="#CC5500" opacity=".5">RESULTS OVERVIEW</text>
+              <text x="28" y="58" font-family="sans-serif" font-size="17" font-weight="900" fill="#1a1a1a">System Usability Score (SUS)</text>
+
+              <!-- Left side: bullets -->
+              <text x="28" y="84" font-family="sans-serif" font-size="12" font-weight="700" fill="#333">* Internal Participants</text>
+              <text x="28" y="102" font-family="sans-serif" font-size="12" font-weight="700" fill="#333">* 3 Key Tasks</text>
+
+              <!-- Score badge (right side) -->
+              <!-- outer orange ring -->
+              <circle cx="358" cy="90" r="46" fill="url(#val-sus-badge)" opacity=".95"/>
+              <circle cx="358" cy="90" r="38" fill="#fff9ee"/>
+              <!-- score number -->
+              <text x="358" y="100" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="900" fill="#1a1a1a">74</text>
+              <!-- arrow stem -->
+              <line x1="358" y1="136" x2="358" y2="162" stroke="#CC5500" stroke-width="3"/>
+              <!-- arrowhead -->
+              <polygon points="348,158 368,158 358,172" fill="#CC5500"/>
+
+              <!-- SUS scale bar -->
+              <!-- zone segments -->
+              <rect x="28" y="178" width="80"  height="10" rx="5" fill="#f08080"/>
+              <rect x="112" y="178" width="80" height="10" rx="5" fill="#f5b87a"/>
+              <rect x="196" y="178" width="60" height="10" rx="5" fill="#f5d87a"/>
+              <rect x="260" y="178" width="80" height="10" rx="5" fill="#90d090"/>
+              <rect x="344" y="178" width="108" height="10" rx="5" fill="#55b855"/>
+              <!-- scale dots at zone boundaries -->
+              <circle cx="28"  cy="183" r="4" fill="#f08080"/>
+              <circle cx="112" cy="183" r="4" fill="#f5b87a"/>
+              <circle cx="196" cy="183" r="4" fill="#f5d87a"/>
+              <circle cx="260" cy="183" r="4" fill="#90d090"/>
+              <circle cx="344" cy="183" r="4" fill="#55b855"/>
+              <circle cx="452" cy="183" r="4" fill="#33a033"/>
+              <!-- scale labels -->
+              <text x="28"  y="200" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888">Worst</text>
+              <text x="196" y="200" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888">OK</text>
+              <text x="280" y="200" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#555" font-weight="700">Good</text>
+              <text x="358" y="200" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#555" font-weight="700">Excellent</text>
+              <text x="452" y="200" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888">Best</text>
+
+              <!-- Score marker on scale (74 lands in Excellent zone) -->
+              <circle cx="330" cy="183" r="6" fill="#CC5500"/>
+
+              <!-- Bottom rating bands -->
+              <rect x="28"  y="218" width="180" height="22" rx="3" fill="#f08080" opacity=".85"/>
+              <rect x="212" y="218" width="100" height="22" rx="3" fill="#f5c842" opacity=".85"/>
+              <rect x="316" y="218" width="136" height="22" rx="3" fill="#5cb85c" opacity=".85"/>
+              <text x="118" y="233" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#a00">NOT ACCEPTABLE</text>
+              <text x="262" y="233" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7a5c00">ACCEPTABLE</text>
+              <text x="384" y="233" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a6e1a">EXCELLENT</text>
+              <!-- band sub-labels -->
+              <text x="118" y="250" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888">Less than 51</text>
+              <text x="262" y="250" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888">51–80</text>
+              <text x="384" y="250" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#888">More than 80</text>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Baseline Usability Studies</p>
+            <p class="work-entry-client">SAP · CALM · ISD Hub</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Usability testing</span><span class="work-entry-tag">Heuristic evaluation</span><span class="work-entry-tag">Evidence iteration</span></div>
+            <p class="work-entry-text">Supervised baseline usability studies to establish measurable task success benchmarks. Results informed redesigned navigation and AI-assisted entry points — moving the team from opinion-based to evidence-based decisions.</p>
+          </div>
+        </div>
+
+
+      </div><!-- /work-entries -->
+
     </section>
 
-    <!-- Clients -->
+    <!-- ══════════════════════════════════════════════════
+         DELIVERY
+    ══════════════════════════════════════════════════ -->
+    <section id="phase-delivery" class="p-responsive pt-10 pb-10">
+
+      <div class="process-section-header delivery" style="border-color:#3D7317">
+        <span class="phase-label phase-delivery">Delivery</span>
+        <h2 class="title-Headline-3 mb-2" style="color:#3D7317 !important">Design that ships and scales</h2>
+        <p class="expertise-text col-5-max">
+          I close the gap between concept and working product. Delivery means production-ready specs, design system
+          alignment, close engineering collaboration, and scalable component patterns — across enterprise platforms,
+          embedded systems, and mobile.
+        </p>
+      </div>
+
+      <div class="work-entries">
+
+        <!-- Card: ISD Hub / CALM -->
+        <div class="work-entry delivery">
+          <div class="work-entry-media">
+<svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="del-ph-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#e8f3e0"/>
+                  <stop offset="100%" stop-color="#cfe5c0"/>
+                </linearGradient>
+                <pattern id="del-ph-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".4"/>
+                </pattern>
+              </defs>
+
+              <!-- Background -->
+              <rect width="480" height="270" fill="url(#del-ph-bg)"/>
+              <rect width="480" height="270" fill="url(#del-ph-dots)"/>
+
+              <!-- Document card -->
+              <rect x="22" y="18" width="436" height="234" rx="6" fill="#fff" opacity=".88"/>
+
+              <!-- Title bar -->
+              <rect x="22" y="18" width="436" height="30" rx="6" fill="#3D7317" opacity=".9"/>
+              <rect x="22" y="36" width="436" height="12" fill="#3D7317" opacity=".9"/>
+              <text x="36" y="38" font-family="sans-serif" font-size="11" font-weight="700" fill="#fff">Portfolio Handling Epic — UX</text>
+
+              <!-- Left column: numbered steps -->
+              <!-- Step 1 -->
+              <circle cx="42" cy="72" r="8" fill="#3D7317" opacity=".8"/>
+              <text x="42" y="76" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">1</text>
+              <text x="58" y="70" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">PM creates EPIC in Portfolio Jira</text>
+              <text x="58" y="81" font-family="sans-serif" font-size="8" fill="#888">Label "UX", assign UX Designer as Contributor</text>
+
+              <!-- Step 2 -->
+              <circle cx="42" cy="104" r="8" fill="#3D7317" opacity=".7"/>
+              <text x="42" y="108" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">2</text>
+              <text x="58" y="102" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">PM sets up kickoff meeting</text>
+              <text x="58" y="113" font-family="sans-serif" font-size="8" fill="#888">Align on topic and needed UX activities</text>
+
+              <!-- Step 3 -->
+              <circle cx="42" cy="136" r="8" fill="#3D7317" opacity=".7"/>
+              <text x="42" y="140" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">3</text>
+              <text x="58" y="134" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">UX Designer creates UX User Story</text>
+              <text x="58" y="145" font-family="sans-serif" font-size="8" fill="#888">Why, Problem, Persona, Customer request</text>
+
+              <!-- Step 4 -->
+              <circle cx="42" cy="167" r="8" fill="#3D7317" opacity=".7"/>
+              <text x="42" y="171" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">4</text>
+              <text x="58" y="165" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">UX Designer adds component for market &amp; team</text>
+
+              <!-- Step 5 -->
+              <circle cx="42" cy="195" r="8" fill="#3D7317" opacity=".65"/>
+              <text x="42" y="199" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">5</text>
+              <text x="58" y="193" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">Definition of Done criteria</text>
+              <text x="58" y="204" font-family="sans-serif" font-size="8" fill="#888">Story Board · UX Spec · Accessibility · Feasibility</text>
+
+              <!-- Connector line between steps -->
+              <line x1="42" y1="80" x2="42" y2="96" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
+              <line x1="42" y1="112" x2="42" y2="128" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
+              <line x1="42" y1="144" x2="42" y2="159" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
+              <line x1="42" y1="175" x2="42" y2="187" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
+
+              <!-- Right column: Jira-like panel -->
+              <rect x="298" y="56" width="148" height="186" rx="4" fill="#f5f5f5" opacity=".9"/>
+              <rect x="298" y="56" width="148" height="18" rx="4" fill="#3D7317" opacity=".7"/>
+              <rect x="298" y="66" width="148" height="8" fill="#3D7317" opacity=".7"/>
+              <text x="306" y="68" font-family="sans-serif" font-size="7" font-weight="700" fill="#fff">UX User Story · Jira</text>
+              <!-- field rows -->
+              <rect x="306" y="82" width="50" height="7" rx="2" fill="#3D7317" opacity=".2"/>
+              <rect x="360" y="82" width="78" height="7" rx="2" fill="#ccc" opacity=".7"/>
+              <rect x="306" y="96" width="50" height="7" rx="2" fill="#3D7317" opacity=".2"/>
+              <rect x="360" y="96" width="60" height="7" rx="2" fill="#ccc" opacity=".7"/>
+              <rect x="306" y="110" width="50" height="7" rx="2" fill="#3D7317" opacity=".2"/>
+              <rect x="360" y="110" width="70" height="7" rx="2" fill="#ccc" opacity=".7"/>
+              <rect x="306" y="124" width="50" height="7" rx="2" fill="#3D7317" opacity=".2"/>
+              <rect x="360" y="124" width="55" height="7" rx="2" fill="#ccc" opacity=".7"/>
+              <!-- description text block placeholder -->
+              <rect x="306" y="140" width="132" height="6" rx="2" fill="#ddd"/>
+              <rect x="306" y="150" width="120" height="6" rx="2" fill="#ddd"/>
+              <rect x="306" y="160" width="128" height="6" rx="2" fill="#ddd"/>
+              <rect x="306" y="170" width="100" height="6" rx="2" fill="#ddd"/>
+              <!-- status badge -->
+              <rect x="306" y="184" width="48" height="14" rx="7" fill="#3D7317" opacity=".75"/>
+              <text x="330" y="194" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="700" fill="#fff">IN PROGRESS</text>
+
+              <!-- Divider between columns -->
+              <line x1="288" y1="56" x2="288" y2="242" stroke="#3D7317" stroke-width="1" opacity=".15"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">UX Product Development Process</p>
+            <p class="work-entry-client">SAP · CALM · ISD Hub</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Fiori design system</span><span class="work-entry-tag">Frontend collab</span><span class="work-entry-tag">Cross-functional lead</span></div>
+            <p class="work-entry-text">Defined and rolled out a structured UX delivery process across six scrum teams — covering epic intake, UX story creation, Definition of Done criteria, and handoff. Gave design work a consistent place in the planning cycle.</p>
+          </div>
+        </div>
+
+        <!-- Card: Complex Loans -->
+        <div class="work-entry delivery">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="del-cl-bg" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#cfe5c0"/>
+                  <stop offset="100%" stop-color="#e8f3e0"/>
+                </linearGradient>
+                <pattern id="del-cl-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".5"/>
+                </pattern>
+                <filter id="del-cl-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3D7317" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="del-cl-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#del-cl-bg)"/>
+              <rect width="480" height="270" fill="url(#del-cl-dots)"/>
+              <g filter="url(#del-cl-shadow)">
+                <image href="img/complexloans-02.gif"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#del-cl-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#72b050" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">24-Application Fiori Suite</p>
+            <p class="work-entry-client">SAP · S/4HANA Banking for Complex Loans</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Fiori design system</span><span class="work-entry-tag">Cross-functional lead</span><span class="work-entry-tag">Frontend collab</span></div>
+            <p class="work-entry-text">Delivered UX leadership across multiple Fiori applications for S/4HANA's Complex Loans suite. Reduced navigational steps and eliminated context-switching errors for loans management.</p>
+          </div>
+        </div>
+
+        <!-- Card: Bosch design system -->
+        <div class="work-entry delivery">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="del-bosch-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#e8f3e0"/>
+                  <stop offset="100%" stop-color="#d4e8c4"/>
+                </linearGradient>
+                <pattern id="del-bosch-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".5"/>
+                </pattern>
+                <filter id="del-bosch-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3D7317" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="del-bosch-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#del-bosch-bg)"/>
+              <rect width="480" height="270" fill="url(#del-bosch-dots)"/>
+              <g filter="url(#del-bosch-shadow)">
+                <image href="img/bosch-02.jpg"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#del-bosch-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#72b050" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Cross-Platform Design System</p>
+            <p class="work-entry-client">Bosch · Smart Home Division</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Fiori design system</span><span class="work-entry-tag">Frontend collab</span></div>
+            <p class="work-entry-text">Reconciled iOS HIG and Material Design into a unified Bosch interaction language. Built a shared component library reducing handoff time and enabling faster feature parity across both platforms.</p>
+          </div>
+        </div>
+
+        <!-- Card: BBVA -->
+        <div class="work-entry delivery">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="del-bbva-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4e8c4"/><stop offset="100%" stop-color="#e8f3e0"/></linearGradient>
+                <pattern id="del-bbva-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".5"/></pattern>
+                <filter id="del-bbva-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3D7317" flood-opacity=".2"/></filter>
+                <clipPath id="del-bbva-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#del-bbva-bg)"/>
+              <rect width="480" height="270" fill="url(#del-bbva-dots)"/>
+              <g filter="url(#del-bbva-shadow)">
+                <image href="img/bbva-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#del-bbva-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#72b050" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Private Wealth iOS Application</p>
+            <p class="work-entry-client">BBVA · Private Wealth Management</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Frontend collab</span><span class="work-entry-tag">Cross-functional lead</span></div>
+            <p class="work-entry-text">Designed portfolio overview, trade flow, and risk indicator screens applying iOS native patterns. Data visualization prioritized scannability and confidence — distinctly separate from BBVA's retail offering.</p>
+          </div>
+        </div>
+
+      </div><!-- /work-entries -->
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         IMPACT
+    ══════════════════════════════════════════════════ -->
+    <section id="phase-impact" class="p-responsive pt-10 pb-10">
+
+      <div class="process-section-header impact" style="border-color:#B54800">
+        <span class="phase-label phase-impact">Impact</span>
+        <h2 class="title-Headline-3 mb-2" style="color:#B54800 !important">Closing the loop from decision to outcome</h2>
+        <p class="expertise-text col-5-max">
+          Good design is measurable. I close the loop between design decisions and business or user outcomes —
+          through tracking metrics, qualitative signals, and organisational learning that improves future work.
+        </p>
+      </div>
+
+      <div class="work-entries">
+
+
+        <!-- Card: BAUR roadmap impact -->
+        <div class="work-entry impact">
+          <div class="work-entry-media">
+<svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="imp-road-bg" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#f5d0be"/>
+                  <stop offset="100%" stop-color="#fbe8de"/>
+                </linearGradient>
+                <pattern id="imp-road-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#c07040" opacity=".4"/>
+                </pattern>
+                <marker id="imp-road-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+                  <path d="M0 1 L7 4 L0 7 Z" fill="#B54800" opacity=".7"/>
+                </marker>
+                <marker id="imp-road-arrow-dim" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+                  <path d="M0 1 L7 4 L0 7 Z" fill="#B54800" opacity=".35"/>
+                </marker>
+              </defs>
+
+              <rect width="480" height="270" fill="url(#imp-road-bg)"/>
+              <rect width="480" height="270" fill="url(#imp-road-dots)"/>
+
+              <!-- ── LEFT: Field observation node ── -->
+              <!-- Person silhouette in field -->
+              <circle cx="72" cy="90" r="22" fill="#B54800" opacity=".12"/>
+              <circle cx="72" cy="80" r="8" fill="#B54800" opacity=".55"/>
+              <path d="M58 105 Q72 92 86 105" fill="#B54800" opacity=".45"/>
+              <!-- notepad lines -->
+              <rect x="58" y="108" width="28" height="20" rx="2" fill="#fff" opacity=".7"/>
+              <line x1="62" y1="113" x2="82" y2="113" stroke="#B54800" stroke-width="1.2" opacity=".5"/>
+              <line x1="62" y1="119" x2="78" y2="119" stroke="#B54800" stroke-width="1.2" opacity=".5"/>
+              <line x1="62" y1="125" x2="80" y2="125" stroke="#B54800" stroke-width="1.2" opacity=".5"/>
+              <text x="72" y="144" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Field Research</text>
+
+              <!-- ── ARROW 1: Research → Insight ── -->
+              <line x1="102" y1="105" x2="152" y2="105" stroke="#B54800" stroke-width="1.5" stroke-dasharray="4,3" opacity=".5" marker-end="url(#imp-road-arrow-dim)"/>
+
+              <!-- ── CENTRE: Insight / finding bubble ── -->
+              <ellipse cx="194" cy="105" rx="38" ry="28" fill="#B54800" opacity=".15" stroke="#B54800" stroke-width="1.5" opacity=".4"/>
+              <text x="194" y="100" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">Workers need</text>
+              <text x="194" y="111" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">mobile access</text>
+              <text x="194" y="122" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#B54800" opacity=".7">in the field</text>
+              <text x="194" y="143" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Key Insight</text>
+
+              <!-- ── ARROW 2: Insight → Roadmap decision ── -->
+              <line x1="234" y1="105" x2="282" y2="105" stroke="#B54800" stroke-width="1.5" marker-end="url(#imp-road-arrow)"/>
+
+              <!-- ── RIGHT: Roadmap decision block ── -->
+              <rect x="286" y="76" width="160" height="58" rx="6" fill="#B54800" opacity=".18" stroke="#B54800" stroke-width="1.5"/>
+              <rect x="286" y="76" width="160" height="16" rx="6" fill="#B54800" opacity=".5"/>
+              <rect x="286" y="84" width="160" height="8" fill="#B54800" opacity=".5"/>
+              <text x="366" y="88" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">Roadmap Decision</text>
+              <text x="366" y="104" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">Extend to mobile</text>
+              <text x="366" y="115" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">&amp; in-vehicle form factors</text>
+              <text x="366" y="143" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Strategic Shift</text>
+
+              <!-- ── BOTTOM: Before / After form factor tiles ── -->
+              <!-- Before label -->
+              <text x="110" y="182" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#B54800" opacity=".6">Before</text>
+              <!-- Desktop only tile -->
+              <rect x="74" y="188" width="72" height="42" rx="4" fill="#B54800" opacity=".18" stroke="#B54800" stroke-width="1" opacity=".3"/>
+              <rect x="82" y="194" width="56" height="30" rx="2" fill="#B54800" opacity=".2"/>
+              <text x="110" y="213" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#B54800" opacity=".7">Desktop</text>
+
+              <!-- Arrow -->
+              <line x1="152" y1="210" x2="190" y2="210" stroke="#B54800" stroke-width="2" marker-end="url(#imp-road-arrow)"/>
+
+              <!-- After label -->
+              <text x="306" y="182" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#B54800" opacity=".6">After</text>
+              <!-- Desktop tile -->
+              <rect x="196" y="188" width="46" height="42" rx="4" fill="#B54800" opacity=".25" stroke="#B54800" stroke-width="1" opacity=".4"/>
+              <rect x="202" y="194" width="34" height="24" rx="2" fill="#B54800" opacity=".25"/>
+              <text x="219" y="236" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#B54800" opacity=".7">Desktop</text>
+              <!-- Mobile tile -->
+              <rect x="250" y="192" width="28" height="38" rx="4" fill="#B54800" opacity=".35" stroke="#B54800" stroke-width="1.5" opacity=".6"/>
+              <rect x="256" y="198" width="16" height="22" rx="1" fill="#B54800" opacity=".3"/>
+              <circle cx="264" cy="224" r="2" fill="#B54800" opacity=".5"/>
+              <text x="264" y="236" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#B54800" opacity=".7">Mobile</text>
+              <!-- In-vehicle tile -->
+              <rect x="288" y="195" width="56" height="32" rx="4" fill="#B54800" opacity=".3" stroke="#B54800" stroke-width="1.5" opacity=".6"/>
+              <rect x="294" y="200" width="44" height="20" rx="2" fill="#B54800" opacity=".25"/>
+              <!-- steering wheel hint -->
+              <circle cx="370" cy="211" r="12" fill="#B54800" opacity=".25" stroke="#B54800" stroke-width="1.5"/>
+              <circle cx="370" cy="211" r="4" fill="#B54800" opacity=".4"/>
+              <text x="316" y="236" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#B54800" opacity=".7">In-Vehicle</text>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Research Informing Strategic Roadmap</p>
+            <p class="work-entry-client">Baur · High Voltage Measurement</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">Strategic influence</span><span class="work-entry-tag">Field research</span></div>
+            <p class="work-entry-text">Field research findings from contextual inquiries directly influenced BAUR's strategic product roadmap — validating the decision to extend to mobile and in-vehicle form factors. Observation in the field ended with measurable business direction change.</p>
+          </div>
+        </div>
+
+        <!-- Card: Analytics-to-Design Synthesis -->
+        <div class="work-entry impact">
+          <div class="work-entry-media">
+            <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="imp-ana-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fbe8de"/>
+                  <stop offset="100%" stop-color="#f5d0be"/>
+                </linearGradient>
+                <pattern id="imp-ana-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="9" cy="9" r="0.75" fill="#c07040" opacity=".5"/>
+                </pattern>
+                <filter id="imp-ana-shadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#B54800" flood-opacity=".2"/>
+                </filter>
+                <clipPath id="imp-ana-clip">
+                  <rect x="20" y="20" width="440" height="230" rx="4"/>
+                </clipPath>
+              </defs>
+              <rect width="480" height="270" fill="url(#imp-ana-bg)"/>
+              <rect width="480" height="270" fill="url(#imp-ana-dots)"/>
+              <g filter="url(#imp-ana-shadow)">
+                <image href="img/syn-analytics-to-design-synthesis-02.png"
+                       x="20" y="20" width="440" height="230"
+                       preserveAspectRatio="xMidYMid slice"
+                       clip-path="url(#imp-ana-clip)"/>
+              </g>
+              <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#c07040" stroke-width="1" opacity=".35"/>
+            </svg>
+          </div>
+          <div class="work-entry-phase-bar"></div>
+          <div class="work-entry-body">
+            <p class="work-entry-title">Analytics-to-Design Synthesis</p>
+            <p class="work-entry-client">SAP · CALM</p>
+            <div class="work-entry-tags"><span class="work-entry-tag">UX metrics & OKRs</span><span class="work-entry-tag">Analytics to insight</span><span class="work-entry-tag">Strategic influence</span></div>
+            <p class="work-entry-text">Implemented usage tracking within SAP CALM to capture behavioral signals at scale. Synthesized quantitative patterns alongside qualitative usability findings to define meaningful success metrics — creating a shared language between UX, product management, and engineering.</p>
+          </div>
+        </div>
+
+      </div><!-- /work-entries -->
+
+    </section>
+
+    <!-- ===== Clients ===== -->
     <section id="clients" class="animate-wrapper separator-line color-bg-canvas clearfix container-xl col-12 pb-8 p-responsive">
       <div class="pt-12 d-flex flex-column flex-md-row flex-items-center">
         <div class="col-12 d-flex flex-column flex-justify-center flex-items-center">
