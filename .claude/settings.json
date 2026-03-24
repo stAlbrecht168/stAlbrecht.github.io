@@ -30,7 +30,20 @@
       "Bash(open index.html)",
       "Read(//Users/I556959/Documents/**)",
       "Bash(open /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/index.html)",
-      "Bash(grep -v \"^[0-9]*:.*work-entry-title {$\\\\|^[0-9]*:.*work-entry-tag {$\")"
+      "Bash(grep -v \"^[0-9]*:.*work-entry-title {$\\\\|^[0-9]*:.*work-entry-tag {$\")",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io push -u origin master)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io ls-files img/stephan.png)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io add img/stephan.png)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io commit -m \"add missing stephan.png portrait image\")",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io push origin master)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io status --short img/)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io check-ignore -v img/stephan.png)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io ls-files --others img/stephan.png)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io log --oneline --all -- img/stephan.png)",
+      "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io ls-files img/)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
