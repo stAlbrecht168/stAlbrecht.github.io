@@ -447,266 +447,242 @@
       <!-- PDLC Zone Diagram -->
       <div class="p-responsive pt-2 pb-4" style="width:100%">
         <style>
-          /* ── PDLC diagram ── */
-          .pdlc-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
+          /* ── Double-diamond diagram ── */
+          .dd-wrapper {
             font-family: '72 Regular', sans-serif;
-          }
-          /* Top row: three zone labels */
-          .pdlc-zones {
-            display: flex;
-            gap: 8px;
-          }
-          .pdlc-zone-group {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-          }
-          .pdlc-zone-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 8px;
-          }
-          .pdlc-zone-label {
-            text-align: center;
-            font-family: '72 Regular';
-            font-size: 13px;
-            letter-spacing: .04em;
-            padding: 4px 8px;
-            border-radius: 4px 4px 0 0;
-            opacity: .82;
-          }
-          .pdlc-zone-label.problem  { background: #EDF4FF; color: #0A6ED1; border-top: 2px solid #c8ddf6; }
-          .pdlc-zone-label.solution { background: #E6F4F3; color: #00827A; border-top: 2px solid #b0dbd8; }
-          .pdlc-zone-label.outcome  { background: #EEF5E9; color: #3D7317; border-top: 2px solid #bcd9ac; }
-
-
-          .pdlc-phase {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px 8px 14px;
-            border-radius: 8px;
-            border: 1.5px solid transparent;
-            position: relative;
             overflow: hidden;
-            transition: transform .3s cubic-bezier(.16,1,.3,1),
-                        box-shadow .3s ease,
-                        border-color .3s ease,
-                        background .3s ease;
           }
-          .pdlc-phase:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,.08);
-            z-index: 1;
+          #dd-svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
           }
 
-          /* Zone coloring for cards */
-          .pdlc-phase.discovery  { border-top: 2px solid #c8ddf6; background: #EDF4FF; border-color: #c8ddf6; }
-          .pdlc-phase.synthesis  { border-top: 2px solid #d4bef7; background: #F3EEFF; border-color: #d4bef7; }
-          .pdlc-phase.ideation   { border-top: 2px solid #b0dbd8; background: #E6F4F3; border-color: #b0dbd8; }
-          .pdlc-phase.validation { border-top: 2px solid #f0c09a; background: #FFF0E6; border-color: #f0c09a; }
-          .pdlc-phase.delivery   { border-top: 2px solid #bcd9ac; background: #EEF5E9; border-color: #bcd9ac; }
-          .pdlc-phase.impact     { border-top: 2px solid #f0b888; background: #FFF3EC; border-color: #f0b888; }
-
-          /* Active phase (cycling animation) */
-          .pdlc-phase.pdlc-active {
-            transform: translateY(-3px) scale(1.02);
-            z-index: 2;
-          }
-          .pdlc-phase.discovery.pdlc-active  { border-color: #0A6ED1; box-shadow: 0 6px 24px rgba(10,110,209,.22);  background: #ddeeff; }
-          .pdlc-phase.synthesis.pdlc-active  { border-color: #6E33C8; box-shadow: 0 6px 24px rgba(110,51,200,.22);  background: #e8d8ff; }
-          .pdlc-phase.ideation.pdlc-active   { border-color: #00827A; box-shadow: 0 6px 24px rgba(0,130,122,.22);   background: #cfeae8; }
-          .pdlc-phase.validation.pdlc-active { border-color: #CC5500; box-shadow: 0 6px 24px rgba(204,85,0,.22);    background: #ffe3cc; }
-          .pdlc-phase.delivery.pdlc-active   { border-color: #3D7317; box-shadow: 0 6px 24px rgba(61,115,23,.22);   background: #d8edca; }
-          .pdlc-phase.impact.pdlc-active     { border-color: #B54800; box-shadow: 0 6px 24px rgba(181,72,0,.22);    background: #ffdfc4; }
-
-          /* Progress bar sweeps left to right during dwell */
-          .pdlc-progress {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 3px;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: none;
-            border-radius: 0 0 8px 8px;
-          }
-          .pdlc-phase.pdlc-active .pdlc-progress {
-            transform: scaleX(1);
-            transition: transform 0.85s linear;
-          }
-          .pdlc-phase.discovery  .pdlc-progress { background: #0A6ED1; }
-          .pdlc-phase.synthesis  .pdlc-progress { background: #6E33C8; }
-          .pdlc-phase.ideation   .pdlc-progress { background: #00827A; }
-          .pdlc-phase.validation .pdlc-progress { background: #CC5500; }
-          .pdlc-phase.delivery   .pdlc-progress { background: #3D7317; }
-          .pdlc-phase.impact     .pdlc-progress { background: #B54800; }
-
-          /* Number badge */
-          .pdlc-num {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: '72 Black', sans-serif;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: .02em;
-            margin-bottom: 8px;
-            flex-shrink: 0;
-          }
-          .pdlc-phase.discovery  .pdlc-num { background: #0A6ED1; color: #fff; }
-          .pdlc-phase.synthesis  .pdlc-num { background: #6E33C8; color: #fff; }
-          .pdlc-phase.ideation   .pdlc-num { background: #00827A; color: #fff; }
-          .pdlc-phase.validation .pdlc-num { background: #CC5500; color: #fff; }
-          .pdlc-phase.delivery   .pdlc-num { background: #3D7317; color: #fff; }
-          .pdlc-phase.impact     .pdlc-num { background: #B54800; color: #fff; }
-
-          .pdlc-phase-name {
-            font-family: '72 Black';
-            font-size: 14px;
-            font-weight: 900;
-            letter-spacing: .02em;
-            text-align: center;
-            margin-bottom: 8px;
-          }
-          .pdlc-phase.discovery  .pdlc-phase-name { color: #0A6ED1; }
-          .pdlc-phase.synthesis  .pdlc-phase-name { color: #6E33C8; }
-          .pdlc-phase.ideation   .pdlc-phase-name { color: #00827A; }
-          .pdlc-phase.validation .pdlc-phase-name { color: #CC5500; }
-          .pdlc-phase.delivery   .pdlc-phase-name { color: #3D7317; }
-          .pdlc-phase.impact     .pdlc-phase-name { color: #B54800; }
-
-          .pdlc-divider {
-            width: 24px;
-            height: 1px;
-            background: currentColor;
-            opacity: .2;
-            margin-bottom: 8px;
-          }
-
-          .pdlc-tags {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-          }
-          .pdlc-tag {
-            font-family: '72 Regular';
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            line-height: 1.3;
-          }
-
-          /* Scroll-triggered animation */
-          .pdlc-zone-group {
+          /* Entrance animation: each zone group fades+rises in */
+          .dd-zone-group {
             opacity: 0;
             transform: translateY(14px);
             transition: opacity 0.55s cubic-bezier(.16,1,.3,1),
                         transform 0.55s cubic-bezier(.16,1,.3,1);
           }
-          .pdlc-zone-group.pdlc-visible {
+          .dd-zone-group.dd-visible {
             opacity: 1;
             transform: translateY(0);
           }
 
-          /* Responsive: stack zone groups vertically */
-          @media (max-width: 680px) {
-            .pdlc-zones { flex-direction: column; }
+          /* Active phase highlight */
+          .dd-phase-group { cursor: default; }
+          .dd-diamond { transition: filter .3s ease; }
+          .dd-phase-group.dd-active .dd-diamond {
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,.22));
           }
+          /* Per-phase active fill brightening */
+          .dd-phase-group[data-phase="discovery"].dd-active  .dd-diamond { fill: #a8c8f0; }
+          .dd-phase-group[data-phase="synthesis"].dd-active  .dd-diamond { fill: #b89ae8; }
+          .dd-phase-group[data-phase="ideation"].dd-active   .dd-diamond { fill: #7dc5c0; }
+          .dd-phase-group[data-phase="validation"].dd-active .dd-diamond { fill: #e8924a; }
+          .dd-phase-group[data-phase="delivery"].dd-active   .dd-diamond { fill: #8aba6e; }
+          .dd-phase-group[data-phase="impact"].dd-active     .dd-diamond { fill: #e88a48; }
+          .dd-diamond { transition: fill .3s ease, filter .3s ease; }
         </style>
 
-        <div id="pdlc-diagram" class="pdlc-wrapper">
+        <div id="pdlc-diagram" class="dd-wrapper">
 
-          <!-- Zone groups: label always above its 2 cards -->
-          <div class="pdlc-zones">
+          <!-- Double-diamond: three zones, two diamonds each -->
+          <!-- viewBox 0 0 960 280: zones side by side, labels top, diamonds middle, tags bottom -->
+          <svg id="dd-svg" viewBox="0 0 960 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How I Work: double-diamond process diagram">
+            <defs>
+              <!-- Zone background fills -->
+              <clipPath id="cp-problem">  <rect x="0"   y="0" width="320" height="280" rx="10"/> </clipPath>
+              <clipPath id="cp-solution"> <rect x="320" y="0" width="320" height="280" rx="10"/> </clipPath>
+              <clipPath id="cp-outcome">  <rect x="640" y="0" width="320" height="280" rx="10"/> </clipPath>
 
-            <!-- Problem Space -->
-            <div class="pdlc-zone-group">
-              <div class="pdlc-zone-label problem">Problem Space</div>
-              <div class="pdlc-zone-cards">
-                <div class="pdlc-phase discovery">
-                      <div class="pdlc-phase-name">Discovery</div>
-                  <div class="pdlc-divider"></div>
-                  <div class="pdlc-tags">
-                    <span class="pdlc-tag">Field research</span>
-                    <span class="pdlc-tag">Maturity frameworks</span>
-                    <span class="pdlc-tag">Domain immersion</span>
-                  </div>
-                </div>
-                <div class="pdlc-phase synthesis">
-                      <div class="pdlc-phase-name">Synthesis</div>
-                  <div class="pdlc-divider"></div>
-                  <div class="pdlc-tags">
-                    <span class="pdlc-tag">Analytics to insight</span>
-                    <span class="pdlc-tag">AI benchmarking</span>
-                    <span class="pdlc-tag">Workflow analysis</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <!-- Arrowhead markers -->
+              <marker id="arr-discovery"  markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#0A6ED1"/>
+              </marker>
+              <marker id="arr-synthesis"  markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#6E33C8"/>
+              </marker>
+              <marker id="arr-ideation"   markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#00827A"/>
+              </marker>
+              <marker id="arr-validation" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#CC5500"/>
+              </marker>
+              <marker id="arr-delivery"   markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#3D7317"/>
+              </marker>
+              <marker id="arr-impact"     markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#B54800"/>
+              </marker>
+              <marker id="arr-fwd"        markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#bbb"/>
+              </marker>
+              <marker id="arr-back-prob"  markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto">
+                <polygon points="7 0, 0 3.5, 7 7" fill="#0A6ED1" opacity="0.5"/>
+              </marker>
+              <marker id="arr-back-sol"   markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto">
+                <polygon points="7 0, 0 3.5, 7 7" fill="#00827A" opacity="0.5"/>
+              </marker>
+              <marker id="arr-back-out"   markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto">
+                <polygon points="7 0, 0 3.5, 7 7" fill="#3D7317" opacity="0.5"/>
+              </marker>
+              <!-- Dot grid pattern -->
+              <pattern id="dot-grid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                <circle cx="8" cy="8" r="1" fill="#d0d7de" opacity="0.7"/>
+              </pattern>
+              <!-- Blurred zone background filter -->
+              <filter id="zone-haze" x="-15%" y="-25%" width="130%" height="150%">
+                <feGaussianBlur stdDeviation="40"/>
+              </filter>
+              <!-- Background mask gradients (black = fade out) -->
+              <linearGradient id="m-left" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="black" stop-opacity="1"/>
+                <stop offset="100%" stop-color="black" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="m-right" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="black" stop-opacity="0"/>
+                <stop offset="100%" stop-color="black" stop-opacity="1"/>
+              </linearGradient>
+              <linearGradient id="m-bottom" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="black" stop-opacity="0"/>
+                <stop offset="100%" stop-color="black" stop-opacity="1"/>
+              </linearGradient>
+              <!-- Mask: fades background at left, right, and bottom edges -->
+              <mask id="bg-mask" maskUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="960" height="280" fill="white"/>
+                <rect x="0"   y="0"   width="90"  height="280" fill="url(#m-left)"/>
+                <rect x="870" y="0"   width="90"  height="280" fill="url(#m-right)"/>
+                <rect x="0"   y="190" width="960" height="90"  fill="url(#m-bottom)"/>
+              </mask>
+            </defs>
 
-            <!-- Solution Space -->
-            <div class="pdlc-zone-group">
-              <div class="pdlc-zone-label solution">Solution Space</div>
-              <div class="pdlc-zone-cards">
-                <div class="pdlc-phase ideation">
-                      <div class="pdlc-phase-name">Ideation</div>
-                  <div class="pdlc-divider"></div>
-                  <div class="pdlc-tags">
-                    <span class="pdlc-tag">AI interaction models</span>
-                    <span class="pdlc-tag">UX strategy</span>
-                    <span class="pdlc-tag">Concept &amp; prototyping</span>
-                  </div>
-                </div>
-                <div class="pdlc-phase validation">
-                      <div class="pdlc-phase-name">Validation</div>
-                  <div class="pdlc-divider"></div>
-                  <div class="pdlc-tags">
-                    <span class="pdlc-tag">Usability testing</span>
-                    <span class="pdlc-tag">Heuristic evaluation</span>
-                    <span class="pdlc-tag">Evidence iteration</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!-- ── Zone backgrounds: blurred color pools that bleed into each other ── -->
+            <rect x="0" y="28" width="960" height="222" rx="12" fill="white"/>
+            <rect x="0" y="28" width="960" height="222" rx="12" fill="url(#dot-grid)" mask="url(#bg-mask)"/>
+            <g filter="url(#zone-haze)" mask="url(#bg-mask)">
+              <rect x="-20"  y="28" width="380" height="222" fill="#C8DDF6" opacity="0.6"/>
+              <rect x="310"  y="28" width="360" height="222" fill="#9DD4CF" opacity="0.55"/>
+              <rect x="620"  y="28" width="380" height="222" fill="#BCD9AC" opacity="0.6"/>
+            </g>
 
-            <!-- Outcome -->
-            <div class="pdlc-zone-group">
-              <div class="pdlc-zone-label outcome">Outcome</div>
-              <div class="pdlc-zone-cards">
-                <div class="pdlc-phase delivery">
-                      <div class="pdlc-phase-name">Delivery</div>
-                  <div class="pdlc-divider"></div>
-                  <div class="pdlc-tags">
-                    <span class="pdlc-tag">Fiori design system</span>
-                    <span class="pdlc-tag">Cross-functional lead</span>
-                    <span class="pdlc-tag">Frontend collab</span>
-                  </div>
-                </div>
-                <div class="pdlc-phase impact">
-                      <div class="pdlc-phase-name">Impact</div>
-                  <div class="pdlc-divider"></div>
-                  <div class="pdlc-tags">
-                    <span class="pdlc-tag">UX metrics &amp; OKRs</span>
-                    <span class="pdlc-tag">Mentorship &amp; craft</span>
-                    <span class="pdlc-tag">Strategic influence</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /pdlc-zones -->
+            <!-- ── Zone labels ── -->
+            <text x="160" y="55" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="13" fill="#0A6ED1" letter-spacing="0.04em">Problem Space</text>
+            <text x="480" y="55" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="13" fill="#00827A" letter-spacing="0.04em">Solution Space</text>
+            <text x="800" y="55" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="13" fill="#3D7317" letter-spacing="0.04em">Outcome</text>
 
 
-        </div><!-- /pdlc-wrapper -->
+
+            <!-- ══════════════════════════════════════════════════════════
+                 PHASE GROUPS
+                 Diamond center Y = 156 (vertical center of zone rect)
+                 Diamond half-width (horizontal) = 72px
+                 Diamond half-height (vertical)  = 64px
+                 Phase centers X: Discovery=88, Synthesis=232, Ideation=408, Validation=552, Delivery=728, Impact=872
+                 ══════════════════════════════════════════════════════════ -->
+
+            <!-- ── DISCOVERY ── -->
+            <g class="dd-phase-group" data-phase="discovery">
+              <!-- Diamond: top=92, bottom=220, left=16, right=160, center=88,156 -->
+              <polygon class="dd-diamond" points="88,92 160,156 88,220 16,156"
+                       fill="#C8DDF6" stroke="#0A6ED1" stroke-width="1.5"/>
+              <!-- Progress bar at bottom edge of zone rect -->
+              <!-- Phase name -->
+              <text x="88" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#0A6ED1">Discovery</text>
+              <!-- Tags -->
+              <text x="88" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Field research</text>
+              <text x="88" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Domain immersion</text>
+              <!-- Bottom label -->
+              <text x="88" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#0A6ED1" opacity="0.7">Explore broadly</text>
+
+            </g>
+
+            <!-- ── SYNTHESIS ── -->
+            <g class="dd-phase-group" data-phase="synthesis">
+              <!-- Diamond: top=92, bottom=220, left=160, right=304, center=232,156 -->
+              <polygon class="dd-diamond" points="232,92 304,156 232,220 160,156"
+                       fill="#D4BEF7" stroke="#6E33C8" stroke-width="1.5"/>
+              <!-- Phase name -->
+              <text x="232" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#6E33C8">Synthesis</text>
+              <!-- Tags -->
+              <text x="232" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">AI benchmarking</text>
+              <text x="232" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Workflow analysis</text>
+              <!-- Bottom label -->
+              <text x="232" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#6E33C8" opacity="0.7">Converge on insight</text>
+
+            </g>
+
+            <!-- ── IDEATION ── -->
+            <g class="dd-phase-group" data-phase="ideation">
+              <!-- Diamond: center=408,156 -->
+              <polygon class="dd-diamond" points="408,92 480,156 408,220 336,156"
+                       fill="#B0DBD8" stroke="#00827A" stroke-width="1.5"/>
+              <!-- Progress bar -->
+              <!-- Phase name -->
+              <text x="408" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#00827A">Ideation</text>
+              <!-- Tags -->
+              <text x="408" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">UX strategy</text>
+              <text x="408" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Prototyping</text>
+              <!-- Bottom label -->
+              <text x="408" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#00827A" opacity="0.7">Explore solutions</text>
+
+            </g>
+
+            <!-- ── VALIDATION ── -->
+            <g class="dd-phase-group" data-phase="validation">
+              <!-- Diamond: center=552,156 -->
+              <polygon class="dd-diamond" points="552,92 624,156 552,220 480,156"
+                       fill="#F0C09A" stroke="#CC5500" stroke-width="1.5"/>
+              <!-- Phase name -->
+              <text x="552" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#CC5500">Validation</text>
+              <!-- Tags -->
+              <text x="552" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Usability testing</text>
+              <text x="552" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Evidence iteration</text>
+              <!-- Bottom label -->
+              <text x="552" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#CC5500" opacity="0.7">Converge on right solution</text>
+
+            </g>
+
+            <!-- ── DELIVERY ── -->
+            <g class="dd-phase-group" data-phase="delivery">
+              <!-- Diamond: center=728,156 -->
+              <polygon class="dd-diamond" points="728,92 800,156 728,220 656,156"
+                       fill="#BCD9AC" stroke="#3D7317" stroke-width="1.5"/>
+              <!-- Progress bar -->
+              <!-- Phase name -->
+              <text x="728" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#3D7317">Delivery</text>
+              <!-- Tags -->
+              <text x="728" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Fiori design system</text>
+              <text x="728" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Frontend collab</text>
+              <!-- Bottom label -->
+              <text x="728" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#3D7317" opacity="0.7">Ship with quality</text>
+
+            </g>
+
+            <!-- ── IMPACT ── -->
+            <g class="dd-phase-group" data-phase="impact">
+              <!-- Diamond: center=872,156 -->
+              <polygon class="dd-diamond" points="872,92 944,156 872,220 800,156"
+                       fill="#F0B888" stroke="#B54800" stroke-width="1.5"/>
+              <!-- Phase name -->
+              <text x="872" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#B54800">Impact</text>
+              <!-- Tags -->
+              <text x="872" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">UX metrics &amp; OKRs</text>
+              <text x="872" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Strategic influence</text>
+              <!-- Bottom label -->
+              <text x="872" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#B54800" opacity="0.7">Measure &amp; learn</text>
+
+            </g>
+
+          <!-- ── Animated follower circle ── -->
+          <circle id="dd-follower" r="6.5" fill="white" stroke="#0A6ED1" stroke-width="2.2"
+                  cx="16" cy="156" opacity="0"
+                  style="filter:drop-shadow(0 2px 5px rgba(0,0,0,.25)); transition:stroke .25s ease"/>
+          </svg>
+
+        </div><!-- /dd-wrapper -->
       </div>
     </div>
   </div>
@@ -726,18 +702,22 @@
 
   <script>
   (function () {
-    // ── PDLC diagram entrance animation ──────────────────────────────────
+    // ── Double-diamond entrance animation ──────────────────────────────────
     const pdlcRoot = document.getElementById('pdlc-diagram');
     if (pdlcRoot) {
-      const groups    = pdlcRoot.querySelectorAll('.pdlc-zone-group');
-      const revealAll = () => {
-        groups.forEach((g, i) => {
-          setTimeout(() => g.classList.add('pdlc-visible'), i * 160);
-        });
-      };
+      const svg = pdlcRoot.querySelector('#dd-svg');
+      if (!svg) return;
+      // Animate the whole SVG wrapper in
+      svg.style.opacity = '0';
+      svg.style.transform = 'translateY(14px)';
+      svg.style.transition = 'opacity 0.6s cubic-bezier(.16,1,.3,1), transform 0.6s cubic-bezier(.16,1,.3,1)';
 
       const io = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) { revealAll(); io.disconnect(); }
+        if (entries[0].isIntersecting) {
+          svg.style.opacity = '1';
+          svg.style.transform = 'translateY(0)';
+          io.disconnect();
+        }
       }, { threshold: 0.15 });
       io.observe(pdlcRoot);
     }
@@ -801,62 +781,143 @@
   </script>
 
   <script>
+  // ── Double-diamond: animated circle follower ──
   (function () {
     var root = document.getElementById('pdlc-diagram');
-    if (!root) return;
-    var ORDER = ['discovery','synthesis','ideation','validation','delivery','impact'];
-    var DWELL = 900;
-    var PAUSE = 2200;
-    var idx = 0;
-    var timer = null;
+    var circle = document.getElementById('dd-follower');
+    if (!root || !circle) return;
 
-    ORDER.forEach(function(name) {
-      var card = root.querySelector('.pdlc-phase.' + name);
-      if (!card) return;
-      var bar = document.createElement('div');
-      bar.className = 'pdlc-progress';
-      card.appendChild(bar);
-    });
+    // Path: for each diamond the circle enters the left tip, loops all the way
+    // around (left → top → right → bottom → left), then retraces the top half
+    // to exit at the right tip — giving a clear "circle around the diamond" effect.
+    // Diamonds within a zone share a tip point; short horizontal segments bridge zones.
+    var PATH = [
+      // ── Discovery (center 88,156): enter left, loop CW, exit via top→right ──
+      [16,156],[88,92],[160,156],[88,220],[16,156],[88,92],[160,156],
+      // ── Synthesis (center 232,156): shared left=160, loop, exit ──
+      [232,92],[304,156],[232,220],[160,156],[232,92],[304,156],
+      // zone gap Problem→Solution
+      [336,156],
+      // ── Ideation (center 408,156) ──
+      [408,92],[480,156],[408,220],[336,156],[408,92],[480,156],
+      // ── Validation (center 552,156): shared left=480 ──
+      [552,92],[624,156],[552,220],[480,156],[552,92],[624,156],
+      // zone gap Solution→Outcome
+      [656,156],
+      // ── Delivery (center 728,156) ──
+      [728,92],[800,156],[728,220],[656,156],[728,92],[800,156],
+      // ── Impact (center 872,156): shared left=800 ──
+      [872,92],[944,156],[872,220],[800,156],[872,92],[944,156]
+    ];
+
+    // seg index ranges (segment i = PATH[i]→PATH[i+1]) per phase
+    var PHASE_SEGS = [
+      { phase: 'discovery',  from: 0,  to: 6  },
+      { phase: 'synthesis',  from: 6,  to: 12 },
+      { phase: 'ideation',   from: 13, to: 19 },
+      { phase: 'validation', from: 19, to: 25 },
+      { phase: 'delivery',   from: 26, to: 32 },
+      { phase: 'impact',     from: 32, to: 38 }
+    ];
+
+    var COLORS = {
+      discovery:'#0A6ED1', synthesis:'#6E33C8',
+      ideation:'#00827A',  validation:'#CC5500',
+      delivery:'#3D7317',  impact:'#B54800'
+    };
+
+    // Pre-compute cumulative arc lengths
+    var segs = [];
+    var totalLen = 0;
+    for (var i = 0; i < PATH.length - 1; i++) {
+      var dx = PATH[i+1][0] - PATH[i][0];
+      var dy = PATH[i+1][1] - PATH[i][1];
+      var len = Math.sqrt(dx*dx + dy*dy);
+      segs.push({ len: len, cum: totalLen });
+      totalLen += len;
+    }
+
+    var DURATION = 30000; // ms for full pass through all 6 diamonds
+    var END_PAUSE = 3000;
+    var startTs = null;
+    var lastPhase = null;
+
+    // Ease in-out within each segment so the circle decelerates at tips
+    function easeInOut(t) {
+      return t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+    }
+
+    function getPhase(segIdx) {
+      for (var j = 0; j < PHASE_SEGS.length; j++) {
+        if (segIdx >= PHASE_SEGS[j].from && segIdx < PHASE_SEGS[j].to) return PHASE_SEGS[j].phase;
+      }
+      return null;
+    }
 
     function deactivateAll() {
-      root.querySelectorAll('.pdlc-phase').forEach(function(c) {
-        var b = c.querySelector('.pdlc-progress');
-        if (b) { b.style.transition = 'none'; b.style.transform = 'scaleX(0)'; }
-        c.classList.remove('pdlc-active');
-      });
+      root.querySelectorAll('.dd-phase-group').forEach(function(g) { g.classList.remove('dd-active'); });
     }
 
-    function activate(i) {
+    function setPhaseActive(name) {
+      if (name === lastPhase) return;
       deactivateAll();
-      var card = root.querySelector('.pdlc-phase.' + ORDER[i]);
-      if (!card) return;
-      var bar = card.querySelector('.pdlc-progress');
-      if (bar) { bar.offsetHeight; bar.style.transition = ''; }
-      card.classList.add('pdlc-active');
+      lastPhase = name;
+      if (!name) return;
+      var g = root.querySelector('.dd-phase-group[data-phase="' + name + '"]');
+      if (g) g.classList.add('dd-active');
+      circle.setAttribute('stroke', COLORS[name] || '#aaa');
     }
 
-    function step() {
-      activate(idx);
-      idx++;
-      if (idx < ORDER.length) {
-        timer = setTimeout(step, DWELL);
-      } else {
-        timer = setTimeout(function() {
-          deactivateAll();
-          idx = 0;
-          timer = setTimeout(step, PAUSE);
-        }, DWELL);
+    function tick(ts) {
+      if (!startTs) startTs = ts;
+      var elapsed = ts - startTs;
+
+      if (elapsed >= DURATION) {
+        var end = PATH[PATH.length - 1];
+        circle.setAttribute('cx', end[0]);
+        circle.setAttribute('cy', end[1]);
+        deactivateAll();
+        lastPhase = null;
+        circle.setAttribute('opacity', '0');
+        setTimeout(function () {
+          startTs = null;
+          circle.setAttribute('cx', PATH[0][0]);
+          circle.setAttribute('cy', PATH[0][1]);
+          circle.setAttribute('opacity', '1');
+          requestAnimationFrame(tick);
+        }, END_PAUSE);
+        return;
       }
+
+      var dist = (elapsed / DURATION) * totalLen;
+
+      var si = segs.length - 1;
+      for (var i = 0; i < segs.length; i++) {
+        if (dist < segs[i].cum + segs[i].len) { si = i; break; }
+      }
+
+      var seg = segs[si];
+      var t = Math.min((dist - seg.cum) / seg.len, 1);
+      var x = PATH[si][0] + (PATH[si+1][0] - PATH[si][0]) * t;
+      var y = PATH[si][1] + (PATH[si+1][1] - PATH[si][1]) * t;
+
+      circle.setAttribute('cx', x);
+      circle.setAttribute('cy', y);
+      setPhaseActive(getPhase(si));
+
+      requestAnimationFrame(tick);
     }
 
-    var startObs = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) {
-        setTimeout(step, 1300);
-        startObs.disconnect();
+    var started = false;
+    new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && !started) {
+        started = true;
+        circle.setAttribute('opacity', '1');
+        requestAnimationFrame(tick);
       }
-    }, { threshold: 0.15 });
-    startObs.observe(root);
+    }, { threshold: 0.2 }).observe(root);
   })();
+
   </script>
 
   <div class="color-bg-canvas container-xl clearfix">

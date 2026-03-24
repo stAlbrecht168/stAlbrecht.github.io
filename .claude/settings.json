@@ -43,7 +43,13 @@
       "Bash(git -C /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io ls-files img/)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(sed -i '' 's/var DURATION = 18000;/var DURATION = 30000;/' /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/index.html)",
+      "Bash(sed -i '' 's/var END_PAUSE = 2400;/var END_PAUSE = 3000;/' /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/index.html)"
+    ],
+    "additionalDirectories": [
+      "/tmp",
+      "/private/tmp"
     ]
   }
 }
