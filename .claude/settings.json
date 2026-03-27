@@ -45,7 +45,8 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(sed -i '' 's/var DURATION = 18000;/var DURATION = 30000;/' /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/index.html)",
-      "Bash(sed -i '' 's/var END_PAUSE = 2400;/var END_PAUSE = 3000;/' /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/index.html)"
+      "Bash(sed -i '' 's/var END_PAUSE = 2400;/var END_PAUSE = 3000;/' /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/index.html)",
+      "Bash(open /Users/I556959/Documents/Personal/portfolio/gitlab/stAlbrecht.gitlab.io/_prototype.html)"
     ],
     "additionalDirectories": [
       "/tmp",

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stephan Albrecht — UX Design Lead</title>
+  <title>Prototype — Stephan Albrecht</title>
   <style>
     /* ─── Fonts ─────────────────────────────────────── */
     @font-face { font-family:"72 Black";    src:url("fonts/72-Black-full.woff") format("woff"); }
@@ -321,6 +321,7 @@
       z-index: 10;
     }
 
+    /* no padding override when stuck — natural padding stays */
     .phase-header-body {
       display: flex;
       flex-direction: column;
@@ -538,6 +539,8 @@
       transition: color .15s;
     }
     footer a:hover { color: #fff; }
+
+    /* ─── Scroll-spy active state on topbar ─────────── */
   </style>
 </head>
 <body>
@@ -705,7 +708,7 @@
 
       <div class="card">
         <div class="card-media">
-          <img src="img/disc-ux-maturity-scorecard-01.svg" alt="UX Maturity radar chart" loading="lazy" style="object-position:top left;">
+          <img src="img/disc-ux-maturity-scorecard-01.svg" alt="UX Maturity radar chart" loading="lazy">
           <div class="card-accent"></div>
         </div>
         <div class="card-body">
@@ -723,11 +726,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="disc-baur-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f0fa"/><stop offset="100%" stop-color="#d0e4f8"/></linearGradient><pattern id="disc-baur-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#7ab0e0" opacity=".5"/></pattern><filter id="disc-baur-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0A6ED1" flood-opacity=".2"/></filter><clipPath id="disc-baur-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#disc-baur-bg)"/>
-            <rect width="480" height="270" fill="url(#disc-baur-dots)"/>
-            <g filter="url(#disc-baur-shadow)"><image href="img/baur-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#disc-baur-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#7ab0e0" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="d1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f0fa"/><stop offset="100%" stop-color="#d0e4f8"/></linearGradient><clipPath id="d1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#d1bg)"/>
+            <image href="img/baur-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#d1c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -745,11 +746,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="disc-ctsm-bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#deeaf8"/><stop offset="100%" stop-color="#EDF4FF"/></linearGradient><pattern id="disc-ctsm-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#7ab0e0" opacity=".5"/></pattern><filter id="disc-ctsm-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0A6ED1" flood-opacity=".2"/></filter><clipPath id="disc-ctsm-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#disc-ctsm-bg)"/>
-            <rect width="480" height="270" fill="url(#disc-ctsm-dots)"/>
-            <g filter="url(#disc-ctsm-shadow)"><image href="img/ctsm-03.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#disc-ctsm-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#7ab0e0" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="d2bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#deeaf8"/><stop offset="100%" stop-color="#EDF4FF"/></linearGradient><clipPath id="d2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#d2bg)"/>
+            <image href="img/ctsm-03.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#d2c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -784,11 +783,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="syn-j-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f3eefc"/><stop offset="100%" stop-color="#e2d4f5"/></linearGradient><pattern id="syn-j-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#9b72d8" opacity=".5"/></pattern><filter id="syn-j-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#6E33C8" flood-opacity=".2"/></filter><clipPath id="syn-j-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#syn-j-bg)"/>
-            <rect width="480" height="270" fill="url(#syn-j-dots)"/>
-            <g filter="url(#syn-j-shadow)"><image href="img/syn-joule-eval-framework-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#syn-j-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#9b72d8" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="s1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f3eefc"/><stop offset="100%" stop-color="#e2d4f5"/></linearGradient><clipPath id="s1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#s1bg)"/>
+            <image href="img/syn-joule-eval-framework-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#s1c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -806,11 +803,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="syn-w-bg" x1="1" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ede8fa"/><stop offset="100%" stop-color="#e0d8f7"/></linearGradient><pattern id="syn-w-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#9b72d8" opacity=".5"/></pattern><filter id="syn-w-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#6E33C8" flood-opacity=".2"/></filter><clipPath id="syn-w-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#syn-w-bg)"/>
-            <rect width="480" height="270" fill="url(#syn-w-dots)"/>
-            <g filter="url(#syn-w-shadow)"><image href="img/syn-workflow-analysis-03.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#syn-w-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#9b72d8" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="s2bg" x1="1" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ede8fa"/><stop offset="100%" stop-color="#e0d8f7"/></linearGradient><clipPath id="s2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#s2bg)"/>
+            <image href="img/syn-workflow-analysis-03.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#s2c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -846,11 +841,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="ide-joule-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f5f0"/><stop offset="100%" stop-color="#c8ece6"/></linearGradient><pattern id="ide-joule-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#5ab8ae" opacity=".5"/></pattern><filter id="ide-joule-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00827A" flood-opacity=".2"/></filter><clipPath id="ide-joule-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#ide-joule-bg)"/>
-            <rect width="480" height="270" fill="url(#ide-joule-dots)"/>
-            <g filter="url(#ide-joule-shadow)"><image href="img/ideate-joule-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#ide-joule-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#5ab8ae" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="i1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f5f0"/><stop offset="100%" stop-color="#c8ece6"/></linearGradient><clipPath id="i1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#i1bg)"/>
+            <image href="img/ideate-joule-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#i1c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -865,11 +858,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="ide-zeiss-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f5f0"/><stop offset="100%" stop-color="#cce8e3"/></linearGradient><pattern id="ide-zeiss-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#5ab8ae" opacity=".5"/></pattern><filter id="ide-zeiss-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00827A" flood-opacity=".2"/></filter><clipPath id="ide-zeiss-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#ide-zeiss-bg)"/>
-            <rect width="480" height="270" fill="url(#ide-zeiss-dots)"/>
-            <g filter="url(#ide-zeiss-shadow)"><image href="img/zeiss-smartzoom-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#ide-zeiss-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#5ab8ae" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="i2bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f5f0"/><stop offset="100%" stop-color="#cce8e3"/></linearGradient><clipPath id="i2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#i2bg)"/>
+            <image href="img/zeiss-smartzoom-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#i2c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -884,11 +875,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="ide-baur-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e6f4f1"/><stop offset="100%" stop-color="#d0ece7"/></linearGradient><pattern id="ide-baur-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#5ab8ae" opacity=".5"/></pattern><filter id="ide-baur-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00827A" flood-opacity=".2"/></filter><clipPath id="ide-baur-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#ide-baur-bg)"/>
-            <rect width="480" height="270" fill="url(#ide-baur-dots)"/>
-            <g filter="url(#ide-baur-shadow)"><image href="img/baur-03.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#ide-baur-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#5ab8ae" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="i3bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e6f4f1"/><stop offset="100%" stop-color="#d0ece7"/></linearGradient><clipPath id="i3c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#i3bg)"/>
+            <image href="img/baur-03.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#i3c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -921,11 +910,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="val-proto-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fdf0e8"/><stop offset="100%" stop-color="#f8dfc8"/></linearGradient><pattern id="val-proto-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#d88850" opacity=".5"/></pattern><filter id="val-proto-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#CC5500" flood-opacity=".2"/></filter><clipPath id="val-proto-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#val-proto-bg)"/>
-            <rect width="480" height="270" fill="url(#val-proto-dots)"/>
-            <g filter="url(#val-proto-shadow)"><image href="img/proto-01.gif" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#val-proto-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#d88850" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="v1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fdf0e8"/><stop offset="100%" stop-color="#f8dfc8"/></linearGradient><clipPath id="v1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#v1bg)"/>
+            <image href="img/proto-01.gif" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#v1c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -939,15 +926,15 @@
 
       <div class="card">
         <div class="card-media">
+          <!-- SUS score illustration — kept as SVG since no source image -->
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="val-sus-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fdf0e8"/><stop offset="100%" stop-color="#f8dfc8"/></linearGradient><pattern id="val-sus-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#d88850" opacity=".4"/></pattern><radialGradient id="val-sus-badge" cx="50%" cy="40%" r="55%"><stop offset="0%" stop-color="#ffcc44"/><stop offset="100%" stop-color="#f5a200"/></radialGradient></defs>
-            <rect width="480" height="270" fill="url(#val-sus-bg)"/>
-            <rect width="480" height="270" fill="url(#val-sus-dots)"/>
+            <defs><linearGradient id="v2bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fdf0e8"/><stop offset="100%" stop-color="#f8dfc8"/></linearGradient><radialGradient id="v2badge" cx="50%" cy="40%" r="55%"><stop offset="0%" stop-color="#ffcc44"/><stop offset="100%" stop-color="#f5a200"/></radialGradient></defs>
+            <rect width="480" height="270" fill="url(#v2bg)"/>
             <text x="28" y="34" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing=".12em" fill="#CC5500" opacity=".5">RESULTS OVERVIEW</text>
             <text x="28" y="58" font-family="sans-serif" font-size="17" font-weight="900" fill="#1a1a1a">System Usability Score (SUS)</text>
             <text x="28" y="84" font-family="sans-serif" font-size="12" font-weight="700" fill="#333">* Internal Participants</text>
             <text x="28" y="102" font-family="sans-serif" font-size="12" font-weight="700" fill="#333">* 3 Key Tasks</text>
-            <circle cx="358" cy="90" r="46" fill="url(#val-sus-badge)" opacity=".95"/>
+            <circle cx="358" cy="90" r="46" fill="url(#v2badge)" opacity=".95"/>
             <circle cx="358" cy="90" r="38" fill="#fff9ee"/>
             <text x="358" y="100" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="900" fill="#1a1a1a">74</text>
             <line x1="358" y1="136" x2="358" y2="162" stroke="#CC5500" stroke-width="3"/>
@@ -995,10 +982,10 @@
 
       <div class="card">
         <div class="card-media">
+          <!-- Process doc illustration kept as inline SVG -->
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="del-ph-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f3e0"/><stop offset="100%" stop-color="#cfe5c0"/></linearGradient><pattern id="del-ph-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".4"/></pattern></defs>
-            <rect width="480" height="270" fill="url(#del-ph-bg)"/>
-            <rect width="480" height="270" fill="url(#del-ph-dots)"/>
+            <defs><linearGradient id="dv1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f3e0"/><stop offset="100%" stop-color="#cfe5c0"/></linearGradient></defs>
+            <rect width="480" height="270" fill="url(#dv1bg)"/>
             <rect x="22" y="18" width="436" height="234" rx="6" fill="#fff" opacity=".88"/>
             <rect x="22" y="18" width="436" height="30" rx="6" fill="#3D7317" opacity=".9"/>
             <rect x="22" y="36" width="436" height="12" fill="#3D7317" opacity=".9"/>
@@ -1031,11 +1018,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="del-cl-bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#cfe5c0"/><stop offset="100%" stop-color="#e8f3e0"/></linearGradient><pattern id="del-cl-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".5"/></pattern><filter id="del-cl-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3D7317" flood-opacity=".2"/></filter><clipPath id="del-cl-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#del-cl-bg)"/>
-            <rect width="480" height="270" fill="url(#del-cl-dots)"/>
-            <g filter="url(#del-cl-shadow)"><image href="img/complexloans-02.gif" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#del-cl-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#72b050" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="dv2bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#cfe5c0"/><stop offset="100%" stop-color="#e8f3e0"/></linearGradient><clipPath id="dv2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#dv2bg)"/>
+            <image href="img/complexloans-02.gif" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#dv2c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -1050,11 +1035,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="del-bosch-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f3e0"/><stop offset="100%" stop-color="#d4e8c4"/></linearGradient><pattern id="del-bosch-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".5"/></pattern><filter id="del-bosch-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3D7317" flood-opacity=".2"/></filter><clipPath id="del-bosch-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#del-bosch-bg)"/>
-            <rect width="480" height="270" fill="url(#del-bosch-dots)"/>
-            <g filter="url(#del-bosch-shadow)"><image href="img/bosch-02.jpg" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#del-bosch-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#72b050" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="dv3bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f3e0"/><stop offset="100%" stop-color="#d4e8c4"/></linearGradient><clipPath id="dv3c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#dv3bg)"/>
+            <image href="img/bosch-02.jpg" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#dv3c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -1069,11 +1052,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="del-bbva-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4e8c4"/><stop offset="100%" stop-color="#e8f3e0"/></linearGradient><pattern id="del-bbva-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#72b050" opacity=".5"/></pattern><filter id="del-bbva-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3D7317" flood-opacity=".2"/></filter><clipPath id="del-bbva-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#del-bbva-bg)"/>
-            <rect width="480" height="270" fill="url(#del-bbva-dots)"/>
-            <g filter="url(#del-bbva-shadow)"><image href="img/bbva-01.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#del-bbva-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#72b050" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="dv4bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4e8c4"/><stop offset="100%" stop-color="#e8f3e0"/></linearGradient><clipPath id="dv4c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#dv4bg)"/>
+            <image href="img/bbva-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#dv4c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
@@ -1105,9 +1086,8 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="imp-road-bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#f5d0be"/><stop offset="100%" stop-color="#fbe8de"/></linearGradient><pattern id="imp-road-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#c07040" opacity=".4"/></pattern><marker id="imp-road-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 1 L7 4 L0 7 Z" fill="#B54800" opacity=".7"/></marker></defs>
-            <rect width="480" height="270" fill="url(#imp-road-bg)"/>
-            <rect width="480" height="270" fill="url(#imp-road-dots)"/>
+            <defs><linearGradient id="im1bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#f5d0be"/><stop offset="100%" stop-color="#fbe8de"/></linearGradient><marker id="im1arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 1 L7 4 L0 7 Z" fill="#B54800" opacity=".7"/></marker></defs>
+            <rect width="480" height="270" fill="url(#im1bg)"/>
             <circle cx="72" cy="90" r="22" fill="#B54800" opacity=".12"/>
             <circle cx="72" cy="80" r="8" fill="#B54800" opacity=".55"/>
             <path d="M58 105 Q72 92 86 105" fill="#B54800" opacity=".45"/>
@@ -1115,12 +1095,12 @@
             <line x1="62" y1="113" x2="82" y2="113" stroke="#B54800" stroke-width="1.2" opacity=".5"/>
             <line x1="62" y1="119" x2="78" y2="119" stroke="#B54800" stroke-width="1.2" opacity=".5"/>
             <text x="72" y="144" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Field Research</text>
-            <line x1="102" y1="105" x2="152" y2="105" stroke="#B54800" stroke-width="1.5" stroke-dasharray="4,3" opacity=".5" marker-end="url(#imp-road-arrow)"/>
+            <line x1="102" y1="105" x2="152" y2="105" stroke="#B54800" stroke-width="1.5" stroke-dasharray="4,3" opacity=".5" marker-end="url(#im1arr)"/>
             <ellipse cx="194" cy="105" rx="38" ry="28" fill="#B54800" opacity=".15" stroke="#B54800" stroke-width="1.5"/>
             <text x="194" y="100" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">Workers need</text>
             <text x="194" y="111" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">mobile access</text>
             <text x="194" y="143" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Key Insight</text>
-            <line x1="234" y1="105" x2="282" y2="105" stroke="#B54800" stroke-width="1.5" marker-end="url(#imp-road-arrow)"/>
+            <line x1="234" y1="105" x2="282" y2="105" stroke="#B54800" stroke-width="1.5" marker-end="url(#im1arr)"/>
             <rect x="286" y="76" width="160" height="58" rx="6" fill="#B54800" opacity=".18" stroke="#B54800" stroke-width="1.5"/>
             <rect x="286" y="76" width="160" height="24" rx="6" fill="#B54800" opacity=".5"/>
             <text x="366" y="92" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">Roadmap Decision</text>
@@ -1140,11 +1120,9 @@
       <div class="card">
         <div class="card-media">
           <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="imp-ana-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fbe8de"/><stop offset="100%" stop-color="#f5d0be"/></linearGradient><pattern id="imp-ana-dots" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.75" fill="#c07040" opacity=".5"/></pattern><filter id="imp-ana-shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#B54800" flood-opacity=".2"/></filter><clipPath id="imp-ana-clip"><rect x="20" y="20" width="440" height="230" rx="4"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#imp-ana-bg)"/>
-            <rect width="480" height="270" fill="url(#imp-ana-dots)"/>
-            <g filter="url(#imp-ana-shadow)"><image href="img/syn-analytics-to-design-synthesis-02.png" x="20" y="20" width="440" height="230" preserveAspectRatio="xMidYMid slice" clip-path="url(#imp-ana-clip)"/></g>
-            <rect x="20" y="20" width="440" height="230" rx="4" fill="none" stroke="#c07040" stroke-width="1" opacity=".35"/>
+            <defs><linearGradient id="im2bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fbe8de"/><stop offset="100%" stop-color="#f5d0be"/></linearGradient><clipPath id="im2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
+            <rect width="480" height="270" fill="url(#im2bg)"/>
+            <image href="img/syn-analytics-to-design-synthesis-02.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#im2c)"/>
           </svg>
           <div class="card-accent"></div>
         </div>
