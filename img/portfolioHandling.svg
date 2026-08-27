@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520">
+<rect width="900" height="520" fill="white"/>
+
+<!-- Title -->
+<text x="40" y="55" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" fill="#111827">Portfolio Handling Epic — UX</text>
+
+<!-- Step 1 -->
+<text x="40" y="95" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">1.    PM creates EPIC in Portfolio tool with Label <tspan font-style="italic">"UX"</tspan> and adds the</text>
+<text x="62" y="113" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">UX Designer as <tspan font-style="italic">"Contributor".</tspan></text>
+<text x="62" y="129" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#6b7280">When no UX Designer assigned, coordinate with UX Chapter Lead for cross-topic items.</text>
+
+<!-- Step 2 -->
+<text x="40" y="158" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">2.    PM sets up kickoff meeting or uses regular meetings with UX Designer to</text>
+<text x="62" y="175" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">align on topic and needed UX activities.</text>
+
+<!-- Step 3 -->
+<text x="40" y="204" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">3.    UX Designer creates</text>
+<text x="198" y="204" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#1a56db" text-decoration="underline">UX User Story</text>
+<text x="303" y="204" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">and assigns to related Epic.</text>
+<text x="62" y="221" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#6b7280">Note: Why, Problem description, Persona, Customer (Influence request etc.) part of EPIC</text>
+
+<!-- Step 4 -->
+<text x="40" y="250" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">4.    UX Designer adds component for market and team</text>
+<text x="62" y="267" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#6b7280">e.g. CALM Implementation, SD, TM</text>
+
+<!-- Step 5 -->
+<text x="40" y="296" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#111827">5.    Definition of Done criteria UX in User Story</text>
+<text x="62" y="315" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#374151">- Story Board / User Journey</text>
+<text x="62" y="332" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#374151">- Design Concept &amp; Specification</text>
+<text x="62" y="349" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#374151">- UX Consistency Check</text>
+<text x="62" y="366" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#374151">- Accessibility Check</text>
+<text x="62" y="383" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#374151">- Feasibility</text>
+
+<!-- Note -->
+<text x="62" y="408" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#6b7280" font-style="italic">Note: please use the description field to add links or comments</text>
+
+<!-- Footer line -->
+<text x="40" y="438" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#111827">When UX User Story is completed, the UX flag in Epic can be set.</text>
+
+<!-- Right panel: UX User Story Template card illustration -->
+<rect x="530" y="72" width="335" height="400" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<!-- Card header bar -->
+<rect x="530" y="72" width="335" height="38" rx="6" fill="#354a5e"/>
+<rect x="530" y="91" width="335" height="19" fill="#354a5e"/>
+<text x="548" y="97" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="white" font-weight="600">[UX] &lt;UX UserStory&gt; Template</text>
+
+<!-- Tab row -->
+<rect x="530" y="110" width="335" height="28" fill="#e5e7eb"/>
+<text x="548" y="129" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">Details</text>
+<rect x="548" y="121" width="36" height="2" fill="#1a56db"/>
+<text x="596" y="129" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">Activity</text>
+<text x="644" y="129" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">Design</text>
+<text x="692" y="129" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">Attachments</text>
+
+<!-- Form fields -->
+<text x="548" y="160" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">Type</text>
+<rect x="548" y="165" width="120" height="18" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+<text x="558" y="178" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">Story</text>
+
+<text x="700" y="160" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">Component</text>
+<rect x="700" y="165" width="150" height="18" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+<text x="710" y="178" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">CALM Implementation</text>
+
+<text x="548" y="204" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">PM Epic</text>
+<rect x="548" y="209" width="120" height="18" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+
+<text x="700" y="204" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">Sprint</text>
+<rect x="700" y="209" width="100" height="18" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+
+<!-- Done criteria checkboxes -->
+<text x="548" y="248" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="600" fill="#374151">Definition of Done</text>
+
+<!-- Checkbox rows -->
+<rect x="548" y="256" width="11" height="11" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+<text x="565" y="266" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">Story Board / User Journey</text>
+
+<rect x="548" y="274" width="11" height="11" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+<text x="565" y="284" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">Design Concept &amp; Specification</text>
+
+<rect x="548" y="292" width="11" height="11" rx="2" fill="#1a56db" stroke="#1a56db" stroke-width="1"/>
+<text x="552" y="302" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="white">✓</text>
+<text x="565" y="302" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">UX Consistency Check</text>
+
+<rect x="548" y="310" width="11" height="11" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+<text x="565" y="320" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">Accessibility Check</text>
+
+<rect x="548" y="328" width="11" height="11" rx="2" fill="white" stroke="#d1d5db" stroke-width="1"/>
+<text x="565" y="338" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">Feasibility</text>
+
+<!-- Description label -->
+<line x1="530" y1="356" x2="865" y2="356" stroke="#e5e7eb" stroke-width="1"/>
+<text x="548" y="376" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">Description</text>
+<rect x="548" y="382" width="299" height="36" rx="3" fill="white" stroke="#d1d5db" stroke-width="1"/>
+<text x="558" y="396" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Add context, links, or references here...</text>
+
+<!-- Attachments area -->
+<line x1="530" y1="428" x2="865" y2="428" stroke="#e5e7eb" stroke-width="1"/>
+<text x="548" y="446" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">Attachments</text>
+<text x="548" y="460" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Drop files to attach, or browse</text>
+</svg>

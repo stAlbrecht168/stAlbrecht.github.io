@@ -1,0 +1,309 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 560" width="1300" height="560">
+<defs>
+  <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3b0764"/>
+    <stop offset="55%" stop-color="#6d28d9"/>
+    <stop offset="100%" stop-color="#7c3aed"/>
+  </linearGradient>
+  <linearGradient id="hdr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#5b21b6"/>
+    <stop offset="100%" stop-color="#7c3aed"/>
+  </linearGradient>
+  <clipPath id="c1"><rect width="290" height="462" rx="8"/></clipPath>
+  <clipPath id="c2"><rect width="290" height="462" rx="8"/></clipPath>
+  <clipPath id="c3"><rect width="290" height="462" rx="8"/></clipPath>
+  <clipPath id="c4"><rect width="290" height="462" rx="8"/></clipPath>
+  <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+    <polygon points="0,0 7,3.5 0,7" fill="#ec4899"/>
+  </marker>
+</defs>
+
+<!-- Canvas background -->
+<rect width="1300" height="560" fill="#eef0f3"/>
+
+<!-- Top labels -->
+<text x="185" y="50" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">Enter Prompt</text>
+<text x="495" y="50" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">List Card with Items</text>
+<text x="805" y="50" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">Integration Card / Bar Chart</text>
+<line x1="892" y1="46" x2="1034" y2="46" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+<text x="1115" y="50" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">Analytical Card / Bar Chart</text>
+
+<!-- ═══════════════ PANEL 1 — Joule Welcome ═══════════════ -->
+<g transform="translate(40,65)" clip-path="url(#c1)">
+  <!-- Panel base -->
+  <rect width="290" height="462" rx="8" fill="#1e1b4b"/>
+  <!-- Title bar -->
+  <rect width="290" height="28" fill="#12103a"/>
+  <!-- Traffic lights -->
+  <circle cx="14" cy="14" r="5" fill="#ff5f57"/>
+  <circle cx="28" cy="14" r="5" fill="#ffbd2e"/>
+  <circle cx="42" cy="14" r="5" fill="#28c840"/>
+  <!-- Welcome body -->
+  <rect y="28" width="290" height="434" fill="url(#bg1)"/>
+
+  <!-- Joule star logo -->
+  <g transform="translate(145,128)">
+    <path fill-rule="evenodd" fill="white" opacity=".9" d="M0,-32 L8,-8 L32,0 L8,8 L0,32 L-8,8 L-32,0 L-8,-8 Z M0,-16 L4,-4 L16,0 L4,4 L0,16 L-4,4 L-16,0 L-4,-4 Z"/>
+  </g>
+
+  <!-- Labels -->
+  <text x="145" y="182" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle" letter-spacing="3">JOULE</text>
+  <text x="145" y="208" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="rgba(255,255,255,.65)" text-anchor="middle">Hello [User name],</text>
+  <text x="145" y="228" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle">How can I help you?</text>
+
+  <!-- Capability pills row 1 -->
+  <rect x="16" y="250" width="118" height="26" rx="13" fill="rgba(255,255,255,.15)"/>
+  <text x="75" y="267" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="white" text-anchor="middle">Summarize</text>
+  <rect x="144" y="250" width="130" height="26" rx="13" fill="rgba(255,255,255,.15)"/>
+  <text x="209" y="267" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="white" text-anchor="middle">Analyze data</text>
+
+  <!-- Capability pills row 2 -->
+  <rect x="16" y="284" width="108" height="26" rx="13" fill="rgba(255,255,255,.15)"/>
+  <text x="70" y="301" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="white" text-anchor="middle">Create plan</text>
+  <rect x="134" y="284" width="96" height="26" rx="13" fill="rgba(255,255,255,.15)"/>
+  <text x="182" y="301" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="white" text-anchor="middle">Generate</text>
+
+  <!-- Divider -->
+  <line x1="16" y1="326" x2="274" y2="326" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+
+  <!-- Input rect -->
+  <rect x="14" y="336" width="262" height="40" rx="20" fill="rgba(255,255,255,.14)"/>
+  <text x="32" y="361" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="rgba(255,255,255,.6)">Summarize all issues</text>
+  <!-- Send button -->
+  <circle cx="260" cy="356" r="14" fill="white"/>
+  <path d="M254,356 L264,352 L260,356 L264,360 Z" fill="#7c3aed"/>
+  <line x1="252" y1="356" x2="263" y2="356" stroke="#7c3aed" stroke-width="1.5"/>
+
+  <!-- Footer -->
+  <text x="145" y="450" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="rgba(255,255,255,.3)" text-anchor="middle">Joule uses AI. Always verify important results.</text>
+</g>
+
+<!-- ═══════════════ PANEL 2 — List Card ═══════════════ -->
+<g transform="translate(350,65)" clip-path="url(#c2)">
+  <!-- Panel -->
+  <rect width="290" height="462" rx="8" fill="white" stroke="#dde1e7" stroke-width="1"/>
+  <!-- Header -->
+  <rect width="290" height="34" fill="url(#hdr)"/>
+  <circle cx="14" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <circle cx="28" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <circle cx="42" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <text x="145" y="22" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">New Conversation</text>
+  <!-- Body bg -->
+  <rect y="34" width="290" height="428" fill="#f9fafb"/>
+
+  <!-- User bubble -->
+  <rect x="85" y="48" width="190" height="38" rx="16" fill="#7c3aed"/>
+  <text x="180" y="64" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="white" text-anchor="middle">Summarize all issues</text>
+  <text x="180" y="79" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="white" text-anchor="middle">for me</text>
+
+  <!-- Joule avatar -->
+  <circle cx="22" cy="114" r="12" fill="#7c3aed"/>
+  <g transform="translate(22,114) scale(0.35)">
+    <path fill-rule="evenodd" fill="white" d="M0,-18 L4,-5 L18,0 L4,5 L0,18 L-4,5 L-18,0 L-4,-5 Z M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z"/>
+  </g>
+
+  <!-- AI bubble -->
+  <rect x="40" y="102" width="234" height="42" rx="8" fill="#ede9fe"/>
+  <text x="52" y="118" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#4c1d95">Multiple accounts found.</text>
+  <text x="52" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#4c1d95">Which account to review?</text>
+
+  <!-- List card container -->
+  <rect x="14" y="156" width="262" height="162" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <!-- Card header -->
+  <rect x="14" y="156" width="262" height="26" rx="6" fill="#f3f4f6"/>
+  <text x="26" y="174" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#6b7280">CUSTOMER ACCOUNTS</text>
+
+  <!-- Row A -->
+  <line x1="14" y1="220" x2="276" y2="220" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="26" y="197" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#111827">Account A</text>
+  <text x="26" y="213" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">ID: ACC-001</text>
+  <rect x="222" y="192" width="44" height="20" rx="4" fill="#7c3aed"/>
+  <text x="244" y="206" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="white" text-anchor="middle">Select</text>
+
+  <!-- Row B -->
+  <line x1="14" y1="258" x2="276" y2="258" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="26" y="235" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#111827">Account B</text>
+  <text x="26" y="251" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">ID: ACC-002</text>
+  <rect x="222" y="230" width="44" height="20" rx="4" fill="white" stroke="#7c3aed" stroke-width="1"/>
+  <text x="244" y="244" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#7c3aed" text-anchor="middle">Select</text>
+
+  <!-- Row C -->
+  <text x="26" y="275" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#111827">Account C</text>
+  <text x="26" y="291" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">ID: ACC-003</text>
+  <rect x="222" y="268" width="44" height="20" rx="4" fill="white" stroke="#7c3aed" stroke-width="1"/>
+  <text x="244" y="282" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#7c3aed" text-anchor="middle">Select</text>
+
+  <!-- Selection feedback -->
+  <rect x="14" y="328" width="262" height="24" rx="6" fill="#ede9fe"/>
+  <text x="26" y="344" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#5b21b6">&#x2713; Account A selected</text>
+
+  <!-- Input bar -->
+  <rect x="14" y="394" width="262" height="34" rx="17" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="30" y="415" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#9ca3af">Ask Joule...</text>
+  <circle cx="260" cy="411" r="12" fill="#7c3aed"/>
+  <path d="M255,411 L263,408 L260,411 L263,414 Z" fill="white"/>
+  <line x1="253" y1="411" x2="262" y2="411" stroke="white" stroke-width="1.2"/>
+</g>
+
+<!-- ═══════════════ PANEL 3 — Integration Card ═══════════════ -->
+<g transform="translate(660,65)" clip-path="url(#c3)">
+  <!-- Panel -->
+  <rect width="290" height="462" rx="8" fill="white" stroke="#dde1e7" stroke-width="1"/>
+  <!-- Header -->
+  <rect width="290" height="34" fill="url(#hdr)"/>
+  <circle cx="14" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <circle cx="28" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <circle cx="42" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <text x="145" y="22" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">New Conversation</text>
+  <!-- Body bg -->
+  <rect y="34" width="290" height="428" fill="#f9fafb"/>
+
+  <!-- Source badge -->
+  <rect x="14" y="46" width="78" height="20" rx="10" fill="#ede9fe"/>
+  <text x="53" y="60" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#5b21b6" text-anchor="middle">Account B</text>
+
+  <!-- Joule avatar -->
+  <circle cx="22" cy="94" r="12" fill="#7c3aed"/>
+  <g transform="translate(22,94) scale(0.35)">
+    <path fill-rule="evenodd" fill="white" d="M0,-18 L4,-5 L18,0 L4,5 L0,18 L-4,5 L-18,0 L-4,-5 Z M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z"/>
+  </g>
+
+  <!-- AI bubble -->
+  <rect x="40" y="82" width="234" height="42" rx="8" fill="#ede9fe"/>
+  <text x="52" y="98" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#4c1d95">Related accounts found.</text>
+  <text x="52" y="114" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#4c1d95">Select one to view details.</text>
+
+  <!-- List card container -->
+  <rect x="14" y="136" width="262" height="162" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <!-- Card header -->
+  <rect x="14" y="136" width="262" height="26" rx="6" fill="#f3f4f6"/>
+  <text x="26" y="154" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#6b7280">RELATED ACCOUNTS</text>
+
+  <!-- Row X -->
+  <line x1="14" y1="200" x2="276" y2="200" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="26" y="177" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#111827">Account X</text>
+  <text x="26" y="193" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">ID: ACC-024</text>
+  <rect x="222" y="172" width="44" height="20" rx="4" fill="#7c3aed"/>
+  <text x="244" y="186" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="white" text-anchor="middle">Select</text>
+
+  <!-- Row Y -->
+  <line x1="14" y1="238" x2="276" y2="238" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="26" y="215" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#111827">Account Y</text>
+  <text x="26" y="231" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">ID: ACC-031</text>
+  <rect x="222" y="210" width="44" height="20" rx="4" fill="white" stroke="#7c3aed" stroke-width="1"/>
+  <text x="244" y="224" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#7c3aed" text-anchor="middle">Select</text>
+
+  <!-- Row Z -->
+  <text x="26" y="255" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#111827">Account Z</text>
+  <text x="26" y="271" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#9ca3af">ID: ACC-047</text>
+  <rect x="222" y="248" width="44" height="20" rx="4" fill="white" stroke="#7c3aed" stroke-width="1"/>
+  <text x="244" y="262" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#7c3aed" text-anchor="middle">Select</text>
+
+  <!-- Selection feedback -->
+  <rect x="14" y="308" width="262" height="24" rx="6" fill="#ede9fe"/>
+  <text x="26" y="324" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#5b21b6">&#x2713; Account X selected</text>
+
+  <!-- Pagination dots -->
+  <circle cx="131" cy="348" r="4" fill="#7c3aed"/>
+  <circle cx="145" cy="348" r="4" fill="#d1d5db"/>
+  <circle cx="159" cy="348" r="4" fill="#d1d5db"/>
+
+  <!-- Input bar -->
+  <rect x="14" y="372" width="262" height="34" rx="17" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="30" y="393" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#9ca3af">Ask Joule...</text>
+  <circle cx="260" cy="389" r="12" fill="#7c3aed"/>
+  <path d="M255,389 L263,386 L260,389 L263,392 Z" fill="white"/>
+  <line x1="253" y1="389" x2="262" y2="389" stroke="white" stroke-width="1.2"/>
+</g>
+
+<!-- ═══════════════ PANEL 4 — Analytical Card ═══════════════ -->
+<g transform="translate(970,65)" clip-path="url(#c4)">
+  <!-- Panel -->
+  <rect width="290" height="462" rx="8" fill="white" stroke="#dde1e7" stroke-width="1"/>
+  <!-- Header -->
+  <rect width="290" height="34" fill="url(#hdr)"/>
+  <circle cx="14" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <circle cx="28" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <circle cx="42" cy="17" r="5" fill="rgba(255,255,255,.4)"/>
+  <text x="145" y="22" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">New Conversation</text>
+  <!-- Body bg -->
+  <rect y="34" width="290" height="428" fill="#f9fafb"/>
+
+  <!-- Joule avatar -->
+  <circle cx="22" cy="56" r="12" fill="#7c3aed"/>
+  <g transform="translate(22,56) scale(0.35)">
+    <path fill-rule="evenodd" fill="white" d="M0,-18 L4,-5 L18,0 L4,5 L0,18 L-4,5 L-18,0 L-4,-5 Z M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z"/>
+  </g>
+
+  <!-- AI bubble -->
+  <rect x="40" y="44" width="234" height="42" rx="8" fill="#ede9fe"/>
+  <text x="52" y="60" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#4c1d95">Here is the priority breakdown</text>
+  <text x="52" y="76" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#4c1d95">for Account A:</text>
+
+  <!-- Analytical card -->
+  <rect x="14" y="98" width="262" height="232" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+
+  <!-- Card title area -->
+  <text x="24" y="116" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#111827">Summary of Issues</text>
+  <text x="24" y="130" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#6b7280">for Account A</text>
+  <text x="264" y="116" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#2563eb" text-anchor="end">Open in App</text>
+
+  <!-- Legend -->
+  <rect x="24" y="137" width="9" height="9" fill="#2563eb"/>
+  <text x="38" y="146" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#6b7280">Issues</text>
+
+  <!-- Y-axis -->
+  <line x1="100" y1="156" x2="100" y2="302" stroke="#e5e7eb" stroke-width="1"/>
+  <!-- X-axis -->
+  <line x1="100" y1="302" x2="270" y2="302" stroke="#e5e7eb" stroke-width="1"/>
+
+  <!-- Vertical gridlines -->
+  <line x1="143" y1="156" x2="143" y2="302" stroke="#f3f4f6" stroke-width="1"/>
+  <line x1="185" y1="156" x2="185" y2="302" stroke="#f3f4f6" stroke-width="1"/>
+  <line x1="228" y1="156" x2="228" y2="302" stroke="#f3f4f6" stroke-width="1"/>
+
+  <!-- X-axis labels -->
+  <text x="100" y="314" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">0</text>
+  <text x="143" y="314" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">20</text>
+  <text x="185" y="314" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">40</text>
+  <text x="228" y="314" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">60</text>
+  <text x="270" y="314" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">80</text>
+
+  <!-- Y-axis row labels -->
+  <text x="96" y="178" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="end">Very High</text>
+  <text x="96" y="220" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="end">High</text>
+  <text x="96" y="262" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="end">Medium</text>
+
+  <!-- Bar: Very High (62 units * 2.125px = 131.75 ≈ 132) -->
+  <rect x="100" y="166" width="132" height="20" rx="2" fill="#2563eb"/>
+  <text x="236" y="180" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">62</text>
+
+  <!-- Bar: High (41 units * 2.125px = 87.125 ≈ 87) -->
+  <rect x="100" y="208" width="87" height="20" rx="2" fill="#2563eb" opacity=".7"/>
+  <text x="191" y="222" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">41</text>
+
+  <!-- Bar: Medium (23 units * 2.125px = 48.875 ≈ 49) -->
+  <rect x="100" y="250" width="49" height="20" rx="2" fill="#2563eb" opacity=".45"/>
+  <text x="153" y="264" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#374151">23</text>
+
+  <!-- Follow-up -->
+  <circle cx="22" cy="350" r="12" fill="#7c3aed"/>
+  <g transform="translate(22,350) scale(0.35)">
+    <path fill-rule="evenodd" fill="white" d="M0,-18 L4,-5 L18,0 L4,5 L0,18 L-4,5 L-18,0 L-4,-5 Z M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z"/>
+  </g>
+  <rect x="40" y="338" width="234" height="28" rx="8" fill="#ede9fe"/>
+  <text x="157" y="357" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#4c1d95" text-anchor="middle">Would you like to filter by status?</text>
+
+  <!-- Quick reply pill -->
+  <rect x="92" y="378" width="106" height="26" rx="13" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="145" y="395" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#7c3aed" text-anchor="middle">Yes, by Status</text>
+
+  <!-- Input bar -->
+  <rect x="14" y="418" width="262" height="34" rx="17" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="30" y="439" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#9ca3af">Ask Joule...</text>
+  <circle cx="260" cy="435" r="12" fill="#7c3aed"/>
+  <path d="M255,435 L263,432 L260,435 L263,438 Z" fill="white"/>
+  <line x1="253" y1="435" x2="262" y2="435" stroke="white" stroke-width="1.2"/>
+</g>
+
+</svg>

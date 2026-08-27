@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500">
+<defs>
+  <linearGradient id="chart1" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0a6ed1" stop-opacity=".45"/>
+    <stop offset="100%" stop-color="#0a6ed1" stop-opacity=".05"/>
+  </linearGradient>
+  <linearGradient id="chart2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0a6ed1" stop-opacity=".45"/>
+    <stop offset="100%" stop-color="#0a6ed1" stop-opacity=".05"/>
+  </linearGradient>
+</defs>
+
+<!-- Page background -->
+<rect width="960" height="500" fill="#f7f7f7"/>
+
+<!-- Shell bar -->
+<rect width="960" height="44" fill="#354a5e"/>
+<!-- Shell bar icons placeholder -->
+<rect x="12" y="12" width="20" height="20" rx="3" fill="rgba(255,255,255,.2)"/>
+<rect x="44" y="16" width="60" height="12" rx="2" fill="rgba(255,255,255,.15)"/>
+<text x="120" y="28" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="rgba(255,255,255,.7)">AI Features Usage</text>
+<!-- Shell bar right controls -->
+<circle cx="920" cy="22" r="10" fill="rgba(255,255,255,.15)"/>
+<circle cx="940" cy="22" r="10" fill="rgba(255,255,255,.15)"/>
+
+<!-- Sub-header / breadcrumb -->
+<rect y="44" width="960" height="32" fill="#f0f0f0" stroke="#d9d9d9" stroke-width="0.5"/>
+<!-- Tab: AI Features Usage (active) -->
+<rect x="0" y="44" width="148" height="32" fill="#f7f7f7"/>
+<line x1="0" y1="44" x2="148" y2="44" stroke="#0a6ed1" stroke-width="3"/>
+<text x="74" y="65" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#0a6ed1" text-anchor="middle">AI Features Usage</text>
+<!-- Tab: Potential Customers -->
+<text x="230" y="65" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">Potential Customers</text>
+
+<!-- Content area -->
+<rect y="76" width="960" height="424" fill="#f7f7f7"/>
+
+<!-- Page title row -->
+<rect x="12" y="88" width="936" height="48" rx="4" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+<!-- SAP logo area placeholder -->
+<rect x="24" y="100" width="28" height="24" rx="2" fill="#e5e7eb"/>
+<text x="28" y="116" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#354a5e">SAP</text>
+
+<text x="64" y="108" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Story</text>
+<text x="64" y="125" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#111827">AI | AI Features Usage</text>
+
+<!-- Filter bar -->
+<rect x="12" y="142" width="936" height="36" rx="4" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+<text x="24" y="165" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#6b7280">&#9660; All Customers</text>
+<line x1="110" y1="152" x2="110" y2="168" stroke="#e5e7eb" stroke-width="1"/>
+<text x="122" y="165" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#6b7280">&#9660; All Account Segments</text>
+<line x1="262" y1="152" x2="262" y2="168" stroke="#e5e7eb" stroke-width="1"/>
+<text x="274" y="165" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#6b7280">&#9660; All Industries</text>
+<line x1="370" y1="152" x2="370" y2="168" stroke="#e5e7eb" stroke-width="1"/>
+<text x="382" y="165" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#6b7280">&#9660; All Regions</text>
+<text x="860" y="165" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#0a6ed1">All AI Features &#9660;</text>
+<text x="924" y="165" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#6b7280">&#9660;</text>
+
+<!-- Note row -->
+<text x="24" y="200" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">All customers who use AI Premium Features with a 500 contract line AI adoption status (fully)</text>
+
+<!-- ── Left KPI sidebar ── -->
+<rect x="12" y="210" width="104" height="264" rx="4" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+
+<!-- KPI 1 -->
+<rect x="12" y="210" width="104" height="82" rx="4" fill="white"/>
+<text x="64" y="250" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" fill="#0a6ed1" text-anchor="middle">3</text>
+<text x="64" y="266" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="middle">Total Customers</text>
+<text x="64" y="278" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="middle">w/ AI Usage</text>
+<line x1="22" y1="292" x2="106" y2="292" stroke="#e5e7eb" stroke-width="1"/>
+
+<!-- KPI 2 -->
+<text x="64" y="324" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" fill="#0a6ed1" text-anchor="middle">3</text>
+<text x="64" y="340" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="middle">Active in</text>
+<text x="64" y="352" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="middle">Last 30 Days</text>
+<line x1="22" y1="366" x2="106" y2="366" stroke="#e5e7eb" stroke-width="1"/>
+
+<!-- KPI 3 -->
+<text x="64" y="398" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700" fill="#0a6ed1" text-anchor="middle">5</text>
+<text x="64" y="414" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="middle">AI Features</text>
+<text x="64" y="426" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280" text-anchor="middle">in Use</text>
+
+<!-- Feature List link -->
+<text x="64" y="456" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#0a6ed1" text-anchor="middle">Feature List</text>
+<line x1="36" y1="458" x2="92" y2="458" stroke="#0a6ed1" stroke-width="0.5"/>
+
+<!-- ── Chart 1: Total Customers with AI Feature Usage — Trend ── -->
+<rect x="126" y="210" width="400" height="264" rx="4" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+<text x="142" y="234" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="#374151">Total Customers with AI Feature Usage — Trend</text>
+<text x="142" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Jan '25 – Jun '25</text>
+
+<!-- Y-axis ticks -->
+<text x="138" y="290" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="end">5</text>
+<text x="138" y="330" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="end">3</text>
+<text x="138" y="370" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="end">1</text>
+
+<!-- Gridlines -->
+<line x1="142" y1="287" x2="510" y2="287" stroke="#f3f4f6" stroke-width="1"/>
+<line x1="142" y1="327" x2="510" y2="327" stroke="#f3f4f6" stroke-width="1"/>
+<line x1="142" y1="367" x2="510" y2="367" stroke="#f3f4f6" stroke-width="1"/>
+
+<!-- X-axis -->
+<line x1="142" y1="420" x2="510" y2="420" stroke="#e5e7eb" stroke-width="1"/>
+
+<!-- X-axis labels -->
+<text x="165" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Jan</text>
+<text x="226" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Feb</text>
+<text x="287" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Mar</text>
+<text x="348" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Apr</text>
+<text x="409" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">May</text>
+<text x="496" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Jun</text>
+
+<!-- Area fill chart 1 (rising trend) -->
+<polygon points="142,420 165,410 226,395 287,370 348,340 409,295 496,260 510,255 510,420" fill="url(#chart1)"/>
+<!-- Line chart 1 -->
+<polyline points="165,410 226,395 287,370 348,340 409,295 496,260" fill="none" stroke="#0a6ed1" stroke-width="2"/>
+<!-- Data points -->
+<circle cx="165" cy="410" r="3" fill="#0a6ed1"/>
+<circle cx="226" cy="395" r="3" fill="#0a6ed1"/>
+<circle cx="287" cy="370" r="3" fill="#0a6ed1"/>
+<circle cx="348" cy="340" r="3" fill="#0a6ed1"/>
+<circle cx="409" cy="295" r="3" fill="#0a6ed1"/>
+<circle cx="496" cy="260" r="4" fill="#0a6ed1" stroke="white" stroke-width="1.5"/>
+
+<!-- ── Chart 2: Active Premium AI Customers — Trend ── -->
+<rect x="540" y="210" width="408" height="264" rx="4" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+<text x="556" y="234" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="#374151">Active Premium AI Customers — Trend</text>
+<text x="556" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Jan '25 – Jun '25</text>
+
+<!-- Y-axis ticks -->
+<text x="552" y="290" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="end">5</text>
+<text x="552" y="330" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="end">3</text>
+<text x="552" y="370" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="end">1</text>
+
+<!-- Gridlines -->
+<line x1="556" y1="287" x2="934" y2="287" stroke="#f3f4f6" stroke-width="1"/>
+<line x1="556" y1="327" x2="934" y2="327" stroke="#f3f4f6" stroke-width="1"/>
+<line x1="556" y1="367" x2="934" y2="367" stroke="#f3f4f6" stroke-width="1"/>
+
+<!-- X-axis -->
+<line x1="556" y1="420" x2="934" y2="420" stroke="#e5e7eb" stroke-width="1"/>
+
+<!-- X-axis labels -->
+<text x="579" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Jan</text>
+<text x="642" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Feb</text>
+<text x="703" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Mar</text>
+<text x="764" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Apr</text>
+<text x="825" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">May</text>
+<text x="910" y="432" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Jun</text>
+
+<!-- Area fill chart 2 (steeper rising trend) -->
+<polygon points="556,420 579,418 642,412 703,390 764,355 825,290 910,255 934,248 934,420" fill="url(#chart2)"/>
+<!-- Line chart 2 -->
+<polyline points="579,418 642,412 703,390 764,355 825,290 910,255" fill="none" stroke="#0a6ed1" stroke-width="2"/>
+<!-- Data points -->
+<circle cx="579" cy="418" r="3" fill="#0a6ed1"/>
+<circle cx="642" cy="412" r="3" fill="#0a6ed1"/>
+<circle cx="703" cy="390" r="3" fill="#0a6ed1"/>
+<circle cx="764" cy="355" r="3" fill="#0a6ed1"/>
+<circle cx="825" cy="290" r="3" fill="#0a6ed1"/>
+<circle cx="910" cy="255" r="4" fill="#0a6ed1" stroke="white" stroke-width="1.5"/>
+
+</svg>
