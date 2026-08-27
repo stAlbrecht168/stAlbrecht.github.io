@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Turning Agentic UX Principles into Executable Practice — Stephan Albrecht</title>
+  <meta name="description" content="How I built an AI evaluation framework and trust-first design patterns for SAP Joule — moving from vague AI principles to repeatable, rigorous UX practice.">
+  <link rel="canonical" href="https://stalbrecht168.github.io/stAlbrecht.github.io/work/agentic-ux-practice.html">
+  <style>
+    @font-face { font-family:"72 Black";   src:url("../fonts/72-Black-full.woff") format("woff"); font-weight:900; font-display:swap; }
+    @font-face { font-family:"72 Regular"; src:url("../fonts/72-Regular-full.woff") format("woff"); font-weight:400; font-display:swap; }
+    @font-face { font-family:"72 Bold";    src:url("../fonts/72-Bold-full.woff") format("woff"); font-weight:700; font-display:swap; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "72 Regular", system-ui, sans-serif; background: #0d1117; color: #e6edf3; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } html { scroll-behavior:auto; } }
+    :root {
+      --bg: #0d1117; --bg-card: #161b22; --bg-subtle: #21262d;
+      --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+      --blue: #58a6ff; --purple: #bc8cff; --green: #3fb950;
+      --amber: #e3b341;
+    }
+    :focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; border-radius: 3px; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
+    @media (max-width: 640px) { .wrap { padding: 0 1.25rem; } }
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,17,23,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      height: 56px; display: flex; align-items: center;
+      border-bottom: 1px solid rgba(48,54,61,.6);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .topbar-back {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: "72 Regular", sans-serif; font-size: .78rem; color: var(--muted);
+      padding: .3rem .55rem; border-radius: 4px; transition: color .15s;
+    }
+    .topbar-back:hover { color: var(--text); }
+    .topbar-title { font-family: "72 Black", sans-serif; font-size: .78rem; color: var(--muted); letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50%; }
+    .cs-hero { padding: 5.5rem 0 3rem; background: var(--bg); }
+    .cs-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900;
+      letter-spacing: .07em; text-transform: uppercase; color: var(--purple); margin-bottom: 1rem;
+    }
+    .cs-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .cs-title { font-family: "72 Black", sans-serif; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.1rem; }
+    .cs-context { font-family: "72 Regular", sans-serif; font-size: .88rem; color: var(--muted); margin-bottom: 2rem; letter-spacing: .02em; }
+    .cs-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    @media (max-width: 640px) { .cs-summary-grid { grid-template-columns: 1fr; } }
+    .cs-summary-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; }
+    .cs-summary-label { font-family: "72 Black", sans-serif; font-size: .65rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+    .cs-summary-value { font-family: "72 Regular", sans-serif; font-size: .875rem; color: var(--text); line-height: 1.5; }
+    .cs-hero-img { width: 100%; aspect-ratio: 16/7; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); }
+    .cs-body { padding: 3.5rem 0 5rem; }
+    .cs-section { margin-bottom: 3.5rem; }
+    .cs-section-label {
+      font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900;
+      letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
+      margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem;
+    }
+    .cs-section-label::before { content: ""; display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
+    .cs-section h2 { font-family: "72 Black", sans-serif; font-size: 1.55rem; letter-spacing: -.02em; margin-bottom: .85rem; color: var(--text); }
+    .cs-section p { font-family: "72 Regular", sans-serif; font-size: .975rem; color: var(--muted); line-height: 1.7; margin-bottom: .8rem; max-width: 68ch; }
+    .cs-section p:last-child { margin-bottom: 0; }
+    .cs-visual { margin: 2rem 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-subtle); }
+    .cs-visual img { width: 100%; height: auto; display: block; }
+    .cs-caption { font-family: "72 Regular", sans-serif; font-size: .72rem; color: var(--muted); padding: .65rem 1rem; border-top: 1px solid var(--border); line-height: 1.5; font-style: italic; }
+    .dim-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .85rem; margin-top: .75rem; }
+    @media (max-width: 640px) { .dim-grid { grid-template-columns: 1fr; } }
+    .dim-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; border-left: 3px solid var(--purple); }
+    .dim-num { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; color: var(--purple); margin-bottom: .3rem; letter-spacing: .04em; }
+    .dim-head { font-family: "72 Black", sans-serif; font-size: .875rem; font-weight: 900; color: var(--text); margin-bottom: .3rem; }
+    .dim-body { font-family: "72 Regular", sans-serif; font-size: .82rem; color: var(--muted); line-height: 1.55; }
+    .learning-box { background: var(--bg-card); border: 1px solid rgba(188,140,255,.25); border-radius: 8px; padding: 1.5rem; margin-top: 1rem; }
+    .learning-box-label { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: var(--purple); margin-bottom: .5rem; }
+    .learning-box p { font-family: "72 Regular", sans-serif; font-size: .9rem; color: var(--muted); line-height: 1.7; max-width: unset; }
+    .cs-nav { border-top: 1px solid var(--bg-subtle); padding: 2.5rem 0; }
+    .cs-nav-inner { display: flex; justify-content: space-between; gap: 1rem; }
+    .cs-nav-link { display: flex; flex-direction: column; gap: .2rem; }
+    .cs-nav-direction { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+    .cs-nav-title { font-family: "72 Regular", sans-serif; font-size: .9rem; color: var(--purple); transition: text-decoration .15s; }
+    .cs-nav-link:hover .cs-nav-title { text-decoration: underline; }
+    .cs-nav-link.right { text-align: right; }
+  </style>
+</head>
+<body>
+
+<header class="topbar" role="banner">
+  <div class="wrap topbar-inner">
+    <a href="../index.html" class="topbar-back" aria-label="Back to portfolio home">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L4.81 7h7.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"/></svg>
+      Back
+    </a>
+    <span class="topbar-title">Agentic UX practice · SAP Cloud ALM / Joule</span>
+  </div>
+</header>
+
+<main>
+
+<article>
+<section class="cs-hero">
+  <div class="wrap">
+    <div class="cs-tag"><span class="cs-tag-dot"></span>AI Strategy</div>
+    <h1 class="cs-title">Turning agentic UX principles into executable product practice</h1>
+    <p class="cs-context">SAP Cloud ALM · Joule · CSX UX Chapter · 2023–Present</p>
+    <div class="cs-summary-grid">
+      <div class="cs-summary-cell">
+        <div class="cs-summary-label">Scope</div>
+        <div class="cs-summary-value">AI UX practice for Cloud ALM and the CSX UX chapter</div>
+      </div>
+      <div class="cs-summary-cell">
+        <div class="cs-summary-label">Key focus</div>
+        <div class="cs-summary-value">Agent evaluation framework, trust-first patterns, Skills Registry</div>
+      </div>
+      <div class="cs-summary-cell">
+        <div class="cs-summary-label">Applied to</div>
+        <div class="cs-summary-value">Joule service result guidance and AI planning workflows</div>
+      </div>
+    </div>
+    <img src="../img/syn-joule-eval-framework-01.png" alt="Agent evaluation framework diagram for Joule" class="cs-hero-img" loading="lazy">
+  </div>
+</section>
+
+<section class="cs-body">
+  <div class="wrap">
+
+    <div class="cs-section">
+      <div class="cs-section-label">The challenge</div>
+      <h2>Principles without criteria are unenforceable</h2>
+      <p>By 2023, AI assistants were appearing in enterprise products faster than teams could develop a coherent UX position. The challenge wasn't a lack of interest in AI UX — there was plenty of that. The challenge was that most of the available guidance lived at the level of principles: be transparent, avoid overconfidence, design for trust.</p>
+      <p>Principles are necessary but insufficient for product practice. They don't tell a designer what to include in a Joule service result. They don't tell a product manager whether a proposed automation is appropriately scoped. They don't give a team a basis for comparing two AI interaction patterns and choosing one over the other.</p>
+      <p>What was needed was a translation layer — a way of turning high-level AI UX principles into specific, testable criteria that could be applied to real product decisions.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">The approach</div>
+      <h2>From principles to a 6-dimension evaluation framework</h2>
+      <p>I developed an evaluation framework for agent output quality grounded in the specific interaction patterns of SAP Joule — a conversational AI assistant embedded in Cloud ALM and other SAP products. The framework gives designers and product managers a structured way to assess whether an AI-generated result meets UX quality bar before it ships.</p>
+      <p>Each dimension captures a distinct quality axis — not overlap — so that scoring one dimension doesn't contaminate another. The six dimensions:</p>
+      <div class="dim-grid">
+        <div class="dim-cell">
+          <div class="dim-num">01</div>
+          <div class="dim-head">Value Alignment</div>
+          <div class="dim-body">Does the agent output address the actual user goal, not just the literal query? Are the suggested actions meaningful in the user's work context?</div>
+        </div>
+        <div class="dim-cell">
+          <div class="dim-num">02</div>
+          <div class="dim-head">Output Completeness</div>
+          <div class="dim-body">Does the output contain the information needed to act? Is it missing critical context? Is it over-specified in ways that increase cognitive load?</div>
+        </div>
+        <div class="dim-cell">
+          <div class="dim-num">03</div>
+          <div class="dim-head">Format Accuracy</div>
+          <div class="dim-body">Is the result presented in a form appropriate to the use case — scanning vs reading, structured vs narrative, single-step vs multi-step guidance?</div>
+        </div>
+        <div class="dim-cell">
+          <div class="dim-num">04</div>
+          <div class="dim-head">Cognitive Load</div>
+          <div class="dim-body">Does processing the output require significant interpretation effort? Are comparisons, decisions, or next steps clearly disambiguated?</div>
+        </div>
+        <div class="dim-cell">
+          <div class="dim-num">05</div>
+          <div class="dim-head">Trust Calibration</div>
+          <div class="dim-body">Is confidence signalled appropriately? Does the design make it clear when the agent is uncertain, when the user should verify, and when an action is reversible?</div>
+        </div>
+        <div class="dim-cell">
+          <div class="dim-num">06</div>
+          <div class="dim-head">Interaction Efficiency</div>
+          <div class="dim-body">How many steps does the user need to act on the output? Is the agent proposing actions that could be partially automated while preserving appropriate control?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">Application</div>
+      <h2>Applying the framework to Joule</h2>
+      <p>The framework was applied concretely to Joule service result guidance — the AI-generated recommendations that appear when a user queries a maintenance plan, change document, or operational alert. These results vary significantly in quality depending on how the underlying prompt and result rendering are configured.</p>
+      <p>Using the evaluation framework as a design review tool, the team could identify specific quality gaps in existing Joule outputs: cases where results scored well on completeness but poorly on trust calibration (output was thorough but didn't signal uncertainty appropriately), or high on interaction efficiency but low on cognitive load (too many steps were automated, removing the user's ability to verify before committing).</p>
+      <div class="cs-visual" role="img" aria-label="Joule AI design concept exploration">
+        <img src="../img/ideate-joule-01.png" alt="Joule interaction concept ideation" loading="lazy">
+        <p class="cs-caption">Reconstructed for this portfolio from the original project methodology; confidential product details removed.</p>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">Trust-first patterns</div>
+      <h2>Making automation legible</h2>
+      <p>A core insight driving the interaction pattern work is that enterprise users need AI to be explainable, not just accurate. When an AI assistant suggests an action — a change to a maintenance plan, a priority escalation, an automated response to a monitoring alert — the user needs enough context to make a trust decision, not just an accept/reject binary.</p>
+      <p>The trust-first patterns I developed for Joule-adjacent workflows address this directly: agent actions are annotated with the reasoning basis (what signal triggered this suggestion), reversibility is made explicit before the user commits, and multi-step automations expose a confirmation checkpoint at the point of highest consequence rather than at the start of the flow.</p>
+      <p>These patterns are now part of the shared AI practice resources in the CSX UX chapter's Skills Registry — available to any team in the chapter working on AI-adjacent features.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">Chapter-level capability</div>
+      <h2>Skills Registry and AI practice strand</h2>
+      <p>The evaluation framework and trust-first patterns were designed from the beginning as chapter-level assets — not just tools for the Cloud ALM team, but reusable resources that any designer in the CSX UX chapter could apply to their own AI feature work.</p>
+      <p>The AI practice strand in the Skills Registry includes: the 6-dimension evaluation framework with scoring guidance, the trust-first interaction pattern library, a reading list structured by AI UX topic, and a set of review prompts for AI feature critique sessions. The strand is maintained and updated as new AI features are developed across the chapter.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">What I learned</div>
+      <h2>Reflections</h2>
+      <div class="learning-box">
+        <div class="learning-box-label">The gap between AI principles and practice is a translation problem</div>
+        <p>The most useful thing I did in this work was not build a better evaluation rubric — it was identify that the rubric was not the missing piece. Teams already had access to AI UX principles. What they lacked was a shared vocabulary for discussing AI output quality in product reviews, and a format for expressing that quality as design criteria rather than design preferences. The framework mattered because it gave the conversation a structure, not because it contained truths nobody had thought of before.</p>
+      </div>
+      <p style="margin-top:1.25rem;">The trust calibration dimension also produced the most interesting design tension: teams consistently over-invested in signalling AI confidence (showing "AI-generated" badges, adding lengthy caveats) when the user's primary need was to understand what action to take next. Reducing trust signalling to what's decision-relevant — rather than what's epistemically accurate — was a non-obvious shift that required pushing back against a well-intentioned but counterproductive instinct.</p>
+    </div>
+
+  </div>
+</section>
+
+<nav class="cs-nav" aria-label="Case study navigation">
+  <div class="wrap cs-nav-inner">
+    <a href="calm-ux-strategy.html" class="cs-nav-link">
+      <span class="cs-nav-direction">← Previous</span>
+      <span class="cs-nav-title">Scaling UX strategy across SAP Cloud ALM</span>
+    </a>
+    <a href="baur-field-research.html" class="cs-nav-link right">
+      <span class="cs-nav-direction">Next →</span>
+      <span class="cs-nav-title">From field research to product direction</span>
+    </a>
+  </div>
+</nav>
+</article>
+
+</main>
+</body>
+</html>

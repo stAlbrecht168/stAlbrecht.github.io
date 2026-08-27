@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Scaling UX Strategy across SAP Cloud ALM — Stephan Albrecht</title>
+  <meta name="description" content="How I built a UX operating model for six agile scrum teams at SAP Cloud ALM — integrating DLD and HPOM into a shared design practice.">
+  <link rel="canonical" href="https://stalbrecht168.github.io/stAlbrecht.github.io/work/calm-ux-strategy.html">
+  <style>
+    @font-face { font-family:"72 Black";   src:url("../fonts/72-Black-full.woff") format("woff"); font-weight:900; font-display:swap; }
+    @font-face { font-family:"72 Regular"; src:url("../fonts/72-Regular-full.woff") format("woff"); font-weight:400; font-display:swap; }
+    @font-face { font-family:"72 Bold";    src:url("../fonts/72-Bold-full.woff") format("woff"); font-weight:700; font-display:swap; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "72 Regular", system-ui, sans-serif; background: #0d1117; color: #e6edf3; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } html { scroll-behavior:auto; } }
+    :root {
+      --bg: #0d1117; --bg-card: #161b22; --bg-subtle: #21262d;
+      --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+      --blue: #58a6ff; --purple: #bc8cff; --green: #3fb950;
+      --amber: #e3b341;
+    }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
+    @media (max-width: 640px) { .wrap { padding: 0 1.25rem; } }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,17,23,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      height: 56px; display: flex; align-items: center;
+      border-bottom: 1px solid rgba(48,54,61,.6);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .topbar-back {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: "72 Regular", sans-serif; font-size: .78rem; color: var(--muted);
+      padding: .3rem .55rem; border-radius: 4px; transition: color .15s;
+    }
+    .topbar-back:hover { color: var(--text); }
+    .topbar-title { font-family: "72 Black", sans-serif; font-size: .78rem; color: var(--muted); letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50%; }
+
+    /* ── Case study layout ── */
+    .cs-hero { padding: 5.5rem 0 3rem; background: var(--bg); }
+    .cs-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900;
+      letter-spacing: .07em; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .cs-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .cs-title { font-family: "72 Black", sans-serif; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.1rem; }
+    .cs-context { font-family: "72 Regular", sans-serif; font-size: .88rem; color: var(--muted); margin-bottom: 2rem; letter-spacing: .02em; }
+    .cs-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    @media (max-width: 640px) { .cs-summary-grid { grid-template-columns: 1fr; } }
+    .cs-summary-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; }
+    .cs-summary-label { font-family: "72 Black", sans-serif; font-size: .65rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+    .cs-summary-value { font-family: "72 Regular", sans-serif; font-size: .875rem; color: var(--text); line-height: 1.5; }
+    .cs-hero-img { width: 100%; aspect-ratio: 16/7; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); }
+
+    /* ── Body sections ── */
+    .cs-body { padding: 3.5rem 0 5rem; }
+    .cs-section { margin-bottom: 3.5rem; }
+    .cs-section-label {
+      font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900;
+      letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
+      margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem;
+    }
+    .cs-section-label::before { content: ""; display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .cs-section h2 { font-family: "72 Black", sans-serif; font-size: 1.55rem; letter-spacing: -.02em; margin-bottom: .85rem; color: var(--text); }
+    .cs-section p { font-family: "72 Regular", sans-serif; font-size: .975rem; color: var(--muted); line-height: 1.7; margin-bottom: .8rem; max-width: 68ch; }
+    .cs-section p:last-child { margin-bottom: 0; }
+    .cs-visual { margin: 2rem 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-subtle); }
+    .cs-visual img { width: 100%; height: auto; display: block; }
+    .cs-caption { font-family: "72 Regular", sans-serif; font-size: .72rem; color: var(--muted); padding: .65rem 1rem; border-top: 1px solid var(--border); line-height: 1.5; font-style: italic; }
+    .contribution-list { list-style: none; margin-top: .5rem; display: flex; flex-direction: column; gap: .75rem; }
+    .contribution-list li { display: flex; gap: .75rem; align-items: flex-start; }
+    .cont-num {
+      flex-shrink: 0; width: 24px; height: 24px; background: rgba(88,166,255,.15); color: var(--blue);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: "72 Black", sans-serif; font-size: .7rem; font-weight: 900; margin-top: .1rem;
+    }
+    .cont-head { font-family: "72 Black", sans-serif; font-size: .875rem; font-weight: 900; color: var(--text); margin-bottom: .15rem; }
+    .cont-body { font-family: "72 Regular", sans-serif; font-size: .84rem; color: var(--muted); line-height: 1.6; }
+    .learning-box { background: var(--bg-card); border: 1px solid rgba(63,185,80,.25); border-radius: 8px; padding: 1.5rem; margin-top: 1rem; }
+    .learning-box-label { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: var(--green); margin-bottom: .5rem; }
+    .learning-box p { font-family: "72 Regular", sans-serif; font-size: .9rem; color: var(--muted); line-height: 1.7; max-width: unset; }
+
+    /* ── Nav at bottom ── */
+    .cs-nav { border-top: 1px solid var(--bg-subtle); padding: 2.5rem 0; display: flex; justify-content: space-between; gap: 1rem; }
+    .cs-nav-link { display: flex; flex-direction: column; gap: .2rem; }
+    .cs-nav-direction { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+    .cs-nav-title { font-family: "72 Regular", sans-serif; font-size: .9rem; color: var(--blue); transition: text-decoration .15s; }
+    .cs-nav-link:hover .cs-nav-title { text-decoration: underline; }
+    .cs-nav-link.right { text-align: right; }
+  </style>
+</head>
+<body>
+
+<header class="topbar" role="banner">
+  <div class="wrap topbar-inner">
+    <a href="../index.html" class="topbar-back" aria-label="Back to portfolio home">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L4.81 7h7.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"/></svg>
+      Back
+    </a>
+    <span class="topbar-title">Scaling UX strategy · SAP Cloud ALM</span>
+  </div>
+</header>
+
+<main>
+
+<article>
+<section class="cs-hero">
+  <div class="wrap">
+    <div class="cs-tag"><span class="cs-tag-dot"></span>UX Operating Model</div>
+    <h1 class="cs-title">Scaling UX strategy across SAP Cloud ALM</h1>
+    <p class="cs-context">SAP · Cloud ALM · UX Lead · 2022–Present</p>
+    <div class="cs-summary-grid">
+      <div class="cs-summary-cell">
+        <div class="cs-summary-label">Scope</div>
+        <div class="cs-summary-value">6 agile scrum teams across a single enterprise cloud product</div>
+      </div>
+      <div class="cs-summary-cell">
+        <div class="cs-summary-label">Key focus</div>
+        <div class="cs-summary-value">UX operating model, quality gates, design-led development</div>
+      </div>
+      <div class="cs-summary-cell">
+        <div class="cs-summary-label">Outcome shape</div>
+        <div class="cs-summary-value">Shared operating model adopted across all six teams</div>
+      </div>
+    </div>
+    <img src="../img/calm-hero.png" alt="SAP Cloud ALM interface overview" class="cs-hero-img" loading="lazy">
+  </div>
+</section>
+
+<section class="cs-body">
+  <div class="wrap">
+
+    <div class="cs-section">
+      <div class="cs-section-label">The challenge</div>
+      <h2>Design quality at scale is an organisational problem</h2>
+      <p>SAP Cloud ALM serves enterprise IT teams managing complex cloud operations — project tracking, monitoring, change management, and service integration. The product is built by six independent agile scrum teams, each with their own product manager, engineering backlog, and release velocity.</p>
+      <p>The problem this creates for UX is not a shortage of design skill — it's a co-ordination problem. Each team makes design decisions independently: when to run research, what level of fidelity is appropriate, when to involve design, how to define "done." Without a shared framework, quality becomes inconsistent across the product surface, and UX becomes a reactive service rather than a strategic capability.</p>
+      <p>My job was to change that — to build the operating infrastructure that gives UX a consistent, defensible role across all six teams without requiring a UX designer in every planning room.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">The operating context</div>
+      <h2>Working inside two enterprise planning frameworks</h2>
+      <p>SAP Cloud ALM's development process runs inside two overlapping planning frameworks: Design-Led Development (DLD) — SAP's internal model for integrating UX into agile delivery — and HPOM (the product-level quarterly planning cadence). Both define where decisions get made and who is involved at each stage.</p>
+      <p>UX needed to have a legible, specific contribution at every stage of both frameworks — not a generic "design support" role, but a defined input: what artefacts UX produces, what questions it answers, and what criteria it enforces.</p>
+      <div class="cs-visual" role="img" aria-label="7-step UX operating model integrating DLD and HPOM">
+        <img src="../img/portfolioHandling.png" alt="Portfolio management and design process integration" loading="lazy">
+        <p class="cs-caption">Reconstructed for this portfolio from the original project methodology; confidential product details removed.</p>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">Key contributions</div>
+      <h2>What I built</h2>
+      <ul class="contribution-list">
+        <li>
+          <span class="cont-num" aria-hidden="true">1</span>
+          <div>
+            <p class="cont-head">7-step UX operating model</p>
+            <p class="cont-body">A model mapping the UX contribution across every stage of the DLD and HPOM integration — from initial brief through discovery, ideation, validation, delivery specification, and impact tracking. Each stage has defined UX artefacts, quality criteria, and handoff expectations. The model made the UX role legible to product managers and engineering leads who had previously seen design as unpredictable.</p>
+          </div>
+        </li>
+        <li>
+          <span class="cont-num" aria-hidden="true">2</span>
+          <div>
+            <p class="cont-head">Design readiness scorecard</p>
+            <p class="cont-body">A 5-dimension readiness assessment applied at the epic level before quarterly planning lock. Dimensions include: problem clarity, user evidence, solution confidence, technical feasibility signal, and design spec readiness. Epics scoring below threshold trigger a defined design sprint before engineering kicks off — reducing last-minute scope changes caused by design uncertainty surfacing mid-sprint.</p>
+          </div>
+        </li>
+        <li>
+          <span class="cont-num" aria-hidden="true">3</span>
+          <div>
+            <p class="cont-head">Design-led development process</p>
+            <p class="cont-body">A lightweight, repeatable flow for how UX moves through a sprint cycle — covering when to schedule concept reviews, what triggers a round of usability testing, and how to document design decisions for handoff. Adopted across all six teams. The process removed the most common friction points: unclear when design is "done," competing review meetings, and post-handoff engineering questions that required designer involvement.</p>
+          </div>
+        </li>
+        <li>
+          <span class="cont-num" aria-hidden="true">4</span>
+          <div>
+            <p class="cont-head">Quality gates and shared UX criteria</p>
+            <p class="cont-body">Two quality gates in the operating model — one before ideation (is the problem understood well enough to design?) and one before delivery (does the design meet quality bar for engineering handoff?). Each gate has explicit pass/fail criteria, reviewed in a fixed design review cadence. Gates are lightweight enough not to block teams, but visible enough that skipping them is a deliberate choice rather than an invisible default.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">Research integration</div>
+      <h2>Connecting analytics signal to design decisions</h2>
+      <p>A persistent challenge in enterprise UX is the gap between available product usage data and the design decisions teams actually make. Usage analytics exist — session data, clickstream, support ticket patterns — but they rarely feed into design briefs in a structured way.</p>
+      <p>I built a synthesis workflow that connects analytics signals to design sprint inputs: mapping behavioural patterns to specific friction points in the product, scoring each finding against design impact and engineering effort, and presenting the output as a prioritised design brief rather than a raw data dump.</p>
+      <div class="cs-visual" role="img" aria-label="Analytics to design synthesis workflow diagram">
+        <img src="../img/syn-analytics-to-design-synthesis-02.png" alt="Analytics-to-design synthesis workflow" loading="lazy">
+        <p class="cs-caption">Reconstructed for this portfolio from the original project methodology; confidential product details removed.</p>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-label">What I learned</div>
+      <h2>Reflections</h2>
+      <div class="learning-box">
+        <div class="learning-box-label">Design at scale is governance, not craft</div>
+        <p>The biggest shift in thinking required by this work is that design quality at scale is primarily a governance problem, not a craft problem. The designers involved are skilled. The bottleneck is the system they operate in — who decides when design starts, what "done" means, and who resolves conflicts between design intent and engineering constraint. Building that governance structure — the operating model, the quality gates, the readiness scorecard — was more impactful than any individual design decision I made.</p>
+      </div>
+      <p style="margin-top:1.25rem;">The operating model also revealed something about design leadership: the most useful thing a UX lead can do in a complex product organisation is reduce the number of decisions that require a designer in the room. When the framework is clear enough that a product manager can make a low-stakes design trade-off without escalating, design capacity is freed for the decisions that actually require design judgment.</p>
+    </div>
+
+  </div>
+</section>
+
+<nav class="cs-nav" aria-label="Case study navigation">
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; gap:1rem;">
+    <a href="../index.html#work" class="cs-nav-link">
+      <span class="cs-nav-direction">← Back</span>
+      <span class="cs-nav-title">All case studies</span>
+    </a>
+    <a href="agentic-ux-practice.html" class="cs-nav-link right">
+      <span class="cs-nav-direction">Next →</span>
+      <span class="cs-nav-title">Agentic UX principles into practice</span>
+    </a>
+  </div>
+</nav>
+</article>
+
+</main>
+</body>
+</html>
