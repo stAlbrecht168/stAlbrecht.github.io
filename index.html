@@ -2,570 +2,305 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Prototype — Stephan Albrecht</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stephan Albrecht | Strategic UX &amp; Product Design Lead</title>
+  <meta name="description" content="Strategic UX and Product Design Lead with 17+ years experience across enterprise platforms, AI-first products, and cloud operations. Currently leading UX for SAP Cloud ALM.">
+  <link rel="canonical" href="https://stalbrecht168.github.io/stAlbrecht.github.io/">
   <style>
-    /* ─── Fonts ─────────────────────────────────────── */
-    @font-face { font-family:"72 Black";    src:url("fonts/72-Black-full.woff") format("woff"); }
-    @font-face { font-family:"72 Regular";  src:url("fonts/72-Regular-full.woff") format("woff"); }
-    @font-face { font-family:"72 Bold";     src:url("fonts/72-Bold-full.woff") format("woff"); }
+    /* ─── Fonts ──────────────────────────────────────────── */
+    @font-face { font-family:"72 Black";   src:url("fonts/72-Black-full.woff") format("woff"); font-weight:900; font-display:swap; }
+    @font-face { font-family:"72 Regular"; src:url("fonts/72-Regular-full.woff") format("woff"); font-weight:400; font-display:swap; }
+    @font-face { font-family:"72 Bold";    src:url("fonts/72-Bold-full.woff") format("woff"); font-weight:700; font-display:swap; }
 
-    /* ─── Reset / base ──────────────────────────────── */
+    /* ─── Reset ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: '72 Regular', system-ui, sans-serif;
-      background: #F5F6F8;
-      color: #1D1D1D;
-      line-height: 1.5;
-    }
+    body { font-family: "72 Regular", system-ui, sans-serif; background: #0d1117; color: #e6edf3; line-height: 1.5; }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      html { scroll-behavior: auto; }
+    }
 
-    /* ─── Phase colors ───────────────────────────────── */
+    /* ─── Tokens ──────────────────────────────────────────── */
     :root {
-      --c-discovery:  #0A6ED1;
-      --c-synthesis:  #6E33C8;
-      --c-ideation:   #00827A;
-      --c-validation: #CC5500;
-      --c-delivery:   #3D7317;
-      --c-impact:     #B54800;
+      --bg: #0d1117; --bg-card: #161b22; --bg-subtle: #21262d;
+      --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+      --blue: #58a6ff; --purple: #bc8cff; --green: #3fb950;
+      --amber: #e3b341; --lime: #56d364; --orange: #f0883e;
     }
 
-    /* ─── Layout helpers ─────────────────────────────── */
+    /* ─── Layout ──────────────────────────────────────────── */
     .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
-    @media (max-width:640px) { .wrap { padding: 0 1.25rem; } }
+    @media (max-width: 640px) { .wrap { padding: 0 1.25rem; } }
 
-    /* ════════════════════════════════════════════════════
-       TOP BAR
-    ════════════════════════════════════════════════════ */
+    /* ─── Focus ───────────────────────────────────────────── */
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+
+    /* ════════════════════════════════════════════════════════
+       TOPBAR
+    ════════════════════════════════════════════════════════ */
     .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: #fff;
-      border-bottom: 1px solid #E4E7EC;
-      height: 52px;
-      display: flex;
-      align-items: center;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,17,23,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      height: 56px; display: flex; align-items: center;
+      border-bottom: 1px solid rgba(48,54,61,.6);
+      transition: opacity .3s ease, transform .3s cubic-bezier(.16,1,.3,1);
     }
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
+    .topbar.is-hidden { opacity: 0; pointer-events: none; transform: translateY(-6px); }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .topbar-name {
-      font-family: '72 Black', sans-serif;
-      font-size: .85rem;
-      font-weight: 900;
-      color: #0A6ED1;
-      letter-spacing: -.01em;
+      font-family: "72 Black", sans-serif; font-size: .82rem; font-weight: 900;
+      color: var(--blue); letter-spacing: -.01em; white-space: nowrap;
     }
-    .topbar-nav {
-      display: flex;
-      gap: .25rem;
-    }
+    .topbar-nav { display: flex; gap: .1rem; }
     .topbar-nav a {
-      font-family: '72 Regular', sans-serif;
-      font-size: .78rem;
-      color: #6A6A6A;
-      padding: .3rem .65rem;
-      border-radius: 4px;
-      transition: background .15s, color .15s;
-      font-weight: 400;
+      font-family: "72 Regular", sans-serif; font-size: .78rem;
+      color: var(--muted); padding: .3rem .55rem; border-radius: 4px;
+      transition: background .15s, color .15s; white-space: nowrap;
     }
-    .topbar-nav a:hover { background: #F0F4FF; color: #0A6ED1; }
-    .topbar-nav a.is-active {
-      background: #EAF3FC;
-      color: #0A6ED1;
-      font-family: '72 Black', sans-serif;
-      font-weight: 900;
-    }
-    /* Topbar hides until hero scrolls away */
-    .topbar { transition: opacity .35s ease, transform .35s cubic-bezier(.16,1,.3,1); }
-    .topbar.is-hidden { opacity: 0; pointer-events: none; transform: translateY(-8px); }
-    /* phase-colored active */
-    .topbar-nav a[data-phase="synthesis"].is-active  { background:#F4EEFF; color: #6E33C8; }
-    .topbar-nav a[data-phase="ideation"].is-active   { background:#E6F4F3; color: #00827A; }
-    .topbar-nav a[data-phase="validation"].is-active { background:#FFF0E6; color: #CC5500; }
-    .topbar-nav a[data-phase="delivery"].is-active   { background:#EAF3E0; color: #3D7317; }
-    .topbar-nav a[data-phase="impact"].is-active     { background:#FFF0E6; color: #B54800; }
-    .topbar-contact {
-      font-family: '72 Regular', sans-serif;
-      font-size: .78rem;
-      color: #6A6A6A;
-      display: flex;
-      align-items: center;
-      gap: .35rem;
-    }
-    .topbar-contact a {
-      color: #0A6ED1;
-      border-bottom: 1px solid transparent;
-      transition: border-color .15s;
-    }
-    .topbar-contact a:hover { border-color: #0A6ED1; }
-    @media (max-width: 860px) { .topbar-nav { display: none; } }
+    .topbar-nav a:hover { background: var(--bg-subtle); color: var(--text); }
+    .topbar-nav a.is-active { background: #1c2128; color: var(--blue); font-family: "72 Black", sans-serif; }
+    .topbar-nav a.nav-cv { border: 1px solid var(--border); margin-left: .35rem; }
+    .topbar-nav a.nav-cv:hover { border-color: var(--blue); color: var(--blue); }
+    @media (max-width: 900px) { .topbar-nav { display: none; } }
 
-    /* ════════════════════════════════════════════════════
+    /* ════════════════════════════════════════════════════════
        HERO
-    ════════════════════════════════════════════════════ */
+    ════════════════════════════════════════════════════════ */
     .hero {
-      min-height: 82vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-      background: #fff;
-      border-bottom: 1px solid #E4E7EC;
+      min-height: 82vh; display: flex; align-items: center;
+      background: var(--bg); position: relative; overflow: hidden;
     }
-    /* Full-bleed background image, fades to white left + bottom */
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0; z-index: 0;
       background: url('img/calm-hero.png') center right / cover no-repeat;
-      z-index: 0;
     }
     .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background:
-        linear-gradient(
-          to top,
-          rgba(255,255,255,1.00)  0%,
-          rgba(255,255,255,0.80) 12%,
-          rgba(255,255,255,0.00) 32%
-        ),
-        linear-gradient(
-          to right,
-          rgba(255,255,255,0.98)  0%,
-          rgba(255,255,255,0.96) 38%,
-          rgba(255,255,255,0.72) 58%,
-          rgba(255,255,255,0.08) 100%
-        );
+        linear-gradient(to right, #0d1117 0%, rgba(13,17,23,.95) 30%, rgba(13,17,23,.72) 58%, rgba(13,17,23,.12) 100%),
+        linear-gradient(to top, #0d1117 0%, rgba(13,17,23,.55) 12%, transparent 30%);
     }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      padding: 5.5rem 0 4.5rem;
-      width: 100%;
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse 60% 55% at 75% 40%, rgba(88,166,255,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 45% at 88% 65%, rgba(188,140,255,.06) 0%, transparent 65%);
     }
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      max-width: 640px;
-    }
-    /* Name row: photo + role/name side by side */
-    .hero-namerow {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.75rem;
-    }
+    .hero-inner { position: relative; z-index: 2; padding: 5.5rem 0 4.5rem; width: 100%; }
+    @media (max-width: 640px) { .hero-bg { background-position: 70% center; } }
+    .hero-content { max-width: 640px; }
+    .hero-namerow { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.75rem; }
     .hero-photo {
-      width: 112px;
-      height: 112px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: top center;
-      flex-shrink: 0;
-      border: 3px solid #fff;
-      box-shadow: 0 4px 20px rgba(10,110,209,.18);
+      width: 108px; height: 108px; border-radius: 50%;
+      object-fit: cover; object-position: top center; flex-shrink: 0;
+      border: 3px solid var(--border); box-shadow: 0 4px 20px rgba(88,166,255,.14);
     }
-    .hero-name-block { display: flex; flex-direction: column; gap: .3rem; }
-    .hero-role {
-      font-family: '72 Regular', sans-serif;
-      font-size: .95rem;
-      color: #6A6A6A;
-      letter-spacing: .04em;
-    }
+    .hero-name-block { display: flex; flex-direction: column; gap: .35rem; }
+    .hero-role { font-family: "72 Regular", sans-serif; font-size: .88rem; color: var(--muted); letter-spacing: .03em; }
     .hero-name {
-      font-family: '72 Black', sans-serif;
-      font-size: clamp(2.6rem, 5.5vw, 4rem);
-      color: #0A6ED1;
-      line-height: .95;
-      letter-spacing: -.03em;
+      font-family: "72 Black", sans-serif;
+      font-size: clamp(2.5rem, 5.5vw, 3.8rem);
+      line-height: .93; letter-spacing: -.03em;
+      background: linear-gradient(135deg, #e6edf3 0%, #a5c8ff 50%, #bc8cff 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-bio {
-      font-family: '72 Regular', sans-serif;
-      font-size: .975rem;
-      color: #595959;
-      line-height: 1.65;
-    }
-    .hero-bio + .hero-bio { margin-top: .6rem; }
-    .hero-cta { margin-top: 1.5rem; }
+    .hero-descriptor { font-family: "72 Regular", sans-serif; font-size: .78rem; color: var(--muted); letter-spacing: .07em; text-transform: uppercase; margin-top: .3rem; }
+    .hero-bio { font-family: "72 Regular", sans-serif; font-size: .975rem; color: var(--muted); line-height: 1.65; }
+    .hero-bio + .hero-bio { margin-top: .65rem; }
+    .hero-ctas { margin-top: 1.5rem; display: flex; gap: .75rem; flex-wrap: wrap; }
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      background: #0A6ED1;
-      color: #fff;
-      font-family: '72 Black', sans-serif;
-      font-size: .82rem;
-      font-weight: 900;
-      letter-spacing: .02em;
-      padding: .6rem 1.4rem;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: background .15s, transform .15s;
+      display: inline-flex; align-items: center; background: #238636; color: #fff;
+      font-family: "72 Black", sans-serif; font-size: .82rem; font-weight: 900; letter-spacing: .02em;
+      padding: .55rem 1.35rem; border-radius: 6px; border: 1px solid rgba(240,246,252,.1);
+      cursor: pointer; transition: background .15s, transform .15s;
     }
-    .btn-primary:hover { background: #0858B0; transform: translateY(-1px); }
-    /* Stats strip: full width, below the text column */
-    .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem 2.75rem;
-      padding-top: 1.75rem;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(10,110,209,.15);
+    .btn-primary:hover { background: #2ea043; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; background: transparent; color: var(--muted);
+      font-family: "72 Regular", sans-serif; font-size: .82rem;
+      padding: .55rem 1.15rem; border-radius: 6px; border: 1px solid var(--border);
+      cursor: pointer; transition: border-color .15s, color .15s;
     }
-    .stat-num {
-      font-family: '72 Black', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 900;
-      color: #0A6ED1;
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: '72 Regular', sans-serif;
-      font-size: .85rem;
-      color: #8A8A8A;
-      margin-top: .25rem;
-    }
-    @media (max-width: 900px) {
-      .hero-bg { background-position: 70% center; }
-      .hero-bg::after {
-        background:
-          linear-gradient(to top,  rgba(255,255,255,1) 0%, rgba(255,255,255,.8) 12%, rgba(255,255,255,0) 30%),
-          linear-gradient(to bottom, rgba(255,255,255,.55) 0%, rgba(255,255,255,.92) 40%, rgba(255,255,255,.98) 100%);
-      }
-    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 1.25rem 2.75rem; padding-top: 1.75rem; margin-top: 2rem; border-top: 1px solid var(--bg-subtle); }
+    .stat-num { font-family: "72 Black", sans-serif; font-size: 2.5rem; font-weight: 900; color: var(--blue); line-height: 1; }
+    .stat-label { font-family: "72 Regular", sans-serif; font-size: .82rem; color: var(--muted); margin-top: .25rem; }
     @media (max-width: 560px) {
-      .hero-namerow { gap: 1rem; }
-      .hero-photo { width: 80px; height: 80px; }
-      .hero-name { font-size: 2.8rem; }
-      .hero-stats { gap: 1rem 2rem; }
+      .hero-namerow { gap: 1rem; } .hero-photo { width: 80px; height: 80px; }
+      .hero-name { font-size: 2.6rem; } .hero-stats { gap: 1rem 2rem; }
     }
 
-    /* ════════════════════════════════════════════════════
-       HOW I WORK intro
-    ════════════════════════════════════════════════════ */
-    .section-intro {
-      background: #fff;
-      padding: 4.5rem 0 2rem;
-      text-align: center;
+    /* ════════════════════════════════════════════════════════
+       SHARED SECTION HEADINGS
+    ════════════════════════════════════════════════════════ */
+    .section-label {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900;
+      letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin-bottom: .85rem;
     }
-    .section-intro h2 {
-      font-family: '72 Black', sans-serif;
-      font-size: 2.25rem;
-      color: #0A6ED1;
-      letter-spacing: -.025em;
-      margin-bottom: .85rem;
-    }
-    .section-intro p {
-      font-family: '72 Regular', sans-serif;
-      font-size: .975rem;
-      color: #6A6A6A;
-      line-height: 1.65;
-      max-width: 62ch;
-      margin: 0 auto;
-    }
-    .dd-wrapper {
-      background: #fff;
-      padding: 2rem 0 3rem;
-    }
-    #dd-svg { display:block; width:100%; height:auto; max-width:100%; }
-    .dd-phase-group { cursor: default; }
-    .dd-diamond { transition: fill .3s ease, filter .3s ease; }
-    .dd-phase-group.dd-active .dd-diamond { filter: drop-shadow(0 4px 10px rgba(0,0,0,.22)); }
-    .dd-phase-group[data-phase="discovery"].dd-active  .dd-diamond { fill: #a8c8f0; }
-    .dd-phase-group[data-phase="synthesis"].dd-active  .dd-diamond { fill: #b89ae8; }
-    .dd-phase-group[data-phase="ideation"].dd-active   .dd-diamond { fill: #7dc5c0; }
-    .dd-phase-group[data-phase="validation"].dd-active .dd-diamond { fill: #e8924a; }
-    .dd-phase-group[data-phase="delivery"].dd-active   .dd-diamond { fill: #8aba6e; }
-    .dd-phase-group[data-phase="impact"].dd-active     .dd-diamond { fill: #e88a48; }
+    .section-label-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .section-heading { font-family: "72 Black", sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.025em; line-height: 1.1; margin-bottom: .85rem; }
+    .section-body { font-family: "72 Regular", sans-serif; font-size: .975rem; color: var(--muted); line-height: 1.65; max-width: 60ch; }
 
-    /* ════════════════════════════════════════════════════
-       PHASE SECTIONS
-    ════════════════════════════════════════════════════ */
-    .phase-section {
-      padding: 5rem 0 4rem;
-      border-top: 1px solid #E4E7EC;
+    /* ════════════════════════════════════════════════════════
+       FEATURED WORK
+    ════════════════════════════════════════════════════════ */
+    .featured-work { background: var(--bg); padding: 5rem 0 4rem; border-top: 1px solid var(--bg-subtle); }
+    .featured-work-header { margin-bottom: 2.5rem; }
+    .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 1024px) { .cs-cards { grid-template-columns: 1fr; max-width: 600px; } }
+    .cs-card {
+      background: var(--bg-card); border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); display: flex; flex-direction: column;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
     }
-    .phase-section:nth-child(odd)  { background: #fff; }
-    .phase-section:nth-child(odd)  .phase-header { background: #fff; }
-    .phase-section:nth-child(even) { background: #F8F9FB; }
-    .phase-section:nth-child(even) .phase-header { background: #F8F9FB; }
+    .cs-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.45); }
+    .cs-card-media { position: relative; aspect-ratio: 16/9; background: var(--bg-subtle); overflow: hidden; }
+    .cs-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-card-tag {
+      position: absolute; top: .75rem; left: .75rem;
+      font-family: "72 Black", sans-serif; font-size: .64rem; font-weight: 900;
+      letter-spacing: .04em; text-transform: uppercase; padding: .2rem .5rem;
+      border-radius: 3px; border: 1px solid currentColor;
+    }
+    .cs-card-tag--strategy { color: var(--blue); background: rgba(88,166,255,.12); }
+    .cs-card-tag--ai       { color: var(--purple); background: rgba(188,140,255,.12); }
+    .cs-card-tag--research { color: var(--amber); background: rgba(227,179,65,.12); }
+    .cs-card-body { padding: 1.35rem 1.4rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    .cs-card-context { font-family: "72 Regular", sans-serif; font-size: .76rem; color: var(--muted); margin-bottom: .55rem; letter-spacing: .02em; }
+    .cs-card-title { font-family: "72 Black", sans-serif; font-size: 1.05rem; font-weight: 900; line-height: 1.3; color: var(--text); margin-bottom: .75rem; }
+    .cs-card-challenge { font-family: "72 Regular", sans-serif; font-size: .875rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; flex: 1; }
+    .cs-card-contributions { list-style: none; margin-bottom: 1.2rem; }
+    .cs-card-contributions li {
+      font-family: "72 Regular", sans-serif; font-size: .8rem; color: var(--muted);
+      padding: .2rem 0 .2rem 1rem; position: relative; line-height: 1.5;
+    }
+    .cs-card-contributions li::before { content: "→"; position: absolute; left: 0; color: var(--blue); font-size: .7rem; }
+    .cs-card-link {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-family: "72 Black", sans-serif; font-size: .78rem; font-weight: 900;
+      color: var(--blue); letter-spacing: .01em; transition: gap .15s;
+    }
+    .cs-card-link:hover { gap: .55rem; }
 
-    .phase-header {
-      position: sticky;
-      top: 52px;
-      z-index: 10;
-      padding-top: 2rem;
-      padding-bottom: 1.5rem;
-      margin-bottom: 2.5rem;
-      background: inherit;
+    /* ════════════════════════════════════════════════════════
+       STRATEGY SECTIONS
+    ════════════════════════════════════════════════════════ */
+    .strategy-section { padding: 5rem 0 4rem; border-top: 1px solid var(--bg-subtle); }
+    #leadership { background: var(--bg-card); }
+    #ai-strategy { background: var(--bg); }
+    #research { background: var(--bg-card); }
+    .strategy-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .strategy-layout.reverse { direction: rtl; }
+    .strategy-layout.reverse > * { direction: ltr; }
+    @media (max-width: 860px) { .strategy-layout, .strategy-layout.reverse { grid-template-columns: 1fr; gap: 2.5rem; direction: ltr; } }
+    .capability-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: .85rem; }
+    .capability-item { display: flex; gap: .75rem; align-items: flex-start; }
+    .capability-icon {
+      width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-family: "72 Black", sans-serif; font-size: .65rem; font-weight: 900; margin-top: .1rem;
     }
-    /* extend background below the header to cover card top shadows */
-    .phase-header::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -16px;
-      height: 16px;
-      background: inherit;
-      z-index: 10;
-    }
+    .cap-blue   { background: rgba(88,166,255,.15); color: var(--blue); }
+    .cap-purple { background: rgba(188,140,255,.15); color: var(--purple); }
+    .cap-green  { background: rgba(63,185,80,.15); color: var(--green); }
+    .cap-amber  { background: rgba(227,179,65,.15); color: var(--amber); }
+    .capability-text-head { font-family: "72 Black", sans-serif; font-size: .875rem; font-weight: 900; color: var(--text); margin-bottom: .15rem; }
+    .capability-text-body { font-family: "72 Regular", sans-serif; font-size: .82rem; color: var(--muted); line-height: 1.55; }
+    .strategy-visual { border-radius: 10px; overflow: hidden; background: var(--bg-subtle); border: 1px solid var(--border); }
+    .strategy-visual svg, .strategy-visual img { width: 100%; height: auto; display: block; }
+    .visual-caption { font-family: "72 Regular", sans-serif; font-size: .72rem; color: var(--muted); padding: .65rem 1rem; border-top: 1px solid var(--border); line-height: 1.5; font-style: italic; }
 
-    /* no padding override when stuck — natural padding stays */
-    .phase-header-body {
-      display: flex;
-      flex-direction: column;
-      gap: .65rem;
+    /* ════════════════════════════════════════════════════════
+       SELECTED EARLIER WORK
+    ════════════════════════════════════════════════════════ */
+    #selected-work { background: var(--bg); padding: 5rem 0 4rem; border-top: 1px solid var(--bg-subtle); }
+    .work-header { margin-bottom: 2.5rem; }
+    .work-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    @media (max-width: 1024px) { .work-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .work-cards { grid-template-columns: 1fr; } }
+    .work-card {
+      background: var(--bg-card); border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border); display: flex; flex-direction: column;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
     }
-    .phase-label {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      font-family: '72 Black', sans-serif;
-      font-size: .75rem;
-      font-weight: 900;
-      letter-spacing: .04em;
-      border: 1.5px solid currentColor;
-      border-radius: 4px;
-      padding: .2rem .6rem;
-    }
-    .phase-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: currentColor; flex-shrink: 0;
-    }
-    .phase-header h2 {
-      font-family: '72 Black', sans-serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      letter-spacing: -.025em;
-      line-height: 1.1;
-      margin-bottom: .65rem;
-    }
-    .phase-header p {
-      font-family: '72 Regular', sans-serif;
-      font-size: .975rem;
-      color: #6A6A6A;
-      line-height: 1.65;
-    }
+    .work-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+    .work-card-media { position: relative; aspect-ratio: 16/9; background: var(--bg-subtle); overflow: hidden; }
+    .work-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .work-card-body { padding: 1rem 1.15rem 1.35rem; flex: 1; }
+    .work-card-title { font-family: "72 Black", sans-serif; font-size: .92rem; font-weight: 900; color: var(--text); line-height: 1.3; margin-bottom: .3rem; }
+    .work-card-client { font-family: "72 Regular", sans-serif; font-size: .76rem; color: var(--muted); margin-bottom: .6rem; }
+    .work-card-text { font-family: "72 Regular", sans-serif; font-size: .84rem; line-height: 1.6; color: var(--muted); }
 
-    /* hide phase label when header is stuck — topbar already shows the zone */
-    .phase-label-wrap {
-      display: grid;
-      grid-template-rows: 1fr;
-      justify-items: start;
-      overflow: hidden;
-      padding-bottom: .85rem;
-      transition: grid-template-rows .28s ease, padding-bottom .28s ease;
+    /* ════════════════════════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════════════════════════ */
+    #about { background: var(--bg-card); padding: 5rem 0 4rem; border-top: 1px solid var(--bg-subtle); }
+    .about-layout { display: grid; grid-template-columns: 1.2fr .8fr; gap: 4rem; align-items: start; }
+    @media (max-width: 860px) { .about-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .about-body { font-family: "72 Regular", sans-serif; font-size: .975rem; color: var(--muted); line-height: 1.7; }
+    .about-body p + p { margin-top: .85rem; }
+    .cv-card { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+    .cv-card-title { font-family: "72 Black", sans-serif; font-size: .9rem; font-weight: 900; color: var(--text); margin-bottom: .5rem; }
+    .cv-card-note { font-family: "72 Regular", sans-serif; font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .btn-cv {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: "72 Regular", sans-serif; font-size: .82rem;
+      color: var(--muted); padding: .5rem 1rem; border-radius: 6px;
+      border: 1px solid var(--border); opacity: .5; cursor: not-allowed;
     }
-    .phase-header.is-stuck .phase-label-wrap {
-      grid-template-rows: 0fr;
-      padding-bottom: 0;
+    .cv-notice {
+      font-family: "72 Regular", sans-serif; font-size: .72rem; color: var(--amber);
+      margin-top: .65rem; padding: .4rem .7rem; border-radius: 4px;
+      background: rgba(227,179,65,.08); border: 1px solid rgba(227,179,65,.2); line-height: 1.5;
     }
-    .phase-label-wrap > .phase-label {
-      min-height: 0;
-      transition: opacity .2s ease;
-    }
-    .phase-header.is-stuck .phase-label-wrap > .phase-label {
-      opacity: 0;
-      pointer-events: none;
-    }
+    .cv-notice code { font-size: .68rem; font-family: monospace; }
 
-    /* phase-colored top border on sticky header */
-    .phase-discovery  .phase-header { border-top: 2px solid #0A6ED1; }
-    .phase-synthesis  .phase-header { border-top: 2px solid #6E33C8; }
-    .phase-ideation   .phase-header { border-top: 2px solid #00827A; }
-    .phase-validation .phase-header { border-top: 2px solid #CC5500; }
-    .phase-delivery   .phase-header { border-top: 2px solid #3D7317; }
-    .phase-impact     .phase-header { border-top: 2px solid #B54800; }
+    /* ════════════════════════════════════════════════════════
+       CLIENTS
+    ════════════════════════════════════════════════════════ */
+    .clients-section { background: var(--bg); border-top: 1px solid var(--border); padding: 5rem 0 4rem; }
+    .clients-section h2 { font-family: "72 Black", sans-serif; font-size: 1.7rem; color: var(--blue); letter-spacing: -.025em; text-align: center; margin-bottom: 3rem; }
+    .clients-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.5rem 4rem; }
+    .clients-grid img { height: 56px; width: auto; opacity: .22; filter: grayscale(1) invert(1); transition: opacity .2s, filter .2s; }
+    .clients-grid img:hover { opacity: .6; filter: grayscale(.4) invert(1); }
 
-    /* phase-specific colors */
-    .phase-discovery  .phase-label, .phase-discovery  .phase-header h2 { color: #0A6ED1; }
-    .phase-synthesis  .phase-label, .phase-synthesis  .phase-header h2 { color: #6E33C8; }
-    .phase-ideation   .phase-label, .phase-ideation   .phase-header h2 { color: #00827A; }
-    .phase-validation .phase-label, .phase-validation .phase-header h2 { color: #CC5500; }
-    .phase-delivery   .phase-label, .phase-delivery   .phase-header h2 { color: #3D7317; }
-    .phase-impact     .phase-label, .phase-impact     .phase-header h2 { color: #B54800; }
-
-    /* ─── Card grid ─────────────────────────────────── */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    @media (max-width: 1024px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px)  { .cards { grid-template-columns: 1fr; } }
-
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid #E4E7EC;
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow .2s, transform .2s;
-    }
-    .card:hover {
-      box-shadow: 0 8px 28px rgba(0,0,0,.10);
-      transform: translateY(-2px);
-    }
-
-    /* Phase-colored left accent (visible on thumbnail bottom edge) */
-    .card-media {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: #F0F4F8;
-    }
-    .card-media img,
-    .card-media svg {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-    }
-    .card-accent {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 3px;
-    }
-    .phase-discovery  .card-accent { background: #0A6ED1; }
-    .phase-synthesis  .card-accent { background: #6E33C8; }
-    .phase-ideation   .card-accent { background: #00827A; }
-    .phase-validation .card-accent { background: #CC5500; }
-    .phase-delivery   .card-accent { background: #3D7317; }
-    .phase-impact     .card-accent { background: #B54800; }
-
-    .card-body {
-      padding: 1.1rem 1.2rem 1.4rem;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .card-title {
-      font-family: '72 Black', sans-serif;
-      font-size: 1rem;
-      font-weight: 900;
-      color: #1D1D1D;
-      line-height: 1.3;
-      margin-bottom: .3rem;
-    }
-    .card-client {
-      font-family: '72 Regular', sans-serif;
-      font-size: .8rem;
-      color: #9A9A9A;
-      margin-bottom: .75rem;
-    }
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .25rem .35rem;
-      margin-bottom: .8rem;
-    }
-    .card-tag {
-      font-family: '72 Regular', sans-serif;
-      font-size: .7rem;
-      color: #6A6A6A;
-      background: #F2F3F5;
-      border-radius: 3px;
-      padding: .12rem .45rem;
-    }
-    .card-text {
-      font-family: '72 Regular', sans-serif;
-      font-size: .875rem;
-      line-height: 1.6;
-      color: #595959;
-      flex: 1;
-    }
-
-    /* ════════════════════════════════════════════════════
-       CLIENTS SECTION
-    ════════════════════════════════════════════════════ */
-    .clients-section {
-      background: #fff;
-      border-top: 1px solid #E4E7EC;
-      padding: 5rem 0 4rem;
-    }
-    .clients-section h2 {
-      font-family: '72 Black', sans-serif;
-      font-size: 1.85rem;
-      color: #0A6ED1;
-      letter-spacing: -.025em;
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .clients-grid {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem 4rem;
-    }
-    .clients-grid img {
-      height: 64px;
-      width: auto;
-      opacity: .55;
-      filter: grayscale(1);
-      transition: opacity .2s, filter .2s;
-    }
-    .clients-grid img:hover { opacity: .85; filter: grayscale(0); }
-
-    /* ════════════════════════════════════════════════════
+    /* ════════════════════════════════════════════════════════
        FOOTER
-    ════════════════════════════════════════════════════ */
-    footer {
-      background: #1D2D3E;
-      padding: 3.5rem 0;
-      text-align: center;
-    }
-    footer h3 {
-      font-family: '72 Black', sans-serif;
-      font-size: 1.4rem;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-    footer a {
-      display: block;
-      font-family: '72 Regular', sans-serif;
-      font-size: 1rem;
-      color: rgba(255,255,255,.65);
-      margin-bottom: .35rem;
-      transition: color .15s;
-    }
-    footer a:hover { color: #fff; }
-
-    /* ─── Scroll-spy active state on topbar ─────────── */
+    ════════════════════════════════════════════════════════ */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3.5rem 0; text-align: center; }
+    footer h2 { font-family: "72 Black", sans-serif; font-size: 1.35rem; color: var(--text); margin-bottom: 1rem; letter-spacing: -.015em; }
+    .footer-links { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-links a { font-family: "72 Regular", sans-serif; font-size: .975rem; color: var(--muted); transition: color .15s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-family: "72 Regular", sans-serif; font-size: .72rem; color: var(--muted); margin-top: 2rem; opacity: .45; }
   </style>
 </head>
 <body>
 
-<!-- ══ TOP BAR ══════════════════════════════════════════ -->
-<header class="topbar">
+<!-- ══ TOPBAR ═══════════════════════════════════════════ -->
+<header class="topbar" role="banner">
   <div class="wrap topbar-inner">
-    <span class="topbar-name">Stephan Albrecht</span>
-    <nav class="topbar-nav" aria-label="Process phases">
-      <a href="#phase-discovery"  data-phase="discovery">Discovery</a>
-      <a href="#phase-synthesis"  data-phase="synthesis">Synthesis</a>
-      <a href="#phase-ideation"   data-phase="ideation">Ideation</a>
-      <a href="#phase-validation" data-phase="validation">Validation</a>
-      <a href="#phase-delivery"   data-phase="delivery">Delivery</a>
-      <a href="#phase-impact"     data-phase="impact">Impact</a>
+    <span class="topbar-name" aria-label="Stephan Albrecht, portfolio home">Stephan Albrecht</span>
+    <nav class="topbar-nav" aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#ai-strategy">AI Strategy</a>
+      <a href="#research">Research</a>
+      <a href="#about">About</a>
+      <a href="#cv-placeholder" class="nav-cv">CV</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <span class="topbar-contact">
-      <a href="mailto:sha@s-albrecht.com">sha@s-albrecht.com</a>
-    </span>
   </div>
 </header>
 
-<!-- ══ HERO ════════════════════════════════════════════ -->
-<section id="about" class="hero">
-  <div class="hero-bg"></div>
+<main>
+
+<!-- ══ HERO ═════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-labelledby="hero-name">
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="wrap">
       <div class="hero-content">
@@ -573,250 +308,432 @@
           <img src="img/stephan.png" alt="Stephan Albrecht" class="hero-photo">
           <div class="hero-name-block">
             <p class="hero-role">UX Design Lead @ SAP</p>
-            <h1 class="hero-name">Stephan Albrecht</h1>
+            <h1 class="hero-name" id="hero-name">Stephan Albrecht</h1>
+            <p class="hero-descriptor">Product Strategy · Enterprise Platforms · AI Experiences</p>
           </div>
         </div>
-        <p class="hero-bio">
-          Product Design leader with 17 years of experience designing complex enterprise and
-          multi-workflow SaaS products across cloud platforms, operations, payroll, logistics,
-          financials, life sciences, and industry solutions.
-        </p>
-        <p class="hero-bio">
-          Currently leading UX for SAP CALM, shaping platform-level experiences across six agile teams.
-          Experienced in systems thinking, UX strategy, research-informed product development,
-          design systems, and AI-enabled product opportunities.
-        </p>
-        <div class="hero-cta">
-          <a class="btn-primary" href="mailto:sha@s-albrecht.com">Contact me</a>
+        <p class="hero-bio">I lead UX strategy across complex enterprise products, building the operating models, research practices, and AI design capabilities that let distributed teams ship with quality.</p>
+        <p class="hero-bio">Currently leading UX for SAP Cloud ALM across six agile teams. Formerly consulting across financial services, life sciences, industrial, and media, 18+ organisations over 17 years.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#work">View my work</a>
+          <a class="btn-secondary" href="#contact">Get in touch</a>
         </div>
-        <div class="hero-stats">
-          <div class="stat"><div class="stat-num">17+</div><div class="stat-label">years in enterprise design</div></div>
-          <div class="stat"><div class="stat-num">18+</div><div class="stat-label">client organisations</div></div>
-          <div class="stat"><div class="stat-num">24+</div><div class="stat-label">Fiori apps delivered</div></div>
-          <div class="stat"><div class="stat-num">6</div><div class="stat-label">engineering teams led</div></div>
-          <div class="stat"><div class="stat-num">5</div><div class="stat-label">designers mentored</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ HOW I WORK ════════════════════════════════════════ -->
-<section class="section-intro" id="how-i-work">
-  <div class="wrap">
-    <h2>How I Work</h2>
-    <p>
-      Work organized by design process — not by project or client. Across the Problem Space I partner
-      with Product Management to frame the right problem before committing to solutions. Across the
-      Solution Space I work with Engineering to validate concepts early and deliver with quality.
-    </p>
-  </div>
-</section>
-
-<div class="dd-wrapper">
-  <div class="wrap" id="pdlc-diagram">
-    <svg id="dd-svg" viewBox="0 0 960 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How I Work: double-diamond process diagram">
-      <defs>
-        <pattern id="dot-grid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-          <circle cx="8" cy="8" r="1" fill="#d0d7de" opacity="0.7"/>
-        </pattern>
-        <filter id="zone-haze" x="-15%" y="-25%" width="130%" height="150%">
-          <feGaussianBlur stdDeviation="40"/>
-        </filter>
-        <linearGradient id="m-left"   x1="0" y1="0" x2="1" y2="0"><stop offset="0%"   stop-color="black"/><stop offset="100%" stop-color="black" stop-opacity="0"/></linearGradient>
-        <linearGradient id="m-right"  x1="0" y1="0" x2="1" y2="0"><stop offset="0%"   stop-color="black" stop-opacity="0"/><stop offset="100%" stop-color="black"/></linearGradient>
-        <linearGradient id="m-bottom" x1="0" y1="0" x2="0" y2="1"><stop offset="0%"   stop-color="black" stop-opacity="0"/><stop offset="100%" stop-color="black"/></linearGradient>
-        <mask id="bg-mask" maskUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="960" height="280" fill="white"/>
-          <rect x="0"   y="0"   width="90"  height="280" fill="url(#m-left)"/>
-          <rect x="870" y="0"   width="90"  height="280" fill="url(#m-right)"/>
-          <rect x="0"   y="190" width="960" height="90"  fill="url(#m-bottom)"/>
-        </mask>
-      </defs>
-      <rect x="0" y="28" width="960" height="222" rx="12" fill="white"/>
-      <rect x="0" y="28" width="960" height="222" rx="12" fill="url(#dot-grid)" mask="url(#bg-mask)"/>
-      <g filter="url(#zone-haze)" mask="url(#bg-mask)">
-        <rect x="-20" y="28" width="380" height="222" fill="#C8DDF6" opacity="0.6"/>
-        <rect x="310" y="28" width="360" height="222" fill="#9DD4CF" opacity="0.55"/>
-        <rect x="620" y="28" width="380" height="222" fill="#BCD9AC" opacity="0.6"/>
-      </g>
-      <text x="160" y="55" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="13" fill="#0A6ED1" letter-spacing="0.04em">Problem Space</text>
-      <text x="480" y="55" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="13" fill="#00827A" letter-spacing="0.04em">Solution Space</text>
-      <text x="800" y="55" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="13" fill="#3D7317" letter-spacing="0.04em">Outcome</text>
-      <g class="dd-phase-group" data-phase="discovery">
-        <polygon class="dd-diamond" points="88,92 160,156 88,220 16,156" fill="#C8DDF6" stroke="#0A6ED1" stroke-width="1.5"/>
-        <text x="88" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#0A6ED1">Discovery</text>
-        <text x="88" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Field research</text>
-        <text x="88" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Domain immersion</text>
-        <text x="88" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#0A6ED1" opacity="0.7">Explore broadly</text>
-      </g>
-      <g class="dd-phase-group" data-phase="synthesis">
-        <polygon class="dd-diamond" points="232,92 304,156 232,220 160,156" fill="#D4BEF7" stroke="#6E33C8" stroke-width="1.5"/>
-        <text x="232" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#6E33C8">Synthesis</text>
-        <text x="232" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">AI benchmarking</text>
-        <text x="232" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Workflow analysis</text>
-        <text x="232" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#6E33C8" opacity="0.7">Converge on insight</text>
-      </g>
-      <g class="dd-phase-group" data-phase="ideation">
-        <polygon class="dd-diamond" points="408,92 480,156 408,220 336,156" fill="#B0DBD8" stroke="#00827A" stroke-width="1.5"/>
-        <text x="408" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#00827A">Ideation</text>
-        <text x="408" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">UX strategy</text>
-        <text x="408" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Prototyping</text>
-        <text x="408" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#00827A" opacity="0.7">Explore solutions</text>
-      </g>
-      <g class="dd-phase-group" data-phase="validation">
-        <polygon class="dd-diamond" points="552,92 624,156 552,220 480,156" fill="#F0C09A" stroke="#CC5500" stroke-width="1.5"/>
-        <text x="552" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#CC5500">Validation</text>
-        <text x="552" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Usability testing</text>
-        <text x="552" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Evidence iteration</text>
-        <text x="552" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#CC5500" opacity="0.7">Converge on right solution</text>
-      </g>
-      <g class="dd-phase-group" data-phase="delivery">
-        <polygon class="dd-diamond" points="728,92 800,156 728,220 656,156" fill="#BCD9AC" stroke="#3D7317" stroke-width="1.5"/>
-        <text x="728" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#3D7317">Delivery</text>
-        <text x="728" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Fiori design system</text>
-        <text x="728" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Frontend collab</text>
-        <text x="728" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#3D7317" opacity="0.7">Ship with quality</text>
-      </g>
-      <g class="dd-phase-group" data-phase="impact">
-        <polygon class="dd-diamond" points="872,92 944,156 872,220 800,156" fill="#F0B888" stroke="#B54800" stroke-width="1.5"/>
-        <text x="872" y="148" text-anchor="middle" font-family="'72 Black',sans-serif" font-size="13" font-weight="900" fill="#B54800">Impact</text>
-        <text x="872" y="162" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">UX metrics &amp; OKRs</text>
-        <text x="872" y="175" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#444">Strategic influence</text>
-        <text x="872" y="236" text-anchor="middle" font-family="'72 Regular',sans-serif" font-size="10" fill="#B54800" opacity="0.7">Measure &amp; learn</text>
-      </g>
-      <circle id="dd-follower" r="6.5" fill="white" stroke="#0A6ED1" stroke-width="2.2"
-              cx="16" cy="156" opacity="0"
-              style="filter:drop-shadow(0 2px 5px rgba(0,0,0,.25)); transition:stroke .25s ease"/>
-    </svg>
-  </div>
-</div>
-
-<!-- ══ DISCOVERY ════════════════════════════════════════ -->
-<section id="phase-discovery" class="phase-section phase-discovery">
-  <div class="wrap">
-    <div class="phase-header">
-      <div class="phase-label-wrap"><div class="phase-label"><span class="phase-dot"></span>Discovery</div></div>
-      <div class="phase-header-body">
-        <h2>Making uncertainty visible</h2>
-        <p>I turn fuzzy briefs into focused design problems. Before committing to solutions I map what is known,
-        what is assumed, and what must be learned — whether through field research, domain immersion, or
-        structured readiness frameworks.</p>
-      </div>
-    </div>
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-media">
-          <img src="img/disc-ux-maturity-scorecard-01.svg" alt="UX Maturity radar chart" loading="lazy">
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">UX Maturity Scorecard &amp; Quarterly Tracking</p>
-          <p class="card-client">SAP · CALM · In Progress</p>
-          <div class="card-tags">
-            <span class="card-tag">Maturity frameworks</span>
-            <span class="card-tag">Field research</span>
-            <span class="card-tag">Domain immersion</span>
+        <div class="hero-stats" role="list" aria-label="Career highlights">
+          <div role="listitem">
+            <div class="stat-num">6</div>
+            <div class="stat-label">agile product teams led across UX</div>
           </div>
-          <p class="card-text">Epics were committed to quarterly planning without design readiness — causing late scope changes and rework. I created a 5-dimension readiness framework scored per epic, then defined 5 tracking metrics to measure whether it improves planning quality over time.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="d1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f0fa"/><stop offset="100%" stop-color="#d0e4f8"/></linearGradient><clipPath id="d1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#d1bg)"/>
-            <image href="img/baur-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#d1c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Field Research &amp; Contextual Inquiry</p>
-          <p class="card-client">Baur · High Voltage Measurement Systems</p>
-          <div class="card-tags">
-            <span class="card-tag">Field research</span>
-            <span class="card-tag">Domain immersion</span>
+          <div role="listitem">
+            <div class="stat-num">4</div>
+            <div class="stat-label">designers led and mentored</div>
           </div>
-          <p class="card-text">BAUR's diagnostic devices were designed for expert use only — but a strategic shift toward service technicians in the field required understanding entirely new usage contexts. Led contextual inquiries with cable-testing engineers in real operating environments.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="d2bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#deeaf8"/><stop offset="100%" stop-color="#EDF4FF"/></linearGradient><clipPath id="d2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#d2bg)"/>
-            <image href="img/ctsm-03.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#d2c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Domain Research — Regulated Industry</p>
-          <p class="card-client">SAP · iCTSM · Clinical Trial Supply Management</p>
-          <div class="card-tags">
-            <span class="card-tag">Domain immersion</span>
-            <span class="card-tag">Field research</span>
+          <div role="listitem">
+            <div class="stat-num">17+</div>
+            <div class="stat-label">years in enterprise design</div>
           </div>
-          <p class="card-text">Clinical trial supply chains involve tight regulatory compliance, global logistics coordination, and risk-critical decisions around drug supply. Before designing a single screen, I immersed in GxP compliance requirements, blinding protocols, and the operational reality of clinical supply managers.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══ SYNTHESIS ════════════════════════════════════════ -->
-<section id="phase-synthesis" class="phase-section phase-synthesis">
-  <div class="wrap">
-    <div class="phase-header">
-      <div class="phase-label-wrap"><div class="phase-label"><span class="phase-dot"></span>Synthesis</div></div>
-      <div class="phase-header-body">
-        <h2>Turning signal into direction</h2>
-        <p>I extract patterns from research that make design decisions defensible. Synthesis turns raw data — user interviews,
-        heuristic evaluations, analytics — into clear problem statements, frameworks, and evaluation criteria.</p>
-      </div>
-    </div>
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="s1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f3eefc"/><stop offset="100%" stop-color="#e2d4f5"/></linearGradient><clipPath id="s1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#s1bg)"/>
-            <image href="img/syn-joule-eval-framework-01.svg" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#s1c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">AI Agent Output Evaluation Framework</p>
-          <p class="card-client">SAP · CALM · Joule</p>
-          <div class="card-tags">
-            <span class="card-tag">AI benchmarking</span>
-            <span class="card-tag">Analytics to insight</span>
+          <div role="listitem">
+            <div class="stat-num">18+</div>
+            <div class="stat-label">client organisations</div>
           </div>
-          <p class="card-text">Developed a 6-dimension benchmark framework (Value Alignment, Output Completeness, Format Accuracy, Cognitive Load, Trust, and Interaction Efficiency) applied to assess Joule's service result guidance outputs — turning qualitative review into structured quality assessment before release.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="s2bg" x1="1" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ede8fa"/><stop offset="100%" stop-color="#e0d8f7"/></linearGradient><clipPath id="s2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#s2bg)"/>
-            <image href="img/syn-workflow-analysis-03.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#s2c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Workflow Analysis &amp; Problem Framing</p>
-          <p class="card-client">SAP · S/4HANA Banking for Complex Loans</p>
-          <div class="card-tags">
-            <span class="card-tag">Workflow analysis</span>
-            <span class="card-tag">Analytics to insight</span>
+          <div role="listitem">
+            <div class="stat-num">24+</div>
+            <div class="stat-label">Fiori apps delivered</div>
           </div>
-          <p class="card-text">Analysed 24 existing Fiori applications to map the navigational load imposed on bank relationship managers: up to 12 separate screens per transaction, with frequent context-switching and data loss. This synthesis surfaced the core architectural problem that guided all redesign decisions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURED STRATEGIC WORK ══════════════════════════ -->
+<section id="work" class="featured-work" aria-labelledby="work-heading">
+  <div class="wrap">
+    <div class="featured-work-header">
+      <div class="section-label"><span class="section-label-dot"></span>Featured Strategic Work</div>
+      <h2 class="section-heading" id="work-heading" style="color:var(--blue)">Three perspectives on strategic UX leadership</h2>
+      <p class="section-body">Each case study represents a different dimension of the work: operating model design, AI product strategy, and research as a strategic tool.</p>
+    </div>
+    <div class="cs-cards">
+
+      <article class="cs-card" aria-label="Case study: Scaling UX strategy across SAP Cloud ALM">
+        <div class="cs-card-media">
+          <img src="img/calm-hero.png" alt="SAP Cloud ALM interface overview" loading="lazy">
+          <span class="cs-card-tag cs-card-tag--strategy">UX Operating Model</span>
+        </div>
+        <div class="cs-card-body">
+          <p class="cs-card-context">SAP Cloud ALM · 2022–Present</p>
+          <h3 class="cs-card-title">Scaling UX strategy across SAP Cloud ALM</h3>
+          <p class="cs-card-challenge">How do you maintain design quality and strategic coherence when six agile scrum teams each have different velocities, PMs, and engineering constraints?</p>
+          <ul class="cs-card-contributions" aria-label="Key contributions">
+            <li>7-step UX operating model integrating DLD and HPOM</li>
+            <li>Design readiness scorecard applied at epic level</li>
+            <li>Design-led development process adopted across all six teams</li>
+          </ul>
+          <a href="work/calm-ux-strategy.html" class="cs-card-link" aria-label="Read case study: Scaling UX strategy across SAP Cloud ALM">Read case study <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="cs-card" aria-label="Case study: Agentic UX principles into product practice">
+        <div class="cs-card-media">
+          <img src="img/syn-joule-eval-framework-01.png" alt="Agent evaluation framework diagram" loading="lazy">
+          <span class="cs-card-tag cs-card-tag--ai">AI Strategy</span>
+        </div>
+        <div class="cs-card-body">
+          <p class="cs-card-context">SAP Cloud ALM · Joule · 2023–Present</p>
+          <h3 class="cs-card-title">Turning agentic UX principles into executable product practice</h3>
+          <p class="cs-card-challenge">AI assistants were being shipped without clear UX quality criteria. How do you move from vague principles to a rigorous, repeatable evaluation practice?</p>
+          <ul class="cs-card-contributions" aria-label="Key contributions">
+            <li>6-dimension agent output evaluation framework</li>
+            <li>Trust-first automation patterns for Joule workflows</li>
+            <li>AI practice strand and Skills Registry for the CSX UX chapter</li>
+          </ul>
+          <a href="work/agentic-ux-practice.html" class="cs-card-link" aria-label="Read case study: Agentic UX into product practice">Read case study <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="cs-card" aria-label="Case study: From field research to a new product direction">
+        <div class="cs-card-media">
+          <img src="img/baur-01.png" alt="BAUR high-voltage measurement field testing" loading="lazy">
+          <span class="cs-card-tag cs-card-tag--research">Research &amp; Strategy</span>
+        </div>
+        <div class="cs-card-body">
+          <p class="cs-card-context">BAUR · High Voltage Measurement · 2019–2020</p>
+          <h3 class="cs-card-title">From field research to a new product direction</h3>
+          <p class="cs-card-challenge">BAUR wanted to expand their diagnostic software beyond expert lab users to field service technicians, but had no evidence of how those users actually work.</p>
+          <ul class="cs-card-contributions" aria-label="Key contributions">
+            <li>Contextual inquiry with cable-testing engineers in real operating environments</li>
+            <li>Field conditions synthesis: gloved use, time pressure, in-vehicle constraints</li>
+            <li>Research findings influenced strategic roadmap toward mobile &amp; in-vehicle</li>
+          </ul>
+          <a href="work/baur-field-research.html" class="cs-card-link" aria-label="Read case study: BAUR field research to product direction">Read case study <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ LEADERSHIP ═══════════════════════════════════════ -->
+<section id="leadership" class="strategy-section" aria-labelledby="leadership-heading">
+  <div class="wrap">
+    <div class="strategy-layout">
+      <div>
+        <div class="section-label" style="color:var(--green)"><span class="section-label-dot" style="background:var(--green)"></span>Leadership</div>
+        <h2 class="section-heading" id="leadership-heading" style="color:var(--green)">How I lead design at scale</h2>
+        <p class="section-body">Running UX across six agile scrum teams means design can't be reactive. I build the operating models, processes, and quality criteria that give design a consistent place in the planning cycle, from first brief through shipping and impact tracking.</p>
+        <ul class="capability-list" aria-label="Leadership capabilities">
+          <li class="capability-item">
+            <span class="capability-icon cap-green" aria-hidden="true">OM</span>
+            <div>
+              <p class="capability-text-head">UX Operating Model</p>
+              <p class="capability-text-body">A 7-step model integrating DLD and HPOM, defining the UX contribution at each stage from discovery through delivery, with explicit quality gates.</p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-blue" aria-hidden="true">DR</span>
+            <div>
+              <p class="capability-text-head">Design Readiness Framework</p>
+              <p class="capability-text-body">5-dimension readiness scoring per epic, reducing late scope changes by identifying design uncertainty before quarterly planning locks.</p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-purple" aria-hidden="true">TC</span>
+            <div>
+              <p class="capability-text-head">Team Capability Building</p>
+              <p class="capability-text-body">Skills Registry across the CSX UX chapter, 1:1 mentoring for up to four designers, and a shared AI practice strand growing chapter-wide capability.</p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-amber" aria-hidden="true">SA</span>
+            <div>
+              <p class="capability-text-head">Stakeholder Alignment</p>
+              <p class="capability-text-body">Translating design rationale into product and engineering language, making design decisions defensible through evidence, not preference.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="strategy-visual" role="img" aria-label="UX operating model pipeline diagram reconstructed from original project methodology">
+        <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <rect width="480" height="300" fill="#0a160a"/>
+          <text x="240" y="32" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing=".1em" fill="#3fb950" opacity=".6">UX OPERATING MODEL · 7 STAGES</text>
+          <!-- Stage boxes -->
+          <rect x="12"  y="54" width="56" height="42" rx="4" fill="#3fb950" opacity=".14" stroke="#3fb950" stroke-width="1" stroke-opacity=".4"/>
+          <text x="40"  y="71" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Brief &amp;</text>
+          <text x="40"  y="82" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Intake</text>
+          <line x1="69" y1="75" x2="79" y2="75" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2" opacity=".5"/>
+          <rect x="80"  y="54" width="56" height="42" rx="4" fill="#3fb950" opacity=".11" stroke="#3fb950" stroke-width="1" stroke-opacity=".35"/>
+          <text x="108" y="71" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Discovery</text>
+          <text x="108" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#8b949e">Research</text>
+          <line x1="137" y1="75" x2="147" y2="75" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2" opacity=".5"/>
+          <!-- quality gate 1 -->
+          <polygon points="149,54 157,75 149,96 157,75" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-opacity=".65"/>
+          <text x="163" y="115" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#3fb950" opacity=".6">Gate</text>
+          <line x1="159" y1="75" x2="169" y2="75" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2" opacity=".5"/>
+          <rect x="170" y="54" width="56" height="42" rx="4" fill="#3fb950" opacity=".11" stroke="#3fb950" stroke-width="1" stroke-opacity=".35"/>
+          <text x="198" y="71" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Ideation</text>
+          <text x="198" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#8b949e">Concepts</text>
+          <line x1="227" y1="75" x2="237" y2="75" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2" opacity=".5"/>
+          <rect x="238" y="54" width="56" height="42" rx="4" fill="#3fb950" opacity=".11" stroke="#3fb950" stroke-width="1" stroke-opacity=".35"/>
+          <text x="266" y="71" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Validate</text>
+          <text x="266" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#8b949e">Testing</text>
+          <line x1="295" y1="75" x2="305" y2="75" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2" opacity=".5"/>
+          <!-- quality gate 2 -->
+          <polygon points="307,54 315,75 307,96 315,75" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-opacity=".65"/>
+          <line x1="317" y1="75" x2="327" y2="75" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2" opacity=".5"/>
+          <rect x="328" y="54" width="56" height="42" rx="4" fill="#3fb950" opacity=".11" stroke="#3fb950" stroke-width="1" stroke-opacity=".35"/>
+          <text x="356" y="71" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Delivery</text>
+          <text x="356" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#8b949e">Specs</text>
+          <line x1="385" y1="75" x2="395" y2="75" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2" opacity=".5"/>
+          <rect x="396" y="54" width="56" height="42" rx="4" fill="#3fb950" opacity=".11" stroke="#3fb950" stroke-width="1" stroke-opacity=".35"/>
+          <text x="424" y="71" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Impact</text>
+          <text x="424" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#8b949e">Analytics</text>
+          <!-- Teams adopted across row -->
+          <line x1="12" y1="136" x2="468" y2="136" stroke="#3fb950" stroke-width="1" stroke-opacity=".12"/>
+          <text x="240" y="156" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#8b949e">Adopted across 6 scrum teams, SAP Cloud ALM</text>
+          <rect x="28"  y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
+          <text x="59"  y="175" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950">Team 1</text>
+          <rect x="98"  y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
+          <text x="129" y="175" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950">Team 2</text>
+          <rect x="168" y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
+          <text x="199" y="175" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950">Team 3</text>
+          <rect x="238" y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
+          <text x="269" y="175" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950">Team 4</text>
+          <rect x="308" y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
+          <text x="339" y="175" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950">Team 5</text>
+          <rect x="378" y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
+          <text x="409" y="175" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950">Team 6</text>
+          <!-- Role contribution heatmap -->
+          <line x1="12" y1="202" x2="468" y2="202" stroke="#3fb950" stroke-width="1" stroke-opacity=".12"/>
+          <text x="240" y="222" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#8b949e">ROLE CONTRIBUTION PER STAGE</text>
+          <text x="40"  y="242" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950" opacity=".7">Brief</text>
+          <text x="108" y="242" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950" opacity=".7">Disc.</text>
+          <text x="198" y="242" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950" opacity=".7">Idea.</text>
+          <text x="266" y="242" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950" opacity=".7">Val.</text>
+          <text x="356" y="242" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950" opacity=".7">Del.</text>
+          <text x="424" y="242" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950" opacity=".7">Impact</text>
+          <text x="12" y="260" font-family="sans-serif" font-size="7" fill="#8b949e">PM</text>
+          <rect x="28"  y="248" width="37" height="11" rx="2" fill="#3fb950" opacity=".4"/>
+          <rect x="96"  y="248" width="37" height="11" rx="2" fill="#3fb950" opacity=".18"/>
+          <rect x="185" y="248" width="37" height="11" rx="2" fill="#3fb950" opacity=".28"/>
+          <rect x="252" y="248" width="37" height="11" rx="2" fill="#3fb950" opacity=".12"/>
+          <rect x="342" y="248" width="37" height="11" rx="2" fill="#3fb950" opacity=".22"/>
+          <rect x="410" y="248" width="37" height="11" rx="2" fill="#3fb950" opacity=".38"/>
+          <text x="12" y="276" font-family="sans-serif" font-size="7" fill="#8b949e">UX</text>
+          <rect x="28"  y="264" width="37" height="11" rx="2" fill="#3fb950" opacity=".2"/>
+          <rect x="96"  y="264" width="37" height="11" rx="2" fill="#3fb950" opacity=".7"/>
+          <rect x="185" y="264" width="37" height="11" rx="2" fill="#3fb950" opacity=".72"/>
+          <rect x="252" y="264" width="37" height="11" rx="2" fill="#3fb950" opacity=".65"/>
+          <rect x="342" y="264" width="37" height="11" rx="2" fill="#3fb950" opacity=".55"/>
+          <rect x="410" y="264" width="37" height="11" rx="2" fill="#3fb950" opacity=".5"/>
+          <text x="12" y="292" font-family="sans-serif" font-size="7" fill="#8b949e">Dev</text>
+          <rect x="28"  y="280" width="37" height="11" rx="2" fill="#3fb950" opacity=".05"/>
+          <rect x="96"  y="280" width="37" height="11" rx="2" fill="#3fb950" opacity=".1"/>
+          <rect x="185" y="280" width="37" height="11" rx="2" fill="#3fb950" opacity=".2"/>
+          <rect x="252" y="280" width="37" height="11" rx="2" fill="#3fb950" opacity=".28"/>
+          <rect x="342" y="280" width="37" height="11" rx="2" fill="#3fb950" opacity=".62"/>
+          <rect x="410" y="280" width="37" height="11" rx="2" fill="#3fb950" opacity=".15"/>
+        </svg>
+        <p class="visual-caption">Reconstructed for this portfolio from the original project methodology; confidential product details removed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AI STRATEGY ══════════════════════════════════════ -->
+<section id="ai-strategy" class="strategy-section" aria-labelledby="ai-heading">
+  <div class="wrap">
+    <div class="strategy-layout reverse">
+      <div>
+        <div class="section-label" style="color:var(--purple)"><span class="section-label-dot" style="background:var(--purple)"></span>AI Strategy</div>
+        <h2 class="section-heading" id="ai-heading" style="color:var(--purple)">AI-first product strategy</h2>
+        <p class="section-body">Before AI can improve a product, you need to know what "good" looks like. I built the evaluation frameworks, interaction principles, and capability infrastructure that give the team a rigorous basis for AI design decisions.</p>
+        <ul class="capability-list" aria-label="AI strategy capabilities">
+          <li class="capability-item">
+            <span class="capability-icon cap-purple" aria-hidden="true">EF</span>
+            <div>
+              <p class="capability-text-head">Agent Output Evaluation</p>
+              <p class="capability-text-body">6-dimension benchmark framework (Value Alignment, Output Completeness, Format Accuracy, Cognitive Load, Trust, Interaction Efficiency) applied to Joule service result guidance.</p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-blue" aria-hidden="true">TF</span>
+            <div>
+              <p class="capability-text-head">Trust-First Automation</p>
+              <p class="capability-text-body">Interaction patterns for explainable automation: making agent decisions visible, reversible, and appropriately supervised across planning, lifecycle, and service workflows.</p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-green" aria-hidden="true">SR</span>
+            <div>
+              <p class="capability-text-head">Skills Registry &amp; AI Practice</p>
+              <p class="capability-text-body">Chapter-wide capability map with AI practice strand, agentic workflow design, evaluation methodology, and trust-first pattern libraries.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="strategy-visual" role="img" aria-label="Agent evaluation framework applied to Joule">
+        <img src="img/syn-joule-eval-framework-01.png" alt="6-dimension Joule agent evaluation framework" loading="lazy">
+        <p class="visual-caption">Reconstructed for this portfolio from the original project methodology; confidential product details removed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESEARCH ═════════════════════════════════════════ -->
+<section id="research" class="strategy-section" aria-labelledby="research-heading">
+  <div class="wrap">
+    <div class="strategy-layout">
+      <div>
+        <div class="section-label" style="color:var(--amber)"><span class="section-label-dot" style="background:var(--amber)"></span>Research</div>
+        <h2 class="section-heading" id="research-heading" style="color:var(--amber)">Research as a strategic capability</h2>
+        <p class="section-body">Research isn't just validation, it's the mechanism that changes what a product team believes. I use field research, contextual inquiry, and structured synthesis to surface insights that shift roadmap priorities, not just screen layouts.</p>
+        <ul class="capability-list" aria-label="Research capabilities">
+          <li class="capability-item">
+            <span class="capability-icon cap-amber" aria-hidden="true">CI</span>
+            <div>
+              <p class="capability-text-head">Contextual Inquiry</p>
+              <p class="capability-text-body">Field research with users in real operating environments, workshops, cable test bays, vehicle cabs, to surface constraints that would never appear in a usability lab.</p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-blue" aria-hidden="true">SY</span>
+            <div>
+              <p class="capability-text-head">Synthesis Frameworks</p>
+              <p class="capability-text-body">Workflow analysis of 24+ applications, qualitative research synthesis, and AI benchmark scoring, turning raw data into defensible design rationale.</p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-green" aria-hidden="true">EB</span>
+            <div>
+              <p class="capability-text-head">Evidence-Based Iteration</p>
+              <p class="capability-text-body">Usability studies with SUS scoring, analytics-to-design synthesis pipelines, and UX maturity tracking, moving teams from opinion to evidence.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="strategy-visual" role="img" aria-label="Research to roadmap decision pathway diagram">
+        <svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <rect width="480" height="280" fill="#1a0f08"/>
+          <text x="240" y="30" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing=".1em" fill="#e3b341" opacity=".6">RESEARCH → PRODUCT DIRECTION</text>
+          <!-- Field Research box -->
+          <rect x="24" y="50" width="104" height="58" rx="6" fill="#e3b341" opacity=".1" stroke="#e3b341" stroke-width="1" stroke-opacity=".4"/>
+          <text x="76" y="73" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#e3b341">Field</text>
+          <text x="76" y="85" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#e3b341">Research</text>
+          <text x="76" y="100" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#8b949e">Contextual inquiry</text>
+          <!-- arrow -->
+          <line x1="130" y1="79" x2="162" y2="79" stroke="#e3b341" stroke-width="1.5" stroke-dasharray="4,3" opacity=".5"/>
+          <polygon points="159,75 166,79 159,83" fill="#e3b341" opacity=".5"/>
+          <!-- Insight ellipse -->
+          <ellipse cx="218" cy="79" rx="52" ry="32" fill="#e3b341" opacity=".1" stroke="#e3b341" stroke-width="1.5" stroke-opacity=".55"/>
+          <text x="218" y="73" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e6edf3">Workers need</text>
+          <text x="218" y="84" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e6edf3">mobile access</text>
+          <text x="218" y="104" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="700" fill="#e3b341" opacity=".8">Key Insight</text>
+          <!-- arrow -->
+          <line x1="272" y1="79" x2="304" y2="79" stroke="#e3b341" stroke-width="1.5" opacity=".5"/>
+          <polygon points="301,75 308,79 301,83" fill="#e3b341" opacity=".5"/>
+          <!-- Roadmap decision box -->
+          <rect x="306" y="54" width="150" height="50" rx="6" fill="#e3b341" opacity=".1" stroke="#e3b341" stroke-width="1.5" stroke-opacity=".45"/>
+          <rect x="306" y="54" width="150" height="18" rx="6" fill="#e3b341" opacity=".4"/>
+          <text x="381" y="67" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#0d1117">Roadmap Decision</text>
+          <text x="381" y="84" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#e6edf3">Extend to mobile &amp;</text>
+          <text x="381" y="96" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#e6edf3">in-vehicle form factors</text>
+          <text x="381" y="120" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="700" fill="#e3b341" opacity=".8">Strategic Shift</text>
+          <!-- Methods row -->
+          <line x1="24" y1="148" x2="456" y2="148" stroke="#e3b341" stroke-width="1" stroke-opacity=".12"/>
+          <text x="240" y="168" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#8b949e">RESEARCH METHODS</text>
+          <rect x="24"  y="178" width="130" height="32" rx="4" fill="#e3b341" opacity=".06" stroke="#e3b341" stroke-width="1" stroke-opacity=".2"/>
+          <text x="89"  y="192" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e3b341">Contextual inquiry</text>
+          <text x="89"  y="202" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#8b949e">Field observation</text>
+          <rect x="162" y="178" width="156" height="32" rx="4" fill="#e3b341" opacity=".06" stroke="#e3b341" stroke-width="1" stroke-opacity=".2"/>
+          <text x="240" y="192" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e3b341">Domain immersion</text>
+          <text x="240" y="202" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#8b949e">GxP · cabling · field operations</text>
+          <rect x="326" y="178" width="130" height="32" rx="4" fill="#e3b341" opacity=".06" stroke="#e3b341" stroke-width="1" stroke-opacity=".2"/>
+          <text x="391" y="192" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e3b341">Synthesis</text>
+          <text x="391" y="202" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#8b949e">Workflow · AI · usability</text>
+          <!-- Principle box -->
+          <rect x="24" y="228" width="432" height="38" rx="6" fill="#e3b341" opacity=".06" stroke="#e3b341" stroke-width="1" stroke-opacity=".15"/>
+          <text x="240" y="244" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e3b341">Research changes what the team believes, not just what they build.</text>
+          <text x="240" y="257" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#8b949e">Every field study should end with a changed roadmap priority or a new design brief.</text>
+        </svg>
+        <p class="visual-caption">Reconstructed for this portfolio from the original project methodology; confidential product details removed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SELECTED EARLIER WORK ════════════════════════════ -->
+<section id="selected-work" aria-labelledby="earlier-heading">
+  <div class="wrap">
+    <div class="work-header">
+      <div class="section-label"><span class="section-label-dot"></span>Selected Earlier Work</div>
+      <h2 class="section-heading" id="earlier-heading" style="color:var(--blue)">Projects across 17 years</h2>
+      <p class="section-body">Consulting work across financial services, industrial, life sciences, and media sectors.</p>
+    </div>
+    <div class="work-cards">
+
+      <div class="work-card">
+        <div class="work-card-media">
+          <img src="img/complexloans-02.gif" alt="S/4HANA Complex Loans Fiori application screen" loading="lazy">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-title">24-Application Fiori Suite</p>
+          <p class="work-card-client">SAP · S/4HANA Banking for Complex Loans</p>
+          <p class="work-card-text">UX lead across 24+ Fiori applications. Workflow analysis of navigational load across 12 screens per transaction informed architectural redesign for bank relationship managers.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-media">
+          <img src="img/zeiss-smartzoom-01.png" alt="Zeiss SmartZoom microscopy interface" loading="lazy">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-title">Intelligent Automation for Microscopy</p>
+          <p class="work-card-client">Zeiss · SmartZoom</p>
+          <p class="work-card-text">UX concepts for intelligent image acquisition automation, reducing operational complexity while preserving expert control. An early exploration of automation UX challenges that inform current AI work.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-media">
+          <img src="img/bbva-01.png" alt="BBVA private wealth iOS application" loading="lazy">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-title">Private Wealth iOS Application</p>
+          <p class="work-card-client">BBVA · Private Wealth Management</p>
+          <p class="work-card-text">Portfolio overview, trade flow, and risk indicator screens applying iOS native patterns. Data visualisation for scannability and confidence, deliberately separate from the retail offering.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-media">
+          <img src="img/bosch-02.jpg" alt="Bosch Smart Home app design system" loading="lazy">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-title">Cross-Platform Design System</p>
+          <p class="work-card-client">Bosch · Smart Home Division</p>
+          <p class="work-card-text">Reconciled iOS HIG and Material Design into a unified Bosch interaction language. Shared component library enabling faster feature parity and consistent handoff across both platforms.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-media">
+          <img src="img/ctsm-03.png" alt="SAP iCTSM clinical trial supply management" loading="lazy">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-title">Clinical Trial Supply Management</p>
+          <p class="work-card-client">SAP · iCTSM · Life Sciences</p>
+          <p class="work-card-text">Domain research into GxP compliance, blinding protocols, and clinical supply logistics before designing a single screen. Moderated concept validation with clinical supply managers across multiple rounds.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-media">
+          <img src="img/syn-analytics-to-design-synthesis-02.svg" alt="Analytics to design synthesis workflow" loading="lazy">
+        </div>
+        <div class="work-card-body">
+          <p class="work-card-title">Analytics-to-Design Synthesis</p>
+          <p class="work-card-client">SAP · Cloud ALM</p>
+          <p class="work-card-text">Usage tracking implementation and behavioural signal synthesis alongside qualitative research, creating a shared language between UX, product, and engineering for defining success metrics.</p>
         </div>
       </div>
 
@@ -824,475 +741,115 @@
   </div>
 </section>
 
-<!-- ══ IDEATION ════════════════════════════════════════ -->
-<section id="phase-ideation" class="phase-section phase-ideation">
+<!-- ══ ABOUT ═════════════════════════════════════════════ -->
+<section id="about" aria-labelledby="about-heading">
   <div class="wrap">
-    <div class="phase-header">
-      <div class="phase-label-wrap"><div class="phase-label"><span class="phase-dot"></span>Ideation</div></div>
-      <div class="phase-header-body">
-        <h2>Shaping solutions before committing to them</h2>
-        <p>I design for outcomes, not screens. Ideation means exploring the solution space — generating concepts,
-        testing directions with low-fidelity artefacts, and converging on an approach that is both user-centred and
-        technically feasible before full design investment begins.</p>
-      </div>
-    </div>
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="i1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f5f0"/><stop offset="100%" stop-color="#c8ece6"/></linearGradient><clipPath id="i1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#i1bg)"/>
-            <image href="img/ideate-joule-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#i1c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">AI-First Enterprise UX Strategy</p>
-          <p class="card-client">SAP · CALM · Platform Level</p>
-          <div class="card-tags"><span class="card-tag">AI interaction models</span><span class="card-tag">UX strategy</span></div>
-          <p class="card-text">Defined AI-assisted workflow concepts across SAP CALM — including the first agentic assistant prototypes. Shaped trust-first patterns for explainable automation across planning, lifecycle, and service workflows.</p>
+    <div class="about-layout">
+      <div>
+        <div class="section-label"><span class="section-label-dot"></span>About</div>
+        <h2 class="section-heading" id="about-heading" style="color:var(--blue)">Stephan Albrecht</h2>
+        <div class="about-body">
+          <p>I'm a UX Design Lead at SAP, currently leading design across SAP Cloud ALM, a cloud operations platform used by enterprise IT teams globally. My work spans UX strategy, operating model design, team leadership, and AI experience design.</p>
+          <p>Before SAP, I spent a decade as a consulting UX lead, working across financial services (BBVA, Helaba, Citi), industrial and medtech (Bosch, Zeiss, BAUR, Heidenhain), life sciences (SAP iCTSM), and media (BBC, Vodafone, Ericsson). Each engagement added a different dimension to how I think about design at the intersection of complexity, constraint, and user trust.</p>
+          <p>My current focus is the intersection of large-scale UX strategy and AI product design, how organisations build the capability to ship AI features that are genuinely useful, trustworthy, and evaluable.</p>
+          <p>Based in Germany. Open to strategic conversations about design leadership roles.</p>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="i2bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f5f0"/><stop offset="100%" stop-color="#cce8e3"/></linearGradient><clipPath id="i2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#i2bg)"/>
-            <image href="img/zeiss-smartzoom-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#i2c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Intelligent Automation Concepts</p>
-          <p class="card-client">Zeiss · SmartZoom Microscopy</p>
-          <div class="card-tags"><span class="card-tag">Concept &amp; prototyping</span></div>
-          <p class="card-text">Developed UX concepts for Zeiss SmartZoom microscopy focused on intelligent automation of image acquisition. Explored models reducing operational complexity while preserving expert control.</p>
+      <div id="cv-placeholder">
+        <div class="cv-card">
+          <p class="cv-card-title">Curriculum Vitae</p>
+          <p class="cv-card-note">Full CV available on request, covering roles from 2008 to present across SAP, consulting, and prior positions.</p>
+          <span class="btn-cv" aria-disabled="true" role="button" tabindex="-1">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"/><path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.97a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.779a.749.749 0 1 1 1.06-1.06l1.97 1.97Z"/></svg>
+            Download CV (PDF)
+          </span>
+          <p class="cv-notice">CV PDF not yet attached, add the final PDF as <code>cv/stephan-albrecht-cv.pdf</code> and update the button href above.</p>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="i3bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e6f4f1"/><stop offset="100%" stop-color="#d0ece7"/></linearGradient><clipPath id="i3c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#i3bg)"/>
-            <image href="img/baur-03.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#i3c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">New Interaction Models for the Field</p>
-          <p class="card-client">Baur · Mobile &amp; In-Vehicle</p>
-          <div class="card-tags"><span class="card-tag">Concept &amp; prototyping</span><span class="card-tag">UX strategy</span></div>
-          <p class="card-text">Conceived new interaction models for BAUR's in-vehicle diagnostic app and Android companion — replacing desktop-derived paradigms with patterns for gloved use and time-critical field conditions.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══ VALIDATION ═══════════════════════════════════════ -->
-<section id="phase-validation" class="phase-section phase-validation">
-  <div class="wrap">
-    <div class="phase-header">
-      <div class="phase-label-wrap"><div class="phase-label"><span class="phase-dot"></span>Validation</div></div>
-      <div class="phase-header-body">
-        <h2>Learning before shipping</h2>
-        <p>I test assumptions, not aesthetics. Validation means putting designs in front of real users before
-        development investment is locked in — through usability studies, prototype testing, heuristic evaluation,
-        and structured benchmarking.</p>
-      </div>
-    </div>
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="v1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fdf0e8"/><stop offset="100%" stop-color="#f8dfc8"/></linearGradient><clipPath id="v1c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#v1bg)"/>
-            <image href="img/proto-01.gif" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#v1c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Prototype &amp; Concept Validation</p>
-          <p class="card-client">SAP · iCTSM · Life Sciences</p>
-          <div class="card-tags"><span class="card-tag">Concept Validation</span><span class="card-tag">Evidence iteration</span></div>
-          <p class="card-text">Ran multiple rounds of moderated concept validation with clinical supply managers. Each round produced prioritised findings fed directly into design iteration. Validated patterns later reused across the clinical domain.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <!-- SUS score illustration — kept as SVG since no source image -->
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="v2bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fdf0e8"/><stop offset="100%" stop-color="#f8dfc8"/></linearGradient><radialGradient id="v2badge" cx="50%" cy="40%" r="55%"><stop offset="0%" stop-color="#ffcc44"/><stop offset="100%" stop-color="#f5a200"/></radialGradient></defs>
-            <rect width="480" height="270" fill="url(#v2bg)"/>
-            <text x="28" y="34" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing=".12em" fill="#CC5500" opacity=".5">RESULTS OVERVIEW</text>
-            <text x="28" y="58" font-family="sans-serif" font-size="17" font-weight="900" fill="#1a1a1a">System Usability Score (SUS)</text>
-            <text x="28" y="84" font-family="sans-serif" font-size="12" font-weight="700" fill="#333">* Internal Participants</text>
-            <text x="28" y="102" font-family="sans-serif" font-size="12" font-weight="700" fill="#333">* 3 Key Tasks</text>
-            <circle cx="358" cy="90" r="46" fill="url(#v2badge)" opacity=".95"/>
-            <circle cx="358" cy="90" r="38" fill="#fff9ee"/>
-            <text x="358" y="100" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="900" fill="#1a1a1a">74</text>
-            <line x1="358" y1="136" x2="358" y2="162" stroke="#CC5500" stroke-width="3"/>
-            <polygon points="348,158 368,158 358,172" fill="#CC5500"/>
-            <rect x="28"  y="178" width="80"  height="10" rx="5" fill="#f08080"/>
-            <rect x="112" y="178" width="80"  height="10" rx="5" fill="#f5b87a"/>
-            <rect x="196" y="178" width="60"  height="10" rx="5" fill="#f5d87a"/>
-            <rect x="260" y="178" width="80"  height="10" rx="5" fill="#90d090"/>
-            <rect x="344" y="178" width="108" height="10" rx="5" fill="#55b855"/>
-            <circle cx="330" cy="183" r="6" fill="#CC5500"/>
-            <rect x="28"  y="218" width="180" height="22" rx="3" fill="#f08080" opacity=".85"/>
-            <rect x="212" y="218" width="100" height="22" rx="3" fill="#f5c842" opacity=".85"/>
-            <rect x="316" y="218" width="136" height="22" rx="3" fill="#5cb85c" opacity=".85"/>
-            <text x="118" y="233" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#a00">NOT ACCEPTABLE</text>
-            <text x="262" y="233" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7a5c00">ACCEPTABLE</text>
-            <text x="384" y="233" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a6e1a">EXCELLENT</text>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Baseline Usability Studies</p>
-          <p class="card-client">SAP · CALM · ISD Hub</p>
-          <div class="card-tags"><span class="card-tag">Usability testing</span><span class="card-tag">Heuristic evaluation</span><span class="card-tag">Evidence iteration</span></div>
-          <p class="card-text">Supervised baseline usability studies to establish measurable task success benchmarks. Results informed redesigned navigation and AI-assisted entry points — moving the team from opinion-based to evidence-based decisions.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══ DELIVERY ═════════════════════════════════════════ -->
-<section id="phase-delivery" class="phase-section phase-delivery">
-  <div class="wrap">
-    <div class="phase-header">
-      <div class="phase-label-wrap"><div class="phase-label"><span class="phase-dot"></span>Delivery</div></div>
-      <div class="phase-header-body">
-        <h2>Design that ships and scales</h2>
-        <p>I close the gap between concept and working product. Delivery means production-ready specs, design system
-        alignment, close engineering collaboration, and scalable component patterns — across enterprise platforms,
-        embedded systems, and mobile.</p>
-      </div>
-    </div>
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-media">
-          <!-- Process doc illustration kept as inline SVG -->
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="dv1bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f3e0"/><stop offset="100%" stop-color="#cfe5c0"/></linearGradient></defs>
-            <rect width="480" height="270" fill="url(#dv1bg)"/>
-            <rect x="22" y="18" width="436" height="234" rx="6" fill="#fff" opacity=".88"/>
-            <rect x="22" y="18" width="436" height="30" rx="6" fill="#3D7317" opacity=".9"/>
-            <rect x="22" y="36" width="436" height="12" fill="#3D7317" opacity=".9"/>
-            <text x="36" y="38" font-family="sans-serif" font-size="11" font-weight="700" fill="#fff">Portfolio Handling Epic — UX</text>
-            <circle cx="42" cy="72" r="8" fill="#3D7317" opacity=".8"/><text x="42" y="76" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">1</text>
-            <text x="58" y="70" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">PM creates EPIC in Portfolio Jira</text>
-            <circle cx="42" cy="104" r="8" fill="#3D7317" opacity=".7"/><text x="42" y="108" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">2</text>
-            <text x="58" y="102" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">PM sets up kickoff meeting</text>
-            <circle cx="42" cy="136" r="8" fill="#3D7317" opacity=".7"/><text x="42" y="140" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">3</text>
-            <text x="58" y="134" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">UX Designer creates UX User Story</text>
-            <circle cx="42" cy="167" r="8" fill="#3D7317" opacity=".7"/><text x="42" y="171" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">4</text>
-            <text x="58" y="165" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">UX Designer adds component for market &amp; team</text>
-            <circle cx="42" cy="195" r="8" fill="#3D7317" opacity=".65"/><text x="42" y="199" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">5</text>
-            <text x="58" y="193" font-family="sans-serif" font-size="9" font-weight="700" fill="#1a1a1a">Definition of Done criteria</text>
-            <line x1="42" y1="80" x2="42" y2="96" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
-            <line x1="42" y1="112" x2="42" y2="128" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
-            <line x1="42" y1="144" x2="42" y2="159" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
-            <line x1="42" y1="175" x2="42" y2="187" stroke="#3D7317" stroke-width="1.5" opacity=".3"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">UX Product Development Process</p>
-          <p class="card-client">SAP · CALM · ISD Hub</p>
-          <div class="card-tags"><span class="card-tag">Fiori design system</span><span class="card-tag">Frontend collab</span><span class="card-tag">Cross-functional lead</span></div>
-          <p class="card-text">Defined and rolled out a structured UX delivery process across six scrum teams — covering epic intake, UX story creation, Definition of Done criteria, and handoff. Gave design work a consistent place in the planning cycle.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="dv2bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#cfe5c0"/><stop offset="100%" stop-color="#e8f3e0"/></linearGradient><clipPath id="dv2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#dv2bg)"/>
-            <image href="img/complexloans-02.gif" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#dv2c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">24-Application Fiori Suite</p>
-          <p class="card-client">SAP · S/4HANA Banking for Complex Loans</p>
-          <div class="card-tags"><span class="card-tag">Fiori design system</span><span class="card-tag">Cross-functional lead</span><span class="card-tag">Frontend collab</span></div>
-          <p class="card-text">Delivered UX leadership across multiple Fiori applications for S/4HANA's Complex Loans suite. Reduced navigational steps and eliminated context-switching errors for loans management.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="dv3bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8f3e0"/><stop offset="100%" stop-color="#d4e8c4"/></linearGradient><clipPath id="dv3c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#dv3bg)"/>
-            <image href="img/bosch-02.jpg" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#dv3c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Cross-Platform Design System</p>
-          <p class="card-client">Bosch · Smart Home Division</p>
-          <div class="card-tags"><span class="card-tag">Design system</span><span class="card-tag">Frontend collab</span></div>
-          <p class="card-text">Reconciled iOS HIG and Material Design into a unified Bosch interaction language. Built a shared component library reducing handoff time and enabling faster feature parity across both platforms.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="dv4bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4e8c4"/><stop offset="100%" stop-color="#e8f3e0"/></linearGradient><clipPath id="dv4c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#dv4bg)"/>
-            <image href="img/bbva-01.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#dv4c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Private Wealth iOS Application</p>
-          <p class="card-client">BBVA · Private Wealth Management</p>
-          <div class="card-tags"><span class="card-tag">Frontend collab</span><span class="card-tag">Cross-functional lead</span></div>
-          <p class="card-text">Designed portfolio overview, trade flow, and risk indicator screens applying iOS native patterns. Data visualization prioritized scannability and confidence — distinctly separate from BBVA's retail offering.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══ IMPACT ════════════════════════════════════════════ -->
-<section id="phase-impact" class="phase-section phase-impact">
-  <div class="wrap">
-    <div class="phase-header">
-      <div class="phase-label-wrap"><div class="phase-label"><span class="phase-dot"></span>Impact</div></div>
-      <div class="phase-header-body">
-        <h2>Closing the loop from decision to outcome</h2>
-        <p>Good design is measurable. I close the loop between design decisions and business or user outcomes —
-        through tracking metrics, qualitative signals, and organisational learning that improves future work.</p>
-      </div>
-    </div>
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="im1bg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#f5d0be"/><stop offset="100%" stop-color="#fbe8de"/></linearGradient><marker id="im1arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 1 L7 4 L0 7 Z" fill="#B54800" opacity=".7"/></marker></defs>
-            <rect width="480" height="270" fill="url(#im1bg)"/>
-            <circle cx="72" cy="90" r="22" fill="#B54800" opacity=".12"/>
-            <circle cx="72" cy="80" r="8" fill="#B54800" opacity=".55"/>
-            <path d="M58 105 Q72 92 86 105" fill="#B54800" opacity=".45"/>
-            <rect x="58" y="108" width="28" height="20" rx="2" fill="#fff" opacity=".7"/>
-            <line x1="62" y1="113" x2="82" y2="113" stroke="#B54800" stroke-width="1.2" opacity=".5"/>
-            <line x1="62" y1="119" x2="78" y2="119" stroke="#B54800" stroke-width="1.2" opacity=".5"/>
-            <text x="72" y="144" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Field Research</text>
-            <line x1="102" y1="105" x2="152" y2="105" stroke="#B54800" stroke-width="1.5" stroke-dasharray="4,3" opacity=".5" marker-end="url(#im1arr)"/>
-            <ellipse cx="194" cy="105" rx="38" ry="28" fill="#B54800" opacity=".15" stroke="#B54800" stroke-width="1.5"/>
-            <text x="194" y="100" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">Workers need</text>
-            <text x="194" y="111" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">mobile access</text>
-            <text x="194" y="143" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Key Insight</text>
-            <line x1="234" y1="105" x2="282" y2="105" stroke="#B54800" stroke-width="1.5" marker-end="url(#im1arr)"/>
-            <rect x="286" y="76" width="160" height="58" rx="6" fill="#B54800" opacity=".18" stroke="#B54800" stroke-width="1.5"/>
-            <rect x="286" y="76" width="160" height="24" rx="6" fill="#B54800" opacity=".5"/>
-            <text x="366" y="92" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#fff">Roadmap Decision</text>
-            <text x="366" y="110" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800">Extend to mobile &amp; in-vehicle</text>
-            <text x="366" y="143" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#B54800" opacity=".8">Strategic Shift</text>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Research Informing Strategic Roadmap</p>
-          <p class="card-client">Baur · High Voltage Measurement</p>
-          <div class="card-tags"><span class="card-tag">Strategic influence</span><span class="card-tag">Field research</span></div>
-          <p class="card-text">Field research findings from contextual inquiries directly influenced BAUR's strategic product roadmap — validating the decision to extend to mobile and in-vehicle form factors. Observation in the field ended with measurable business direction change.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-media">
-          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-            <defs><linearGradient id="im2bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fbe8de"/><stop offset="100%" stop-color="#f5d0be"/></linearGradient><clipPath id="im2c"><rect x="0" y="0" width="480" height="270"/></clipPath></defs>
-            <rect width="480" height="270" fill="url(#im2bg)"/>
-            <image href="img/syn-analytics-to-design-synthesis-02.png" x="0" y="0" width="480" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#im2c)"/>
-          </svg>
-          <div class="card-accent"></div>
-        </div>
-        <div class="card-body">
-          <p class="card-title">Analytics-to-Design Synthesis</p>
-          <p class="card-client">SAP · CALM</p>
-          <div class="card-tags"><span class="card-tag">UX metrics &amp; OKRs</span><span class="card-tag">Analytics to insight</span><span class="card-tag">Strategic influence</span></div>
-          <p class="card-text">Implemented usage tracking within SAP CALM to capture behavioral signals at scale. Synthesized quantitative patterns alongside qualitative usability findings to define meaningful success metrics — creating a shared language between UX, product management, and engineering.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 <!-- ══ CLIENTS ═══════════════════════════════════════════ -->
-<section id="clients" class="clients-section">
+<section class="clients-section" aria-label="Selected client organisations">
   <div class="wrap">
     <h2>Selected Clients</h2>
-    <div class="clients-grid">
-      <img src="img/clients/amg.png"       alt="AMG">
-      <img src="img/clients/baur.png"      alt="Baur">
-      <img src="img/clients/bbc.png"       alt="BBC">
-      <img src="img/clients/bbva.png"      alt="BBVA">
-      <img src="img/clients/bosch.png"     alt="Bosch">
-      <img src="img/clients/daimler.png"   alt="Daimler">
-      <img src="img/clients/ericsson.png"  alt="Ericsson">
-      <img src="img/clients/heidenhain.png" alt="Heidenhain">
-      <img src="img/clients/helaba.png"    alt="Helaba">
-      <img src="img/clients/neusoft.png"   alt="Neusoft">
-      <img src="img/clients/sap.png"       alt="SAP">
-      <img src="img/clients/siemens.png"   alt="Siemens">
-      <img src="img/clients/toll.png"      alt="Toll">
-      <img src="img/clients/vodafone.png"  alt="Vodafone">
-      <img src="img/clients/vw.png"        alt="VW">
-      <img src="img/clients/zeiss.png"     alt="Zeiss">
-      <img src="img/clients/lg.png"        alt="LG">
-      <img src="img/clients/citi.png"      alt="Citi">
+    <div class="clients-grid" role="list">
+      <img src="img/clients/sap.png"       alt="SAP"         role="listitem" loading="lazy">
+      <img src="img/clients/bosch.png"     alt="Bosch"       role="listitem" loading="lazy">
+      <img src="img/clients/zeiss.png"     alt="Zeiss"       role="listitem" loading="lazy">
+      <img src="img/clients/bbva.png"      alt="BBVA"        role="listitem" loading="lazy">
+      <img src="img/clients/daimler.png"   alt="Daimler"     role="listitem" loading="lazy">
+      <img src="img/clients/baur.png"      alt="BAUR"        role="listitem" loading="lazy">
+      <img src="img/clients/bbc.png"       alt="BBC"         role="listitem" loading="lazy">
+      <img src="img/clients/vodafone.png"  alt="Vodafone"    role="listitem" loading="lazy">
+      <img src="img/clients/siemens.png"   alt="Siemens"     role="listitem" loading="lazy">
+      <img src="img/clients/helaba.png"    alt="Helaba"      role="listitem" loading="lazy">
+      <img src="img/clients/heidenhain.png" alt="Heidenhain" role="listitem" loading="lazy">
+      <img src="img/clients/citi.png"      alt="Citi"        role="listitem" loading="lazy">
+      <img src="img/clients/vw.png"        alt="Volkswagen"  role="listitem" loading="lazy">
+      <img src="img/clients/amg.png"       alt="AMG"         role="listitem" loading="lazy">
+      <img src="img/clients/ericsson.png"  alt="Ericsson"    role="listitem" loading="lazy">
+      <img src="img/clients/neusoft.png"   alt="Neusoft"     role="listitem" loading="lazy">
+      <img src="img/clients/toll.png"      alt="Toll"        role="listitem" loading="lazy">
+      <img src="img/clients/lg.png"        alt="LG"          role="listitem" loading="lazy">
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- ══ FOOTER ════════════════════════════════════════════ -->
-<footer id="contact">
+<footer id="contact" role="contentinfo">
   <div class="wrap">
-    <h3>Get in touch</h3>
-    <a href="mailto:sha@s-albrecht.com">sha@s-albrecht.com</a>
-    <a href="tel:+4915201029573">+49 152 01029573</a>
+    <h2>Get in touch</h2>
+    <div class="footer-links">
+      <a href="mailto:sha@s-albrecht.com">sha@s-albrecht.com</a>
+      <a href="tel:+4915201029573">+49 152 01029573</a>
+    </div>
+    <p class="footer-copy">© Stephan Albrecht, portfolio on branch portfolio/google-strategic-lead, not yet published</p>
   </div>
 </footer>
 
-<!-- ══ SCRIPTS ══════════════════════════════════════════ -->
 <script>
-// ── Topbar: hide until hero scrolls away, then show ────
 (function () {
+  'use strict';
   var topbar = document.querySelector('.topbar');
-  var hero   = document.getElementById('about');
-  if (!topbar || !hero) return;
-  topbar.classList.add('is-hidden');
-
-  new IntersectionObserver(function (entries) {
-    topbar.classList.toggle('is-hidden', entries[0].isIntersecting);
-  }, { threshold: 0 }).observe(hero);
-})();
-
-// ── Sticky header: hide label when stuck ───────────────
-(function () {
-  var TOPBAR_H = 52;
-  document.querySelectorAll('.phase-section').forEach(function (section) {
-    var header  = section.querySelector('.phase-header');
-    if (!header) return;
-
-    var sentinel = document.createElement('div');
-    sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px;pointer-events:none;';
-    section.style.position = 'relative';
-    section.insertBefore(sentinel, section.firstChild);
-
+  var heroEl  = document.getElementById('hero');
+  if (topbar && heroEl) {
+    topbar.classList.add('is-hidden');
     new IntersectionObserver(function (entries) {
-      header.classList.toggle('is-stuck', !entries[0].isIntersecting);
-    }, {
-      rootMargin: '-' + TOPBAR_H + 'px 0px 0px 0px',
-      threshold: 0
-    }).observe(sentinel);
-  });
-})();
-
-// ── Scroll-spy: topbar nav ──────────────────────────────
-(function () {
-  const links = document.querySelectorAll('.topbar-nav a[data-phase]');
-  const sections = Array.from(links).map(a => ({
-    el: document.querySelector(a.getAttribute('href')),
-    link: a
-  })).filter(s => s.el);
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => l.classList.remove('is-active'));
-        const match = sections.find(s => s.el === e.target);
+      topbar.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(heroEl);
+  }
+  var navLinks = Array.from(document.querySelectorAll('.topbar-nav a[href^="#"]'));
+  var sections = navLinks.map(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    return { el: document.getElementById(id), link: a };
+  }).filter(function (s) { return s.el; });
+  if (sections.length) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (l) { l.classList.remove('is-active'); });
+        var match = sections.find(function (s) { return s.el === e.target; });
         if (match) match.link.classList.add('is-active');
-      }
-    });
-  }, { rootMargin: '-52px 0px -60% 0px', threshold: 0 });
-
-  sections.forEach(s => obs.observe(s.el));
-})();
-
-// ── Double-diamond animated follower ───────────────────
-(function () {
-  var root = document.getElementById('pdlc-diagram');
-  var circle = document.getElementById('dd-follower');
-  if (!root || !circle) return;
-
-  var PATH = [
-    [16,156],[88,92],[160,156],[88,220],[16,156],[88,92],[160,156],
-    [232,92],[304,156],[232,220],[160,156],[232,92],[304,156],
-    [336,156],
-    [408,92],[480,156],[408,220],[336,156],[408,92],[480,156],
-    [552,92],[624,156],[552,220],[480,156],[552,92],[624,156],
-    [656,156],
-    [728,92],[800,156],[728,220],[656,156],[728,92],[800,156],
-    [872,92],[944,156],[872,220],[800,156],[872,92],[944,156]
-  ];
-  var PHASE_SEGS = [
-    {phase:'discovery', from:0, to:6},{phase:'synthesis', from:6, to:12},
-    {phase:'ideation', from:13, to:19},{phase:'validation', from:19, to:25},
-    {phase:'delivery', from:26, to:32},{phase:'impact', from:32, to:38}
-  ];
-  var COLORS = {discovery:'#0A6ED1',synthesis:'#6E33C8',ideation:'#00827A',validation:'#CC5500',delivery:'#3D7317',impact:'#B54800'};
-  var segs = [], totalLen = 0;
-  for (var i = 0; i < PATH.length - 1; i++) {
-    var dx=PATH[i+1][0]-PATH[i][0], dy=PATH[i+1][1]-PATH[i][1];
-    var len=Math.sqrt(dx*dx+dy*dy);
-    segs.push({len:len, cum:totalLen});
-    totalLen += len;
+      });
+    }, { rootMargin: '-56px 0px -60% 0px', threshold: 0 }).observe.apply(
+      new IntersectionObserver(function(){}),
+      [null]
+    );
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (l) { l.classList.remove('is-active'); });
+        var match = sections.find(function (s) { return s.el === e.target; });
+        if (match) match.link.classList.add('is-active');
+      });
+    }, { rootMargin: '-56px 0px -60% 0px', threshold: 0 });
+    sections.forEach(function (s) { spy.observe(s.el); });
   }
-  var DURATION=30000, END_PAUSE=3000, startTs=null, lastPhase=null;
-  function getPhase(si) { for(var j=0;j<PHASE_SEGS.length;j++){if(si>=PHASE_SEGS[j].from&&si<PHASE_SEGS[j].to)return PHASE_SEGS[j].phase;} return null; }
-  function deactivateAll() { root.querySelectorAll('.dd-phase-group').forEach(function(g){g.classList.remove('dd-active');}); }
-  function setPhaseActive(name) {
-    if(name===lastPhase)return; deactivateAll(); lastPhase=name;
-    if(!name)return;
-    var g=root.querySelector('.dd-phase-group[data-phase="'+name+'"]');
-    if(g)g.classList.add('dd-active');
-    circle.setAttribute('stroke', COLORS[name]||'#aaa');
-  }
-  function tick(ts) {
-    if(!startTs) startTs=ts;
-    var elapsed=ts-startTs;
-    if(elapsed>=DURATION){
-      var end=PATH[PATH.length-1]; circle.setAttribute('cx',end[0]); circle.setAttribute('cy',end[1]);
-      deactivateAll(); lastPhase=null; circle.setAttribute('opacity','0');
-      setTimeout(function(){startTs=null;circle.setAttribute('cx',PATH[0][0]);circle.setAttribute('cy',PATH[0][1]);circle.setAttribute('opacity','1');requestAnimationFrame(tick);},END_PAUSE);
-      return;
-    }
-    var dist=(elapsed/DURATION)*totalLen;
-    var si=segs.length-1;
-    for(var i=0;i<segs.length;i++){if(dist<segs[i].cum+segs[i].len){si=i;break;}}
-    var seg=segs[si], t=Math.min((dist-seg.cum)/seg.len,1);
-    circle.setAttribute('cx', PATH[si][0]+(PATH[si+1][0]-PATH[si][0])*t);
-    circle.setAttribute('cy', PATH[si][1]+(PATH[si+1][1]-PATH[si][1])*t);
-    setPhaseActive(getPhase(si));
-    requestAnimationFrame(tick);
-  }
-  var started=false;
-  new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting&&!started){started=true;circle.setAttribute('opacity','1');requestAnimationFrame(tick);}
-  },{threshold:0.2}).observe(root);
-})();
+}());
 </script>
-
 </body>
 </html>
