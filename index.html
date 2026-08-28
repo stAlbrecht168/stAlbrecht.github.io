@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Stephan Albrecht — Strategic UX &amp; Product Design Lead</title>
+  <title>Stephan Albrecht | Strategic UX &amp; Product Design Lead</title>
   <meta name="description" content="Strategic UX and Product Design Lead with 17+ years experience across enterprise platforms, AI-first products, and cloud operations. Currently leading UX for SAP Cloud ALM.">
   <link rel="canonical" href="https://stalbrecht168.github.io/stAlbrecht.github.io/">
   <style>
@@ -73,14 +73,24 @@
       min-height: 82vh; display: flex; align-items: center;
       background: var(--bg); position: relative; overflow: hidden;
     }
-    .hero::before {
-      content: ""; position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 60% 55% at 75% 40%, rgba(88,166,255,.12) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 45% at 88% 65%, rgba(188,140,255,.09) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 35% at 55% 75%, rgba(63,185,80,.07) 0%, transparent 60%);
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: url('img/calm-hero.png') center right / cover no-repeat;
     }
-    .hero-inner { position: relative; z-index: 1; padding: 5.5rem 0 4.5rem; width: 100%; }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, #0d1117 0%, rgba(13,17,23,.95) 30%, rgba(13,17,23,.72) 58%, rgba(13,17,23,.12) 100%),
+        linear-gradient(to top, #0d1117 0%, rgba(13,17,23,.55) 12%, transparent 30%);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background:
+        radial-gradient(ellipse 60% 55% at 75% 40%, rgba(88,166,255,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 45% at 88% 65%, rgba(188,140,255,.06) 0%, transparent 65%);
+    }
+    .hero-inner { position: relative; z-index: 2; padding: 5.5rem 0 4.5rem; width: 100%; }
+    @media (max-width: 640px) { .hero-bg { background-position: 70% center; } }
     .hero-content { max-width: 640px; }
     .hero-namerow { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.75rem; }
     .hero-photo {
@@ -273,7 +283,7 @@
 <!-- ══ TOPBAR ═══════════════════════════════════════════ -->
 <header class="topbar" role="banner">
   <div class="wrap topbar-inner">
-    <span class="topbar-name" aria-label="Stephan Albrecht — portfolio home">Stephan Albrecht</span>
+    <span class="topbar-name" aria-label="Stephan Albrecht, portfolio home">Stephan Albrecht</span>
     <nav class="topbar-nav" aria-label="Main navigation">
       <a href="#work">Work</a>
       <a href="#leadership">Leadership</a>
@@ -290,6 +300,7 @@
 
 <!-- ══ HERO ═════════════════════════════════════════════ -->
 <section class="hero" id="hero" aria-labelledby="hero-name">
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="wrap">
       <div class="hero-content">
@@ -301,8 +312,8 @@
             <p class="hero-descriptor">Product Strategy · Enterprise Platforms · AI Experiences</p>
           </div>
         </div>
-        <p class="hero-bio">I lead UX strategy across complex enterprise products — building the operating models, research practices, and AI design capabilities that let distributed teams ship with quality.</p>
-        <p class="hero-bio">Currently leading UX for SAP Cloud ALM across six agile teams. Formerly consulting across financial services, life sciences, industrial, and media — 18+ organisations over 17 years.</p>
+        <p class="hero-bio">I lead UX strategy across complex enterprise products, building the operating models, research practices, and AI design capabilities that let distributed teams ship with quality.</p>
+        <p class="hero-bio">Currently leading UX for SAP Cloud ALM across six agile teams. Formerly consulting across financial services, life sciences, industrial, and media, 18+ organisations over 17 years.</p>
         <div class="hero-ctas">
           <a class="btn-primary" href="#work">View my work</a>
           <a class="btn-secondary" href="#contact">Get in touch</a>
@@ -388,7 +399,7 @@
         <div class="cs-card-body">
           <p class="cs-card-context">BAUR · High Voltage Measurement · 2019–2020</p>
           <h3 class="cs-card-title">From field research to a new product direction</h3>
-          <p class="cs-card-challenge">BAUR wanted to expand their diagnostic software beyond expert lab users to field service technicians — but had no evidence of how those users actually work.</p>
+          <p class="cs-card-challenge">BAUR wanted to expand their diagnostic software beyond expert lab users to field service technicians, but had no evidence of how those users actually work.</p>
           <ul class="cs-card-contributions" aria-label="Key contributions">
             <li>Contextual inquiry with cable-testing engineers in real operating environments</li>
             <li>Field conditions synthesis: gloved use, time pressure, in-vehicle constraints</li>
@@ -409,20 +420,20 @@
       <div>
         <div class="section-label" style="color:var(--green)"><span class="section-label-dot" style="background:var(--green)"></span>Leadership</div>
         <h2 class="section-heading" id="leadership-heading" style="color:var(--green)">How I lead design at scale</h2>
-        <p class="section-body">Running UX across six agile scrum teams means design can't be reactive. I build the operating models, processes, and quality criteria that give design a consistent place in the planning cycle — from first brief through shipping and impact tracking.</p>
+        <p class="section-body">Running UX across six agile scrum teams means design can't be reactive. I build the operating models, processes, and quality criteria that give design a consistent place in the planning cycle, from first brief through shipping and impact tracking.</p>
         <ul class="capability-list" aria-label="Leadership capabilities">
           <li class="capability-item">
             <span class="capability-icon cap-green" aria-hidden="true">OM</span>
             <div>
               <p class="capability-text-head">UX Operating Model</p>
-              <p class="capability-text-body">A 7-step model integrating DLD and HPOM — defining the UX contribution at each stage from discovery through delivery, with explicit quality gates.</p>
+              <p class="capability-text-body">A 7-step model integrating DLD and HPOM, defining the UX contribution at each stage from discovery through delivery, with explicit quality gates.</p>
             </div>
           </li>
           <li class="capability-item">
             <span class="capability-icon cap-blue" aria-hidden="true">DR</span>
             <div>
               <p class="capability-text-head">Design Readiness Framework</p>
-              <p class="capability-text-body">5-dimension readiness scoring per epic — reducing late scope changes by identifying design uncertainty before quarterly planning locks.</p>
+              <p class="capability-text-body">5-dimension readiness scoring per epic, reducing late scope changes by identifying design uncertainty before quarterly planning locks.</p>
             </div>
           </li>
           <li class="capability-item">
@@ -436,7 +447,7 @@
             <span class="capability-icon cap-amber" aria-hidden="true">SA</span>
             <div>
               <p class="capability-text-head">Stakeholder Alignment</p>
-              <p class="capability-text-body">Translating design rationale into product and engineering language — making design decisions defensible through evidence, not preference.</p>
+              <p class="capability-text-body">Translating design rationale into product and engineering language, making design decisions defensible through evidence, not preference.</p>
             </div>
           </li>
         </ul>
@@ -444,7 +455,7 @@
       <div class="strategy-visual" role="img" aria-label="UX operating model pipeline diagram reconstructed from original project methodology">
         <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
           <rect width="480" height="300" fill="#0a160a"/>
-          <text x="240" y="32" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing=".1em" fill="#3fb950" opacity=".6">UX OPERATING MODEL — 7 STAGES</text>
+          <text x="240" y="32" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" letter-spacing=".1em" fill="#3fb950" opacity=".6">UX OPERATING MODEL · 7 STAGES</text>
           <!-- Stage boxes -->
           <rect x="12"  y="54" width="56" height="42" rx="4" fill="#3fb950" opacity=".14" stroke="#3fb950" stroke-width="1" stroke-opacity=".4"/>
           <text x="40"  y="71" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#3fb950">Brief &amp;</text>
@@ -478,7 +489,7 @@
           <text x="424" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#8b949e">Analytics</text>
           <!-- Teams adopted across row -->
           <line x1="12" y1="136" x2="468" y2="136" stroke="#3fb950" stroke-width="1" stroke-opacity=".12"/>
-          <text x="240" y="156" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#8b949e">Adopted across 6 scrum teams — SAP Cloud ALM</text>
+          <text x="240" y="156" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#8b949e">Adopted across 6 scrum teams, SAP Cloud ALM</text>
           <rect x="28"  y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
           <text x="59"  y="175" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#3fb950">Team 1</text>
           <rect x="98"  y="164" width="62" height="16" rx="3" fill="#3fb950" opacity=".08" stroke="#3fb950" stroke-width=".8" stroke-opacity=".3"/>
@@ -555,7 +566,7 @@
             <span class="capability-icon cap-green" aria-hidden="true">SR</span>
             <div>
               <p class="capability-text-head">Skills Registry &amp; AI Practice</p>
-              <p class="capability-text-body">Chapter-wide capability map with AI practice strand — agentic workflow design, evaluation methodology, and trust-first pattern libraries.</p>
+              <p class="capability-text-body">Chapter-wide capability map with AI practice strand, agentic workflow design, evaluation methodology, and trust-first pattern libraries.</p>
             </div>
           </li>
         </ul>
@@ -575,27 +586,27 @@
       <div>
         <div class="section-label" style="color:var(--amber)"><span class="section-label-dot" style="background:var(--amber)"></span>Research</div>
         <h2 class="section-heading" id="research-heading" style="color:var(--amber)">Research as a strategic capability</h2>
-        <p class="section-body">Research isn't just validation — it's the mechanism that changes what a product team believes. I use field research, contextual inquiry, and structured synthesis to surface insights that shift roadmap priorities, not just screen layouts.</p>
+        <p class="section-body">Research isn't just validation, it's the mechanism that changes what a product team believes. I use field research, contextual inquiry, and structured synthesis to surface insights that shift roadmap priorities, not just screen layouts.</p>
         <ul class="capability-list" aria-label="Research capabilities">
           <li class="capability-item">
             <span class="capability-icon cap-amber" aria-hidden="true">CI</span>
             <div>
               <p class="capability-text-head">Contextual Inquiry</p>
-              <p class="capability-text-body">Field research with users in real operating environments — workshops, cable test bays, vehicle cabs — to surface constraints that would never appear in a usability lab.</p>
+              <p class="capability-text-body">Field research with users in real operating environments, workshops, cable test bays, vehicle cabs, to surface constraints that would never appear in a usability lab.</p>
             </div>
           </li>
           <li class="capability-item">
             <span class="capability-icon cap-blue" aria-hidden="true">SY</span>
             <div>
               <p class="capability-text-head">Synthesis Frameworks</p>
-              <p class="capability-text-body">Workflow analysis of 24+ applications, qualitative research synthesis, and AI benchmark scoring — turning raw data into defensible design rationale.</p>
+              <p class="capability-text-body">Workflow analysis of 24+ applications, qualitative research synthesis, and AI benchmark scoring, turning raw data into defensible design rationale.</p>
             </div>
           </li>
           <li class="capability-item">
             <span class="capability-icon cap-green" aria-hidden="true">EB</span>
             <div>
               <p class="capability-text-head">Evidence-Based Iteration</p>
-              <p class="capability-text-body">Usability studies with SUS scoring, analytics-to-design synthesis pipelines, and UX maturity tracking — moving teams from opinion to evidence.</p>
+              <p class="capability-text-body">Usability studies with SUS scoring, analytics-to-design synthesis pipelines, and UX maturity tracking, moving teams from opinion to evidence.</p>
             </div>
           </li>
         </ul>
@@ -641,7 +652,7 @@
           <text x="391" y="202" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#8b949e">Workflow · AI · usability</text>
           <!-- Principle box -->
           <rect x="24" y="228" width="432" height="38" rx="6" fill="#e3b341" opacity=".06" stroke="#e3b341" stroke-width="1" stroke-opacity=".15"/>
-          <text x="240" y="244" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e3b341">Research changes what the team believes — not just what they build.</text>
+          <text x="240" y="244" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#e3b341">Research changes what the team believes, not just what they build.</text>
           <text x="240" y="257" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#8b949e">Every field study should end with a changed roadmap priority or a new design brief.</text>
         </svg>
         <p class="visual-caption">Reconstructed for this portfolio from the original project methodology; confidential product details removed.</p>
@@ -678,7 +689,7 @@
         <div class="work-card-body">
           <p class="work-card-title">Intelligent Automation for Microscopy</p>
           <p class="work-card-client">Zeiss · SmartZoom</p>
-          <p class="work-card-text">UX concepts for intelligent image acquisition automation — reducing operational complexity while preserving expert control. An early exploration of automation UX challenges that inform current AI work.</p>
+          <p class="work-card-text">UX concepts for intelligent image acquisition automation, reducing operational complexity while preserving expert control. An early exploration of automation UX challenges that inform current AI work.</p>
         </div>
       </div>
 
@@ -722,7 +733,7 @@
         <div class="work-card-body">
           <p class="work-card-title">Analytics-to-Design Synthesis</p>
           <p class="work-card-client">SAP · Cloud ALM</p>
-          <p class="work-card-text">Usage tracking implementation and behavioural signal synthesis alongside qualitative research — creating a shared language between UX, product, and engineering for defining success metrics.</p>
+          <p class="work-card-text">Usage tracking implementation and behavioural signal synthesis alongside qualitative research, creating a shared language between UX, product, and engineering for defining success metrics.</p>
         </div>
       </div>
 
@@ -738,9 +749,9 @@
         <div class="section-label"><span class="section-label-dot"></span>About</div>
         <h2 class="section-heading" id="about-heading" style="color:var(--blue)">Stephan Albrecht</h2>
         <div class="about-body">
-          <p>I'm a UX Design Lead at SAP, currently leading design across SAP Cloud ALM — a cloud operations platform used by enterprise IT teams globally. My work spans UX strategy, operating model design, team leadership, and AI experience design.</p>
+          <p>I'm a UX Design Lead at SAP, currently leading design across SAP Cloud ALM, a cloud operations platform used by enterprise IT teams globally. My work spans UX strategy, operating model design, team leadership, and AI experience design.</p>
           <p>Before SAP, I spent a decade as a consulting UX lead, working across financial services (BBVA, Helaba, Citi), industrial and medtech (Bosch, Zeiss, BAUR, Heidenhain), life sciences (SAP iCTSM), and media (BBC, Vodafone, Ericsson). Each engagement added a different dimension to how I think about design at the intersection of complexity, constraint, and user trust.</p>
-          <p>My current focus is the intersection of large-scale UX strategy and AI product design — how organisations build the capability to ship AI features that are genuinely useful, trustworthy, and evaluable.</p>
+          <p>My current focus is the intersection of large-scale UX strategy and AI product design, how organisations build the capability to ship AI features that are genuinely useful, trustworthy, and evaluable.</p>
           <p>Based in Germany. Open to strategic conversations about design leadership roles.</p>
         </div>
       </div>
@@ -752,7 +763,7 @@
             <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"/><path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.97a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.779a.749.749 0 1 1 1.06-1.06l1.97 1.97Z"/></svg>
             Download CV (PDF)
           </span>
-          <p class="cv-notice">CV PDF not yet attached — add the final PDF as <code>cv/stephan-albrecht-cv.pdf</code> and update the button href above.</p>
+          <p class="cv-notice">CV PDF not yet attached, add the final PDF as <code>cv/stephan-albrecht-cv.pdf</code> and update the button href above.</p>
         </div>
       </div>
     </div>
@@ -796,7 +807,7 @@
       <a href="mailto:sha@s-albrecht.com">sha@s-albrecht.com</a>
       <a href="tel:+4915201029573">+49 152 01029573</a>
     </div>
-    <p class="footer-copy">© Stephan Albrecht — portfolio on branch portfolio/google-strategic-lead, not yet published</p>
+    <p class="footer-copy">© Stephan Albrecht, portfolio on branch portfolio/google-strategic-lead, not yet published</p>
   </div>
 </footer>
 

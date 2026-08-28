@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Turning Agentic UX Principles into Executable Practice — Stephan Albrecht</title>
-  <meta name="description" content="How I built an AI evaluation framework and trust-first design patterns for SAP Joule — moving from vague AI principles to repeatable, rigorous UX practice.">
+  <title>Turning Agentic UX Principles into Executable Practice | Stephan Albrecht</title>
+  <meta name="description" content="How I built an AI evaluation framework and trust-first design patterns for SAP Joule, moving from vague AI principles to repeatable, rigorous UX practice.">
   <link rel="canonical" href="https://stalbrecht168.github.io/stAlbrecht.github.io/work/agentic-ux-practice.html">
   <style>
     @font-face { font-family:"72 Black";   src:url("../fonts/72-Black-full.woff") format("woff"); font-weight:900; font-display:swap; }
@@ -43,7 +43,7 @@
     .cs-tag {
       display: inline-flex; align-items: center; gap: .4rem;
       font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900;
-      letter-spacing: .07em; text-transform: uppercase; color: var(--purple); margin-bottom: 1rem;
+      letter-spacing: .01em; color: var(--purple); margin-bottom: 1rem;
     }
     .cs-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
     .cs-title { font-family: "72 Black", sans-serif; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.1rem; }
@@ -51,14 +51,14 @@
     .cs-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
     @media (max-width: 640px) { .cs-summary-grid { grid-template-columns: 1fr; } }
     .cs-summary-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; }
-    .cs-summary-label { font-family: "72 Black", sans-serif; font-size: .65rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+    .cs-summary-label { font-family: "72 Black", sans-serif; font-size: .65rem; font-weight: 900; letter-spacing: .01em; color: var(--muted); margin-bottom: .35rem; }
     .cs-summary-value { font-family: "72 Regular", sans-serif; font-size: .875rem; color: var(--text); line-height: 1.5; }
     .cs-hero-img { width: 100%; aspect-ratio: 16/7; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); }
     .cs-body { padding: 3.5rem 0 5rem; }
     .cs-section { margin-bottom: 3.5rem; }
     .cs-section-label {
       font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900;
-      letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
+      letter-spacing: .01em; color: var(--muted);
       margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem;
     }
     .cs-section-label::before { content: ""; display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
@@ -75,12 +75,12 @@
     .dim-head { font-family: "72 Black", sans-serif; font-size: .875rem; font-weight: 900; color: var(--text); margin-bottom: .3rem; }
     .dim-body { font-family: "72 Regular", sans-serif; font-size: .82rem; color: var(--muted); line-height: 1.55; }
     .learning-box { background: var(--bg-card); border: 1px solid rgba(188,140,255,.25); border-radius: 8px; padding: 1.5rem; margin-top: 1rem; }
-    .learning-box-label { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: var(--purple); margin-bottom: .5rem; }
+    .learning-box-label { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .01em; color: var(--purple); margin-bottom: .5rem; }
     .learning-box p { font-family: "72 Regular", sans-serif; font-size: .9rem; color: var(--muted); line-height: 1.7; max-width: unset; }
     .cs-nav { border-top: 1px solid var(--bg-subtle); padding: 2.5rem 0; }
     .cs-nav-inner { display: flex; justify-content: space-between; gap: 1rem; }
     .cs-nav-link { display: flex; flex-direction: column; gap: .2rem; }
-    .cs-nav-direction { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+    .cs-nav-direction { font-family: "72 Black", sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .01em; color: var(--muted); }
     .cs-nav-title { font-family: "72 Regular", sans-serif; font-size: .9rem; color: var(--purple); transition: text-decoration .15s; }
     .cs-nav-link:hover .cs-nav-title { text-decoration: underline; }
     .cs-nav-link.right { text-align: right; }
@@ -130,16 +130,16 @@
     <div class="cs-section">
       <div class="cs-section-label">The challenge</div>
       <h2>Principles without criteria are unenforceable</h2>
-      <p>By 2023, AI assistants were appearing in enterprise products faster than teams could develop a coherent UX position. The challenge wasn't a lack of interest in AI UX — there was plenty of that. The challenge was that most of the available guidance lived at the level of principles: be transparent, avoid overconfidence, design for trust.</p>
+      <p>By 2023, AI assistants were appearing in enterprise products faster than teams could develop a coherent UX position. The challenge wasn't a lack of interest in AI UX, there was plenty of that. The challenge was that most of the available guidance lived at the level of principles: be transparent, avoid overconfidence, design for trust.</p>
       <p>Principles are necessary but insufficient for product practice. They don't tell a designer what to include in a Joule service result. They don't tell a product manager whether a proposed automation is appropriately scoped. They don't give a team a basis for comparing two AI interaction patterns and choosing one over the other.</p>
-      <p>What was needed was a translation layer — a way of turning high-level AI UX principles into specific, testable criteria that could be applied to real product decisions.</p>
+      <p>What was needed was a translation layer, a way of turning high-level AI UX principles into specific, testable criteria that could be applied to real product decisions.</p>
     </div>
 
     <div class="cs-section">
       <div class="cs-section-label">The approach</div>
       <h2>From principles to a 6-dimension evaluation framework</h2>
-      <p>I developed an evaluation framework for agent output quality grounded in the specific interaction patterns of SAP Joule — a conversational AI assistant embedded in Cloud ALM and other SAP products. The framework gives designers and product managers a structured way to assess whether an AI-generated result meets UX quality bar before it ships.</p>
-      <p>Each dimension captures a distinct quality axis — not overlap — so that scoring one dimension doesn't contaminate another. The six dimensions:</p>
+      <p>I developed an evaluation framework for agent output quality grounded in the specific interaction patterns of SAP Joule, a conversational AI assistant embedded in Cloud ALM and other SAP products. The framework gives designers and product managers a structured way to assess whether an AI-generated result meets UX quality bar before it ships.</p>
+      <p>Each dimension captures a distinct quality axis, not overlap, so that scoring one dimension doesn't contaminate another. The six dimensions:</p>
       <div class="dim-grid">
         <div class="dim-cell">
           <div class="dim-num">01</div>
@@ -154,7 +154,7 @@
         <div class="dim-cell">
           <div class="dim-num">03</div>
           <div class="dim-head">Format Accuracy</div>
-          <div class="dim-body">Is the result presented in a form appropriate to the use case — scanning vs reading, structured vs narrative, single-step vs multi-step guidance?</div>
+          <div class="dim-body">Is the result presented in a form appropriate to the use case, scanning vs reading, structured vs narrative, single-step vs multi-step guidance?</div>
         </div>
         <div class="dim-cell">
           <div class="dim-num">04</div>
@@ -177,7 +177,7 @@
     <div class="cs-section">
       <div class="cs-section-label">Application</div>
       <h2>Applying the framework to Joule</h2>
-      <p>The framework was applied concretely to Joule service result guidance — the AI-generated recommendations that appear when a user queries a maintenance plan, change document, or operational alert. These results vary significantly in quality depending on how the underlying prompt and result rendering are configured.</p>
+      <p>The framework was applied concretely to Joule service result guidance, the AI-generated recommendations that appear when a user queries a maintenance plan, change document, or operational alert. These results vary significantly in quality depending on how the underlying prompt and result rendering are configured.</p>
       <p>Using the evaluation framework as a design review tool, the team could identify specific quality gaps in existing Joule outputs: cases where results scored well on completeness but poorly on trust calibration (output was thorough but didn't signal uncertainty appropriately), or high on interaction efficiency but low on cognitive load (too many steps were automated, removing the user's ability to verify before committing).</p>
       <div class="cs-visual" role="img" aria-label="Joule AI design concept exploration">
         <img src="../img/ideate-joule-01.svg" alt="Joule interaction concept ideation" loading="lazy">
@@ -188,15 +188,15 @@
     <div class="cs-section">
       <div class="cs-section-label">Trust-first patterns</div>
       <h2>Making automation legible</h2>
-      <p>A core insight driving the interaction pattern work is that enterprise users need AI to be explainable, not just accurate. When an AI assistant suggests an action — a change to a maintenance plan, a priority escalation, an automated response to a monitoring alert — the user needs enough context to make a trust decision, not just an accept/reject binary.</p>
+      <p>A core insight driving the interaction pattern work is that enterprise users need AI to be explainable, not just accurate. When an AI assistant suggests an action, a change to a maintenance plan, a priority escalation, an automated response to a monitoring alert, the user needs enough context to make a trust decision, not just an accept/reject binary.</p>
       <p>The trust-first patterns I developed for Joule-adjacent workflows address this directly: agent actions are annotated with the reasoning basis (what signal triggered this suggestion), reversibility is made explicit before the user commits, and multi-step automations expose a confirmation checkpoint at the point of highest consequence rather than at the start of the flow.</p>
-      <p>These patterns are now part of the shared AI practice resources in the CSX UX chapter's Skills Registry — available to any team in the chapter working on AI-adjacent features.</p>
+      <p>These patterns are now part of the shared AI practice resources in the CSX UX chapter's Skills Registry, available to any team in the chapter working on AI-adjacent features.</p>
     </div>
 
     <div class="cs-section">
       <div class="cs-section-label">Chapter-level capability</div>
       <h2>Skills Registry and AI practice strand</h2>
-      <p>The evaluation framework and trust-first patterns were designed from the beginning as chapter-level assets — not just tools for the Cloud ALM team, but reusable resources that any designer in the CSX UX chapter could apply to their own AI feature work.</p>
+      <p>The evaluation framework and trust-first patterns were designed from the beginning as chapter-level assets, not just tools for the Cloud ALM team, but reusable resources that any designer in the CSX UX chapter could apply to their own AI feature work.</p>
       <p>The AI practice strand in the Skills Registry includes: the 6-dimension evaluation framework with scoring guidance, the trust-first interaction pattern library, a reading list structured by AI UX topic, and a set of review prompts for AI feature critique sessions. The strand is maintained and updated as new AI features are developed across the chapter.</p>
     </div>
 
@@ -205,9 +205,9 @@
       <h2>Reflections</h2>
       <div class="learning-box">
         <div class="learning-box-label">The gap between AI principles and practice is a translation problem</div>
-        <p>The most useful thing I did in this work was not build a better evaluation rubric — it was identify that the rubric was not the missing piece. Teams already had access to AI UX principles. What they lacked was a shared vocabulary for discussing AI output quality in product reviews, and a format for expressing that quality as design criteria rather than design preferences. The framework mattered because it gave the conversation a structure, not because it contained truths nobody had thought of before.</p>
+        <p>The most useful thing I did in this work was not build a better evaluation rubric, it was identify that the rubric was not the missing piece. Teams already had access to AI UX principles. What they lacked was a shared vocabulary for discussing AI output quality in product reviews, and a format for expressing that quality as design criteria rather than design preferences. The framework mattered because it gave the conversation a structure, not because it contained truths nobody had thought of before.</p>
       </div>
-      <p style="margin-top:1.25rem;">The trust calibration dimension also produced the most interesting design tension: teams consistently over-invested in signalling AI confidence (showing "AI-generated" badges, adding lengthy caveats) when the user's primary need was to understand what action to take next. Reducing trust signalling to what's decision-relevant — rather than what's epistemically accurate — was a non-obvious shift that required pushing back against a well-intentioned but counterproductive instinct.</p>
+      <p style="margin-top:1.25rem;">The trust calibration dimension also produced the most interesting design tension: teams consistently over-invested in signalling AI confidence (showing "AI-generated" badges, adding lengthy caveats) when the user's primary need was to understand what action to take next. Reducing trust signalling to what's decision-relevant, rather than what's epistemically accurate, was a non-obvious shift that required pushing back against a well-intentioned but counterproductive instinct.</p>
     </div>
 
   </div>
