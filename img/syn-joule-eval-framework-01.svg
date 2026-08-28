@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420">
+<defs>
+  <linearGradient id="purpHdr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#4c1d95"/>
+    <stop offset="100%" stop-color="#6d28d9"/>
+  </linearGradient>
+</defs>
+
+<!-- Background -->
+<rect width="960" height="420" fill="#f3f4f6"/>
+
+<!-- Document header -->
+<rect x="0" y="0" width="960" height="48" fill="white"/>
+<rect x="0" y="0" width="4" height="48" fill="#7c3aed"/>
+<line x1="0" y1="48" x2="960" y2="48" stroke="#e5e7eb" stroke-width="1"/>
+<text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="600" fill="#9ca3af" letter-spacing="1.5">EVALUATION FRAMEWORK</text>
+<text x="20" y="38" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#111827">Agent Output Quality — Benchmark Dimensions</text>
+<rect x="730" y="12" width="212" height="22" rx="11" fill="#ede9fe"/>
+<text x="836" y="27" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#5b21b6" text-anchor="middle">6 evaluation dimensions · 3 scenarios</text>
+<text x="948" y="44" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic" text-anchor="end">Reconstructed for this portfolio; original methodology remains confidential.</text>
+
+<!-- Column header row -->
+<!-- Category col: x 0-155 -->
+<rect x="0" y="48" width="155" height="44" fill="white"/>
+<text x="16" y="66" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#374151">Category</text>
+<text x="16" y="82" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af">Interaction scenario</text>
+
+<!-- Dimension header cells (155–960, 6 × 134px) -->
+<rect x="155" y="48" width="805" height="44" fill="url(#purpHdr)"/>
+
+<!-- D1 Value Alignment: centre 222 -->
+<text x="222" y="66" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.55)" text-anchor="middle" letter-spacing="1">01</text>
+<text x="222" y="83" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Value Alignment</text>
+
+<!-- D2 Output Completeness: centre 356 -->
+<text x="356" y="66" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.55)" text-anchor="middle" letter-spacing="1">02</text>
+<text x="356" y="83" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Output Completeness</text>
+
+<!-- D3 Format Accuracy: centre 490 -->
+<text x="490" y="66" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.55)" text-anchor="middle" letter-spacing="1">03</text>
+<text x="490" y="83" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Format Accuracy</text>
+
+<!-- D4 Cognitive Load: centre 624 -->
+<text x="624" y="66" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.55)" text-anchor="middle" letter-spacing="1">04</text>
+<text x="624" y="83" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Cognitive Load</text>
+
+<!-- D5 Trust Calibration: centre 758 -->
+<text x="758" y="66" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.55)" text-anchor="middle" letter-spacing="1">05</text>
+<text x="758" y="83" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Trust Calibration</text>
+
+<!-- D6 Interaction Efficiency: centre 892 -->
+<text x="892" y="66" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.55)" text-anchor="middle" letter-spacing="1">06</text>
+<text x="892" y="83" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Interaction Efficiency</text>
+
+<!-- ═══ ROW 1: Capability Discovery (y 92–201) ═══ -->
+<rect x="0" y="92" width="960" height="109" fill="white"/>
+<rect x="0" y="92" width="4" height="109" fill="#7c3aed" opacity=".55"/>
+<!-- Category cell -->
+<text x="16" y="112" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#111827">Capability Discovery</text>
+<text x="16" y="126" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">User explores what the agent</text>
+<text x="16" y="138" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">can do ("What can you do?")</text>
+<line x1="16" y1="145" x2="140" y2="145" stroke="#e5e7eb" stroke-width="1"/>
+<text x="16" y="157" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">Measures: does agent help</text>
+<text x="16" y="168" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">user build accurate mental</text>
+<text x="16" y="179" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">model of its capabilities?</text>
+
+<!-- D1 primary -->
+<circle cx="169" cy="108" r="5" fill="#7c3aed"/>
+<text x="179" y="112" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="163" y="128" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Intent understood</text>
+<text x="163" y="141" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Response on target</text>
+<text x="163" y="154" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Not overly literal</text>
+
+<!-- D2 secondary -->
+<circle cx="303" cy="108" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="313" y="112" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="297" y="128" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Capabilities covered</text>
+<text x="297" y="141" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Avoids over-detail</text>
+
+<!-- D3 secondary -->
+<circle cx="437" cy="108" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="447" y="112" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="431" y="128" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Scannable format</text>
+<text x="431" y="141" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Appropriate brevity</text>
+
+<!-- D4 primary -->
+<circle cx="571" cy="108" r="5" fill="#7c3aed"/>
+<text x="581" y="112" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="565" y="128" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Not overwhelming</text>
+<text x="565" y="141" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Next step is clear</text>
+<text x="565" y="154" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Easy to parse</text>
+
+<!-- D5 secondary -->
+<circle cx="705" cy="108" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="715" y="112" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="699" y="128" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Confidence level clear</text>
+<text x="699" y="141" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Limitations signalled</text>
+
+<!-- D6 primary -->
+<circle cx="839" cy="108" r="5" fill="#7c3aed"/>
+<text x="849" y="112" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="833" y="128" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Next step reachable</text>
+<text x="833" y="141" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Minimal steps needed</text>
+<text x="833" y="154" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Entry point evident</text>
+
+<!-- ═══ ROW 2: Information Retrieval (y 201–310) ═══ -->
+<rect x="0" y="201" width="960" height="109" fill="#faf9ff"/>
+<rect x="0" y="201" width="4" height="109" fill="#0891b2" opacity=".55"/>
+<text x="16" y="221" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#111827">Information Retrieval</text>
+<text x="16" y="235" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">User requests specific data,</text>
+<text x="16" y="247" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">status, or factual output</text>
+<line x1="16" y1="254" x2="140" y2="254" stroke="#e5e7eb" stroke-width="1"/>
+<text x="16" y="266" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">Measures: is the response</text>
+<text x="16" y="277" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">factually complete and</text>
+<text x="16" y="288" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">directly on-target?</text>
+
+<!-- D1 primary -->
+<circle cx="169" cy="217" r="5" fill="#7c3aed"/>
+<text x="179" y="221" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="163" y="237" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Request understood</text>
+<text x="163" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• No topic drift</text>
+
+<!-- D2 primary -->
+<circle cx="303" cy="217" r="5" fill="#7c3aed"/>
+<text x="313" y="221" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="297" y="237" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• All parts included</text>
+<text x="297" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• No missing context</text>
+<text x="297" y="263" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Not over-specified</text>
+
+<!-- D3 secondary -->
+<circle cx="437" cy="217" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="447" y="221" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="431" y="237" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Structured for scan</text>
+<text x="431" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Correct density</text>
+
+<!-- D4 secondary -->
+<circle cx="571" cy="217" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="581" y="221" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="565" y="237" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Dense data structured</text>
+<text x="565" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Key result findable</text>
+
+<!-- D5 primary -->
+<circle cx="705" cy="217" r="5" fill="#7c3aed"/>
+<text x="715" y="221" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="699" y="237" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Accuracy verifiable</text>
+<text x="699" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Uncertainty flagged</text>
+<text x="699" y="263" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• No invented facts</text>
+
+<!-- D6 secondary -->
+<circle cx="839" cy="217" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="849" y="221" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="833" y="237" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Actionable result</text>
+<text x="833" y="250" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Source accessible</text>
+
+<!-- ═══ ROW 3: Action Guidance (y 310–419) ═══ -->
+<rect x="0" y="310" width="960" height="109" fill="white"/>
+<rect x="0" y="310" width="4" height="109" fill="#059669" opacity=".55"/>
+<text x="16" y="330" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#111827">Action Guidance</text>
+<text x="16" y="344" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">User executes task with</text>
+<text x="16" y="356" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">agent-guided steps</text>
+<line x1="16" y1="363" x2="140" y2="363" stroke="#e5e7eb" stroke-width="1"/>
+<text x="16" y="375" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">Measures: can user act</text>
+<text x="16" y="386" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">safely, with appropriate</text>
+<text x="16" y="397" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#9ca3af" font-style="italic">control at each step?</text>
+
+<!-- D1 secondary -->
+<circle cx="169" cy="326" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="179" y="330" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="163" y="346" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• Steps match user goal</text>
+<text x="163" y="359" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• No unnecessary actions</text>
+
+<!-- D2 secondary -->
+<circle cx="303" cy="326" r="5" fill="#7c3aed" opacity=".35"/>
+<text x="313" y="330" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#9ca3af">Secondary</text>
+<text x="297" y="346" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• All steps surfaced</text>
+<text x="297" y="359" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#6b7280">• No hidden prerequisites</text>
+
+<!-- D3 primary -->
+<circle cx="437" cy="326" r="5" fill="#7c3aed"/>
+<text x="447" y="330" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="431" y="346" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Steps clearly ordered</text>
+<text x="431" y="359" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Order unambiguous</text>
+<text x="431" y="372" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Decision points clear</text>
+
+<!-- D4 primary -->
+<circle cx="571" cy="326" r="5" fill="#7c3aed"/>
+<text x="581" y="330" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="565" y="346" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• One decision per step</text>
+<text x="565" y="359" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• No re-reading needed</text>
+<text x="565" y="372" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Action scope is clear</text>
+
+<!-- D5 primary -->
+<circle cx="705" cy="326" r="5" fill="#7c3aed"/>
+<text x="715" y="330" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="699" y="346" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Reversibility shown</text>
+<text x="699" y="359" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Action reasoning visible</text>
+<text x="699" y="372" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• High-stakes checkpoint</text>
+
+<!-- D6 primary -->
+<circle cx="839" cy="326" r="5" fill="#7c3aed"/>
+<text x="849" y="330" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Primary</text>
+<text x="833" y="346" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Partial automation ok</text>
+<text x="833" y="359" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Control preserved</text>
+<text x="833" y="372" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#374151">• Undo path visible</text>
+
+<!-- Grid lines -->
+<line x1="0" y1="92" x2="960" y2="92" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="0" y1="201" x2="960" y2="201" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="0" y1="310" x2="960" y2="310" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="0" y1="419" x2="960" y2="419" stroke="#e5e7eb" stroke-width="1"/>
+
+<!-- Vertical column dividers -->
+<line x1="155" y1="48" x2="155" y2="420" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="289" y1="48" x2="289" y2="420" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="423" y1="48" x2="423" y2="420" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="557" y1="48" x2="557" y2="420" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="691" y1="48" x2="691" y2="420" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="825" y1="48" x2="825" y2="420" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="3,3"/>
+
+</svg>
