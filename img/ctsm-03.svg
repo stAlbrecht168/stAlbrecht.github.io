@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420">
+<defs>
+  <linearGradient id="ctsmHdr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#1a0d3a"/>
+    <stop offset="100%" stop-color="#240f50"/>
+  </linearGradient>
+</defs>
+
+<!-- Background -->
+<rect width="960" height="420" fill="#0d1117"/>
+
+<!-- ── Document header ── -->
+<rect x="0" y="0" width="960" height="44" fill="#161b22"/>
+<rect x="0" y="0" width="4" height="44" fill="#bc8cff"/>
+<line x1="0" y1="44" x2="960" y2="44" stroke="#30363d" stroke-width="1"/>
+<text x="20" y="16" font-family="Arial,Helvetica,sans-serif" font-size="8.5" font-weight="600" fill="#8b949e" letter-spacing="1.2">CTMS</text>
+<text x="20" y="34" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Clinical Trial Supply Chain — Role Involvement</text>
+<rect x="704" y="12" width="244" height="20" rx="10" fill="rgba(188,140,255,.12)"/>
+<text x="826" y="25" font-family="Arial,Helvetica,sans-serif" font-size="8.5" fill="#bc8cff" text-anchor="middle">6 process stages · 5 stakeholder roles</text>
+<text x="948" y="40" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#6e7681" font-style="italic" text-anchor="end">For illustration purposes.</text>
+
+<!-- ── Column headers ── -->
+<rect x="0" y="44" width="170" height="64" fill="#161b22"/>
+<text x="16" y="64" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="#e6edf3">Role</text>
+<text x="16" y="78" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#8b949e">Process stage →</text>
+
+<rect x="170" y="44" width="790" height="64" fill="url(#ctsmHdr)"/>
+
+<!-- Stage 1.1: 170-302, center 236 -->
+<text x="236" y="65" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.4)" letter-spacing=".8">1.1</text>
+<text x="236" y="79" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="white">Trigger</text>
+<text x="236" y="93" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">CTMS demand</text>
+
+<!-- Stage 1.2: 302-434, center 368 -->
+<text x="368" y="65" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.4)" letter-spacing=".8">1.2</text>
+<text x="368" y="79" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="white">Drug Substances</text>
+<text x="368" y="93" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Compound definition</text>
+
+<!-- Stage 1.3: 434-566, center 500 -->
+<text x="500" y="65" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.4)" letter-spacing=".8">1.3</text>
+<text x="500" y="79" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="white">Trial Definition</text>
+<text x="500" y="93" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Iterative simulations</text>
+
+<!-- Stage 1.4: 566-698, center 632 -->
+<text x="632" y="65" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.4)" letter-spacing=".8">1.4</text>
+<text x="632" y="79" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="white">Demand Planning</text>
+<text x="632" y="93" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Calculate &amp; schedule</text>
+
+<!-- Stage 1.5: 698-830, center 764 -->
+<text x="764" y="65" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.4)" letter-spacing=".8">1.5</text>
+<text x="764" y="79" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="white">Protocol Approval</text>
+<text x="764" y="93" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Paper-based review</text>
+
+<!-- Stage 1.6: 830-960, center 895 -->
+<text x="895" y="65" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="rgba(255,255,255,.4)" letter-spacing=".8">1.6</text>
+<text x="895" y="79" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" fill="white">Study Approval</text>
+<text x="895" y="93" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Final sign-off</text>
+
+<!-- Header bottom border -->
+<line x1="0" y1="108" x2="960" y2="108" stroke="#30363d" stroke-width="1"/>
+
+<!-- ── Vertical column dividers ── -->
+<line x1="170" y1="44" x2="170" y2="420" stroke="#30363d" stroke-width="1"/>
+<line x1="302" y1="108" x2="302" y2="420" stroke="#1e2530" stroke-width="1"/>
+<line x1="434" y1="108" x2="434" y2="420" stroke="#1e2530" stroke-width="1"/>
+<line x1="566" y1="108" x2="566" y2="420" stroke="#1e2530" stroke-width="1"/>
+<line x1="698" y1="108" x2="698" y2="420" stroke="#1e2530" stroke-width="1"/>
+<line x1="830" y1="108" x2="830" y2="420" stroke="#1e2530" stroke-width="1"/>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- ROW: Ghost Tina — CTMS system trigger  y 108-154 (46px)  -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<rect x="0" y="108" width="960" height="46" fill="#0d1117"/>
+<rect x="0" y="108" width="3" height="46" fill="#3fb950" opacity=".2"/>
+<circle cx="26" cy="131" r="12" fill="rgba(63,185,80,.06)" stroke="#3fb950" stroke-width="1" stroke-opacity=".2"/>
+<text x="26" y="135" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#3fb950" opacity=".25">T</text>
+<text x="50" y="127" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#e6edf3" opacity=".2">Tina Trial</text>
+<text x="50" y="139" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#8b949e" opacity=".25">Clinical Trial Manager — system scope</text>
+<!-- Ghost bar: stages 1.3–1.5 (x 442–822, w 380) -->
+<rect x="442" y="125" width="380" height="10" rx="3" fill="#3fb950" opacity=".13"/>
+<line x1="0" y1="154" x2="960" y2="154" stroke="#1e2530" stroke-width="1"/>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- ROW: Tina Trial  y 154-210 (56px)                         -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<rect x="0" y="154" width="960" height="56" fill="#0f1419"/>
+<rect x="0" y="154" width="3" height="56" fill="#3fb950"/>
+<circle cx="26" cy="182" r="13" fill="rgba(63,185,80,.14)" stroke="#3fb950" stroke-width="1.5" stroke-opacity=".55"/>
+<text x="26" y="186" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#3fb950">T</text>
+<text x="50" y="178" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#e6edf3">Tina Trial</text>
+<text x="50" y="191" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#8b949e">Clinical Trial Manager</text>
+<!-- Active bars: stage 1.3 (x=442,w=116) and 1.5 (x=706,w=116) -->
+<rect x="442" y="176" width="116" height="12" rx="3" fill="#3fb950"/>
+<rect x="706" y="176" width="116" height="12" rx="3" fill="#3fb950"/>
+<line x1="0" y1="210" x2="960" y2="210" stroke="#1e2530" stroke-width="1"/>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- ROW: Franka Forecaster  y 210-266 (56px)                  -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<rect x="0" y="210" width="960" height="56" fill="#0d1117"/>
+<rect x="0" y="210" width="3" height="56" fill="#58a6ff"/>
+<circle cx="26" cy="238" r="13" fill="rgba(88,166,255,.12)" stroke="#58a6ff" stroke-width="1.5" stroke-opacity=".5"/>
+<text x="26" y="242" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#58a6ff">F</text>
+<text x="50" y="234" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#e6edf3">Franka Forecaster</text>
+<text x="50" y="247" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#8b949e">Demand Forecaster &amp; Planner</text>
+<!-- Bar spanning stages 1.3–1.4 (x=442 to x=690, w=248) -->
+<rect x="442" y="232" width="248" height="12" rx="3" fill="#58a6ff"/>
+<line x1="0" y1="266" x2="960" y2="266" stroke="#1e2530" stroke-width="1"/>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- ROW: Susan Supply  y 266-322 (56px)                       -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<rect x="0" y="266" width="960" height="56" fill="#0f1419"/>
+<rect x="0" y="266" width="3" height="56" fill="#f0883e"/>
+<circle cx="26" cy="294" r="13" fill="rgba(240,136,62,.11)" stroke="#f0883e" stroke-width="1.5" stroke-opacity=".5"/>
+<text x="26" y="298" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#f0883e">S</text>
+<text x="50" y="290" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#e6edf3">Susan Supply</text>
+<text x="50" y="303" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#8b949e">Supply Chain Planner</text>
+<!-- Bars: stage 1.1, 1.4, 1.6 -->
+<rect x="178" y="288" width="116" height="12" rx="3" fill="#f0883e"/>
+<rect x="574" y="288" width="116" height="12" rx="3" fill="#f0883e"/>
+<rect x="838" y="288" width="114" height="12" rx="3" fill="#f0883e"/>
+<line x1="0" y1="322" x2="960" y2="322" stroke="#1e2530" stroke-width="1"/>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- ROW: Pedro Production  y 322-378 (56px)                   -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<rect x="0" y="322" width="960" height="56" fill="#0d1117"/>
+<rect x="0" y="322" width="3" height="56" fill="#e3b341"/>
+<circle cx="26" cy="350" r="13" fill="rgba(227,179,65,.1)" stroke="#e3b341" stroke-width="1.5" stroke-opacity=".5"/>
+<text x="26" y="354" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#e3b341">P</text>
+<text x="50" y="346" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#e6edf3">Pedro Production</text>
+<text x="50" y="359" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#8b949e">Production Manager</text>
+<!-- Bar: stage 1.4 -->
+<rect x="574" y="344" width="116" height="12" rx="3" fill="#e3b341"/>
+<line x1="0" y1="378" x2="960" y2="378" stroke="#1e2530" stroke-width="1"/>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- ROW: Daniel Delivery  y 378-420 (42px)                    -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<rect x="0" y="378" width="960" height="42" fill="#0f1419"/>
+<rect x="0" y="378" width="3" height="42" fill="#f85149"/>
+<circle cx="26" cy="399" r="12" fill="rgba(248,81,73,.1)" stroke="#f85149" stroke-width="1.5" stroke-opacity=".5"/>
+<text x="26" y="403" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" fill="#f85149">D</text>
+<text x="50" y="395" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#e6edf3">Daniel Delivery</text>
+<text x="50" y="408" font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#8b949e">Delivery Manager</text>
+<!-- Bar: stage 1.4 -->
+<rect x="574" y="393" width="116" height="12" rx="3" fill="#f85149"/>
+
+<!-- Bottom border -->
+<line x1="0" y1="420" x2="960" y2="420" stroke="#30363d" stroke-width="1"/>
+
+</svg>
