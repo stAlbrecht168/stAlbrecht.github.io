@@ -47,7 +47,7 @@
   </g>
 
   <!-- Labels -->
-  <text x="145" y="182" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle" letter-spacing="3">JOULE</text>
+  <text x="145" y="182" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle" letter-spacing="3">Joule</text>
   <text x="145" y="208" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="rgba(255,255,255,.65)" text-anchor="middle">Hello [User name],</text>
   <text x="145" y="228" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="bold" fill="white" text-anchor="middle">How can I help you?</text>
 
@@ -111,7 +111,7 @@
   <rect x="14" y="156" width="262" height="162" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1"/>
   <!-- Card header -->
   <rect x="14" y="156" width="262" height="26" rx="6" fill="#f3f4f6"/>
-  <text x="26" y="174" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#6b7280">CUSTOMER ACCOUNTS</text>
+  <text x="26" y="174" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#6b7280">Customer Accounts</text>
 
   <!-- Row A -->
   <line x1="14" y1="220" x2="276" y2="220" stroke="#e5e7eb" stroke-width="1"/>
@@ -177,7 +177,7 @@
   <rect x="14" y="136" width="262" height="162" rx="6" fill="white" stroke="#e5e7eb" stroke-width="1"/>
   <!-- Card header -->
   <rect x="14" y="136" width="262" height="26" rx="6" fill="#f3f4f6"/>
-  <text x="26" y="154" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#6b7280">RELATED ACCOUNTS</text>
+  <text x="26" y="154" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="600" fill="#6b7280">Related Accounts</text>
 
   <!-- Row X -->
   <line x1="14" y1="200" x2="276" y2="200" stroke="#e5e7eb" stroke-width="1"/>
