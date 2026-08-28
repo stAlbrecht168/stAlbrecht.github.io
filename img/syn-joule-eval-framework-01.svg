@@ -13,7 +13,7 @@
 <rect x="0" y="0" width="960" height="48" fill="white"/>
 <rect x="0" y="0" width="4" height="48" fill="#7c3aed"/>
 <line x1="0" y1="48" x2="960" y2="48" stroke="#e5e7eb" stroke-width="1"/>
-<text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="600" fill="#9ca3af" letter-spacing="1.5">EVALUATION FRAMEWORK</text>
+<text x="20" y="17" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="600" fill="#9ca3af" letter-spacing="1.5">Evaluation Framework</text>
 <text x="20" y="38" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#111827">Agent Output Quality — Benchmark Dimensions</text>
 <rect x="730" y="12" width="212" height="22" rx="11" fill="#ede9fe"/>
 <text x="836" y="27" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#5b21b6" text-anchor="middle">6 evaluation dimensions · 3 scenarios</text>
