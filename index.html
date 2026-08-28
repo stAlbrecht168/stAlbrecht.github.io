@@ -74,8 +74,9 @@
       background: var(--bg); position: relative; overflow: hidden;
     }
     .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
+      position: absolute; inset: -15% 0; z-index: 0;
       background: url('img/calm-hero.png') center right / cover no-repeat;
+      will-change: transform;
     }
     .hero-bg::after {
       content: ''; position: absolute; inset: 0;
@@ -89,7 +90,10 @@
         radial-gradient(ellipse 60% 55% at 75% 40%, rgba(88,166,255,.08) 0%, transparent 70%),
         radial-gradient(ellipse 50% 45% at 88% 65%, rgba(188,140,255,.06) 0%, transparent 65%);
     }
-    .hero-inner { position: relative; z-index: 2; padding: 5.5rem 0 4.5rem; width: 100%; }
+    .hero-inner { position: relative; z-index: 2; padding: 5.5rem 0 4.5rem; width: 100%; will-change: opacity, transform; }
+    .hero-anim { opacity: 0; transform: translateY(28px); transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+    .hero-anim.is-in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .hero-anim { opacity: 1; transform: none; transition: none; } }
     @media (max-width: 640px) { .hero-bg { background-position: 70% center; } }
     .hero-content { max-width: 640px; }
     .hero-namerow { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.75rem; }
@@ -305,7 +309,7 @@
   <div class="hero-inner">
     <div class="wrap">
       <div class="hero-content">
-        <div class="hero-namerow">
+        <div class="hero-namerow hero-anim">
           <img src="img/stephan.png" alt="Stephan Albrecht" class="hero-photo">
           <div class="hero-name-block">
             <p class="hero-role">UX Design Lead @ SAP</p>
@@ -313,13 +317,13 @@
             <p class="hero-descriptor">Product Strategy · Enterprise Platforms · AI Experiences</p>
           </div>
         </div>
-        <p class="hero-bio">I lead UX strategy across complex enterprise products, building the operating models, research practices, and AI design capabilities that let distributed teams ship with quality.</p>
-        <p class="hero-bio">Currently leading UX for SAP Cloud ALM across six agile teams. Formerly consulting across financial services, life sciences, industrial, and media, 18+ organisations over 17 years.</p>
-        <div class="hero-ctas">
+        <p class="hero-bio hero-anim">I lead UX strategy across complex enterprise products, building the operating models, research practices, and AI design capabilities that let distributed teams ship with quality.</p>
+        <p class="hero-bio hero-anim">Currently leading UX for SAP Cloud ALM across six agile teams. Formerly consulting across financial services, life sciences, industrial, and media, 18+ organisations over 17 years.</p>
+        <div class="hero-ctas hero-anim">
           <a class="btn-primary" href="#work">View my work</a>
           <a class="btn-secondary" href="#contact">Get in touch</a>
         </div>
-        <div class="hero-stats" role="list" aria-label="Career highlights">
+        <div class="hero-stats hero-anim" role="list" aria-label="Career highlights">
           <div role="listitem">
             <div class="stat-num">6</div>
             <div class="stat-label">agile product teams led across UX</div>
@@ -807,7 +811,7 @@
       <a href="mailto:sha@s-albrecht.com">sha@s-albrecht.com</a>
       <a href="tel:+4915201029573">+49 152 01029573</a>
     </div>
-    <p class="footer-copy">© Stephan Albrecht, portfolio on branch portfolio/google-strategic-lead, not yet published</p>
+    <p class="footer-copy">© Stephan Albrecht</p>
   </div>
 </footer>
 
@@ -828,17 +832,6 @@
     return { el: document.getElementById(id), link: a };
   }).filter(function (s) { return s.el; });
   if (sections.length) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        navLinks.forEach(function (l) { l.classList.remove('is-active'); });
-        var match = sections.find(function (s) { return s.el === e.target; });
-        if (match) match.link.classList.add('is-active');
-      });
-    }, { rootMargin: '-56px 0px -60% 0px', threshold: 0 }).observe.apply(
-      new IntersectionObserver(function(){}),
-      [null]
-    );
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
@@ -848,6 +841,42 @@
       });
     }, { rootMargin: '-56px 0px -60% 0px', threshold: 0 });
     sections.forEach(function (s) { spy.observe(s.el); });
+  }
+
+  // ── Hero entrance stagger ──────────────────────────────
+  var heroAnims = Array.from(document.querySelectorAll('.hero-anim'));
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    heroAnims.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var delays = [60, 200, 310, 420, 550];
+    heroAnims.forEach(function (el, i) {
+      setTimeout(function () { el.classList.add('is-in'); }, delays[i] !== undefined ? delays[i] : 60 + i * 120);
+    });
+  }
+
+  // ── Hero parallax + fade on scroll ────────────────────
+  var heroBg    = document.querySelector('.hero-bg');
+  var heroInner = document.querySelector('.hero-inner');
+  var scrollTicking = false;
+
+  function onHeroScroll() {
+    var scrollY = window.scrollY;
+    var heroH   = heroEl ? heroEl.offsetHeight : window.innerHeight;
+    heroBg.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+    var progress = Math.max(0, Math.min((scrollY - heroH * 0.15) / (heroH * 0.5), 1));
+    heroInner.style.opacity   = String(1 - progress * 0.88);
+    heroInner.style.transform = 'translateY(' + (-progress * 44) + 'px)';
+    scrollTicking = false;
+  }
+
+  if (!reducedMotion && heroBg && heroInner) {
+    window.addEventListener('scroll', function () {
+      if (!scrollTicking) {
+        requestAnimationFrame(onHeroScroll);
+        scrollTicking = true;
+      }
+    }, { passive: true });
   }
 }());
 </script>
