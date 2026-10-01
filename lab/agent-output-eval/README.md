@@ -31,14 +31,16 @@ When clicked → Load responses → Build eval request → Score with OpenAI →
 
 ## Run it
 
-The **Score with OpenAI** node is wired to use an n8n **OpenAI credential** (`openAiApi`) via a predefined credential type, calling `/chat/completions`. It works against the real OpenAI API or any OpenAI-compatible gateway (LiteLLM, Azure OpenAI, a local proxy).
+The **Score with OpenAI** node calls `https://api.openai.com/v1/chat/completions` and authenticates with an n8n **OpenAI credential** (`openAiApi`).
 
 1. Import `workflow.json` into n8n (Workflows → Import from File). Accept any node-version update prompts.
-2. Open **Score with OpenAI** → under Credentials, select your OpenAI credential. If it points at a gateway (e.g. LiteLLM), the credential's Base URL is used; the node's URL is the chat-completions path on that gateway.
-3. Set the model. In **Build eval request**, change `MODEL` to a model id your credential can serve. Not sure what that is? Open `<your-base-url>/models` in a browser, or check the model dropdown of a native n8n OpenAI node.
+2. In the OpenAI credential, set **API Key** to a real `sk-...` key from platform.openai.com and leave **Base URL** at its default (`https://api.openai.com/v1`). Then open the **Score with OpenAI** node and confirm that credential is selected.
+3. The model defaults to `gpt-4o` (valid on OpenAI). Change it in **Build eval request** only if you want another (e.g. `gpt-4o-mini` for lower cost).
 4. Click **Execute Workflow**. Read the `report` field on the final node.
 
-> If every response comes back `PARSE FAILED` or `0/18`, the model id is wrong for your gateway (step 3) or the credential isn't selected (step 2). A single 401 means the credential's key is missing/invalid.
+> A `401` means the credential's key is missing or invalid. `PARSE FAILED` / `0/18` across the board usually means the model id is one your key can't access.
+
+**Using a gateway instead?** To route through LiteLLM / Azure OpenAI / a local proxy, point the node's URL at that gateway's `/chat/completions` and set the model id to one it serves. (Note: the gateway must be a real running service; an n8n Base URL like `http://localhost:5678/...` is not one.)
 
 ## Customise
 
