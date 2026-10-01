@@ -1,0 +1,145 @@
+{
+  "name": "Agent-Output Evaluation (6 dimensions)",
+  "nodes": [
+    {
+      "id": "n1",
+      "name": "When clicked",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "n2",
+      "name": "Load responses",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ],
+      "parameters": {
+        "jsCode": "// Sample batch of AI assistant responses to evaluate.\n// Swap this for a Google Sheets / CSV / database read in production.\nconst batch = [\n  { id: 'R1', userGoal: 'Decide whether to approve a change request before a maintenance window',\n    response: 'Change CR-4821 looks fine. Approve it.' },\n  { id: 'R2', userGoal: 'Understand why an operational alert fired and what to do',\n    response: 'Alert A-77 fired on node EU-3 at 02:14 due to memory pressure (92% for 10 min). Likely cause: batch job BJ-12 overlap. Suggested next step: reschedule BJ-12 outside the 02:00-03:00 window. This is reversible and needs no restart.' },\n  { id: 'R3', userGoal: 'Get a maintenance plan summary for a technician heading on-site',\n    response: 'There are several maintenance items. Please review the plan in the system for details on each task, including open ones, completed ones, and any that might be overdue or upcoming depending on scheduling.' }\n];\nreturn batch.map(r => ({ json: r }));\n"
+      }
+    },
+    {
+      "id": "n3",
+      "name": "Build eval request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        300
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Runs once PER response. Build the Claude request that scores it on 6 dimensions.\nconst r = $json;\n\nconst rubric = `Score this AI assistant response on six dimensions, each 0-3 (0 = fails, 3 = excellent):\n1. Value Alignment: addresses the user's actual goal, not just the literal query.\n2. Output Completeness: contains what's needed to act, without noise.\n3. Format Accuracy: presented in a form fit for the use (scan vs read, steps vs prose).\n4. Cognitive Load: low interpretation effort; decisions and next steps disambiguated.\n5. Trust Calibration: signals uncertainty, verification needs, and reversibility appropriately.\n6. Interaction Efficiency: minimal steps to act; any automation proposed with appropriate control.`;\n\nconst prompt = `${rubric}\n\nUSER GOAL: ${r.userGoal}\nAI RESPONSE: ${r.response}\n\nReturn ONLY valid minified JSON, no markdown fences:\n{\"scores\":[{\"dimension\":\"Value Alignment\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Output Completeness\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Format Accuracy\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Cognitive Load\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Trust Calibration\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Interaction Efficiency\",\"score\":0,\"note\":\"\"}],\"verdict\":\"one sentence\"}`;\n\nreturn { json: { id: r.id, userGoal: r.userGoal, response: r.response, requestBody: {\n  model: 'claude-sonnet-4-5',\n  max_tokens: 1200,\n  messages: [{ role: 'user', content: prompt }]\n} } };\n"
+      }
+    },
+    {
+      "id": "n4",
+      "name": "Score with Claude",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "YOUR_ANTHROPIC_API_KEY"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.requestBody }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "n5",
+      "name": "Aggregate + flag",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        300
+      ],
+      "parameters": {
+        "jsCode": "// Pair each Claude result with its source response, score, prioritise, render Markdown.\nconst scored = $input.all();\nconst metas = $('Build eval request').all();\nconst THRESHOLD = 12; // out of 18\n\nconst rows = scored.map((item, i) => {\n  const meta = metas[i] ? metas[i].json : {};\n  let text = '';\n  try { text = item.json.content?.[0]?.text ?? ''; } catch (e) {}\n  let parsed; try { parsed = JSON.parse(text); } catch (e) { parsed = null; }\n  const scores = parsed?.scores || [];\n  const total = scores.reduce((s, d) => s + (Number(d.score) || 0), 0);\n  return {\n    id: meta.id, userGoal: meta.userGoal, response: meta.response,\n    total, max: scores.length * 3, scores,\n    verdict: parsed?.verdict || '', flagged: total < THRESHOLD\n  };\n});\n\nconst avg = rows.length ? (rows.reduce((s, r) => s + r.total, 0) / rows.length).toFixed(1) : '0';\nconst flagged = rows.filter(r => r.flagged);\n\nlet md = `# Agent-Output Evaluation\\n\\n`;\nmd += `**Responses scored:** ${rows.length}\\n`;\nmd += `**Average score:** ${avg}/18\\n`;\nmd += `**Flagged for human review (< ${THRESHOLD}/18):** ${flagged.length}\\n\\n`;\nmd += `## Per-response scores (lowest first)\\n`;\nrows.sort((a, b) => a.total - b.total).forEach(r => {\n  md += `\\n### ${r.id} \u2014 ${r.total}/${r.max}${r.flagged ? '  [flag] review' : ''}\\n`;\n  md += `**Goal:** ${r.userGoal}\\n\\n`;\n  md += `**Verdict:** ${r.verdict}\\n\\n`;\n  r.scores.forEach(d => { md += `- ${d.dimension}: ${d.score}/3 \u2014 ${d.note}\\n`; });\n});\n\nreturn [{ json: { averageScore: avg, flaggedCount: flagged.length, rows, report: md } }];\n"
+      }
+    }
+  ],
+  "connections": {
+    "When clicked": {
+      "main": [
+        [
+          {
+            "node": "Load responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load responses": {
+      "main": [
+        [
+          {
+            "node": "Build eval request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build eval request": {
+      "main": [
+        [
+          {
+            "node": "Score with Claude",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score with Claude": {
+      "main": [
+        [
+          {
+            "node": "Aggregate + flag",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}
