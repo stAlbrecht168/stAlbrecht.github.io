@@ -3,7 +3,8 @@
 An n8n workflow that scores a batch of AI assistant responses against a 6-dimension output-quality rubric and flags the weak ones for human review. It is the evaluation framework from my SAP Joule work, rebuilt as a running automation: a clear rubric, applied consistently, output as a prioritised list rather than a raw dump.
 
 ![Workflow canvas](canvas.png)
-<!-- Replace canvas.png with a screenshot of the workflow open in n8n. -->
+
+A 20-second run (all five nodes executing, with the scored report at the end): [demo.gif](demo.gif) (4.8 MB) or [demo.mp4](demo.mp4) (0.7 MB, used for the portfolio embed).
 
 ## The 6 dimensions
 
