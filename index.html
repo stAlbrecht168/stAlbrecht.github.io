@@ -675,47 +675,43 @@
 <!-- ══ LAB / HOW I BUILD ═══════════════════════════════ -->
 <section id="lab" class="strategy-section" aria-labelledby="lab-heading">
   <div class="wrap">
-    <div class="section-label" style="color:var(--blue)"><span class="section-label-dot"></span>How I build</div>
-    <h2 class="section-heading" id="lab-heading" style="color:var(--blue)">I don't just spec it, I build it</h2>
-    <p class="section-body">This site is hand-written HTML, CSS, and JavaScript: no framework, no build step, custom scroll choreography coded by hand. The same hands-on habit runs through my AI work.</p>
-    <ul class="capability-list" aria-label="Hands-on work" style="margin-top:1.75rem;">
-      <li class="capability-item">
-        <span class="capability-icon cap-blue" aria-hidden="true">&lt;/&gt;</span>
-        <div>
-          <p class="capability-text-head">Hand-coded prototypes</p>
-          <p class="capability-text-body">This portfolio and its interaction detail, written by hand. <a href="https://github.com/stAlbrecht168/stAlbrecht.github.io" target="_blank" rel="noopener" style="color:var(--blue);">View the source on GitHub →</a></p>
-        </div>
-      </li>
-      <li class="capability-item">
-        <span class="capability-icon cap-purple" aria-hidden="true">AI</span>
-        <div>
-          <p class="capability-text-head">AI evaluation tooling</p>
-          <p class="capability-text-body">A 6-dimension framework I built to score agent output quality, run as a working review instrument against SAP Joule outputs.</p>
-        </div>
-      </li>
-      <li class="capability-item">
-        <span class="capability-icon cap-green" aria-hidden="true">{ }</span>
-        <div>
-          <p class="capability-text-head">Automation &amp; agent workflows</p>
-          <p class="capability-text-body">Claude Code skills, subagents, and multi-agent workflows I build to automate my own research synthesis and design practice.</p>
-        </div>
-      </li>
-      <li class="capability-item">
-        <span class="capability-icon cap-amber" aria-hidden="true">n8n</span>
-        <div>
-          <p class="capability-text-head">Agent-output evaluation, built in n8n</p>
-          <p class="capability-text-body">An n8n workflow I built that scores a batch of AI responses on my 6-dimension quality rubric and flags the weak ones for review. <a href="https://github.com/stAlbrecht168/stAlbrecht.github.io/tree/portfolio/n8n/lab/agent-output-eval" target="_blank" rel="noopener" style="color:var(--blue);">See the workflow and a sample run →</a></p>
-        </div>
-      </li>
-      <!-- When this moves to its own repo or the default branch, update the link above. -->
-    </ul>
-    <figure style="margin-top:2rem; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--bg-subtle);">
-      <video src="lab/agent-output-eval/demo.mp4" poster="lab/agent-output-eval/canvas.png"
-             autoplay loop muted playsinline
-             style="width:100%; height:auto; display:block;"
-             aria-label="The agent-output evaluation workflow running in n8n: five nodes execute left to right and the final node outputs a scored, prioritised report."></video>
-      <figcaption class="visual-caption">The n8n workflow running end to end: it scores three sample AI responses against the 6 dimensions and flags the weak ones. <a href="https://github.com/stAlbrecht168/stAlbrecht.github.io/tree/portfolio/n8n/lab/agent-output-eval" target="_blank" rel="noopener" style="color:var(--blue);">Workflow + sample run on GitHub →</a></figcaption>
-    </figure>
+    <div class="strategy-layout">
+      <div>
+        <div class="section-label" style="color:var(--blue)"><span class="section-label-dot"></span>How I build</div>
+        <h2 class="section-heading" id="lab-heading" style="color:var(--blue)">I don't just spec it, I build it</h2>
+        <p class="section-body">I build the tools, I don't just spec them. The workflow playing here is one: an n8n automation that scores AI responses against a 6-dimension quality rubric and flags the weak ones for review. Same hands-on habit, from this hand-coded site to the evaluation tooling behind my AI work.</p>
+        <ul class="capability-list" aria-label="Hands-on work" style="margin-top:1.5rem;">
+          <li class="capability-item">
+            <span class="capability-icon cap-amber" aria-hidden="true">n8n</span>
+            <div>
+              <p class="capability-text-head">Agent-output evaluation (shown here)</p>
+              <p class="capability-text-body">A 6-dimension rubric I built to score AI responses, first for SAP Joule, then rebuilt as this n8n workflow that flags weak outputs for review. <a href="https://github.com/stAlbrecht168/stAlbrecht.github.io/tree/portfolio/n8n/lab/agent-output-eval" target="_blank" rel="noopener" style="color:var(--blue);">See it on GitHub →</a></p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-blue" aria-hidden="true">&lt;/&gt;</span>
+            <div>
+              <p class="capability-text-head">Hand-coded prototypes</p>
+              <p class="capability-text-body">This site and its interaction detail, written by hand: no framework, no build step. <a href="https://github.com/stAlbrecht168/stAlbrecht.github.io" target="_blank" rel="noopener" style="color:var(--blue);">View the source →</a></p>
+            </div>
+          </li>
+          <li class="capability-item">
+            <span class="capability-icon cap-green" aria-hidden="true">{ }</span>
+            <div>
+              <p class="capability-text-head">Automation &amp; agent workflows</p>
+              <p class="capability-text-body">Claude Code skills, subagents, and multi-agent workflows I build to automate my own research and design practice.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="strategy-visual">
+        <video src="lab/agent-output-eval/demo.mp4" poster="lab/agent-output-eval/canvas.png"
+               autoplay loop muted playsinline
+               style="width:100%; height:auto; display:block;"
+               aria-label="The agent-output evaluation workflow running in n8n: five nodes execute left to right and the final node outputs a scored, prioritised report."></video>
+        <p class="visual-caption">A live run: the n8n workflow scoring three sample AI responses and flagging the weak ones. <a href="https://github.com/stAlbrecht168/stAlbrecht.github.io/tree/portfolio/n8n/lab/agent-output-eval" target="_blank" rel="noopener" style="color:var(--blue);">Workflow + sample run →</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
