@@ -36,12 +36,12 @@
       ],
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// Runs once PER response. Build the Claude request that scores it on 6 dimensions.\nconst r = $json;\n\nconst rubric = `Score this AI assistant response on six dimensions, each 0-3 (0 = fails, 3 = excellent):\n1. Value Alignment: addresses the user's actual goal, not just the literal query.\n2. Output Completeness: contains what's needed to act, without noise.\n3. Format Accuracy: presented in a form fit for the use (scan vs read, steps vs prose).\n4. Cognitive Load: low interpretation effort; decisions and next steps disambiguated.\n5. Trust Calibration: signals uncertainty, verification needs, and reversibility appropriately.\n6. Interaction Efficiency: minimal steps to act; any automation proposed with appropriate control.`;\n\nconst prompt = `${rubric}\n\nUSER GOAL: ${r.userGoal}\nAI RESPONSE: ${r.response}\n\nReturn ONLY valid minified JSON, no markdown fences:\n{\"scores\":[{\"dimension\":\"Value Alignment\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Output Completeness\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Format Accuracy\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Cognitive Load\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Trust Calibration\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Interaction Efficiency\",\"score\":0,\"note\":\"\"}],\"verdict\":\"one sentence\"}`;\n\nreturn { json: { id: r.id, userGoal: r.userGoal, response: r.response, requestBody: {\n  model: 'claude-sonnet-4-5',\n  max_tokens: 1200,\n  messages: [{ role: 'user', content: prompt }]\n} } };\n"
+        "jsCode": "// Runs once PER response. Build the OpenAI chat-completions request that scores it.\nconst r = $json;\n\n// CHANGE THIS to a model your LiteLLM gateway serves.\n// Not sure what it serves? Open http://localhost:5678/litellm/v1/models in a browser,\n// or check the model dropdown of a native n8n OpenAI node.\nconst MODEL = 'gpt-4o';\n\nconst rubric = `Score this AI assistant response on six dimensions, each 0-3 (0 = fails, 3 = excellent):\n1. Value Alignment: addresses the user's actual goal, not just the literal query.\n2. Output Completeness: contains what's needed to act, without noise.\n3. Format Accuracy: presented in a form fit for the use (scan vs read, steps vs prose).\n4. Cognitive Load: low interpretation effort; decisions and next steps disambiguated.\n5. Trust Calibration: signals uncertainty, verification needs, and reversibility appropriately.\n6. Interaction Efficiency: minimal steps to act; any automation proposed with appropriate control.`;\n\nconst prompt = `${rubric}\n\nUSER GOAL: ${r.userGoal}\nAI RESPONSE: ${r.response}\n\nReturn ONLY valid minified JSON, no markdown fences:\n{\"scores\":[{\"dimension\":\"Value Alignment\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Output Completeness\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Format Accuracy\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Cognitive Load\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Trust Calibration\",\"score\":0,\"note\":\"\"},{\"dimension\":\"Interaction Efficiency\",\"score\":0,\"note\":\"\"}],\"verdict\":\"one sentence\"}`;\n\nreturn { json: { id: r.id, userGoal: r.userGoal, response: r.response, requestBody: {\n  model: MODEL,\n  messages: [\n    { role: 'system', content: 'You are a senior UX evaluator. Return only valid JSON.' },\n    { role: 'user', content: prompt }\n  ],\n  response_format: { type: 'json_object' },\n  temperature: 0\n} } };\n"
       }
     },
     {
       "id": "n4",
-      "name": "Score with Claude",
+      "name": "Score with OpenAI",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
@@ -50,28 +50,19 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://api.anthropic.com/v1/messages",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "x-api-key",
-              "value": "YOUR_ANTHROPIC_API_KEY"
-            },
-            {
-              "name": "anthropic-version",
-              "value": "2023-06-01"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
+        "url": "http://localhost:5678/litellm/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ $json.requestBody }}",
         "options": {}
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "",
+          "name": "OpenAI account"
+        }
       }
     },
     {
@@ -84,7 +75,7 @@
         300
       ],
       "parameters": {
-        "jsCode": "// Pair each Claude result with its source response, score, prioritise, render Markdown.\nconst scored = $input.all();\nconst metas = $('Build eval request').all();\nconst THRESHOLD = 12; // out of 18\n\nconst rows = scored.map((item, i) => {\n  const meta = metas[i] ? metas[i].json : {};\n  let text = '';\n  try { text = item.json.content?.[0]?.text ?? ''; } catch (e) {}\n  let parsed; try { parsed = JSON.parse(text); } catch (e) { parsed = null; }\n  const scores = parsed?.scores || [];\n  const total = scores.reduce((s, d) => s + (Number(d.score) || 0), 0);\n  return {\n    id: meta.id, userGoal: meta.userGoal, response: meta.response,\n    total, max: scores.length * 3, scores,\n    verdict: parsed?.verdict || '', flagged: total < THRESHOLD\n  };\n});\n\nconst avg = rows.length ? (rows.reduce((s, r) => s + r.total, 0) / rows.length).toFixed(1) : '0';\nconst flagged = rows.filter(r => r.flagged);\n\nlet md = `# Agent-Output Evaluation\\n\\n`;\nmd += `**Responses scored:** ${rows.length}\\n`;\nmd += `**Average score:** ${avg}/18\\n`;\nmd += `**Flagged for human review (< ${THRESHOLD}/18):** ${flagged.length}\\n\\n`;\nmd += `## Per-response scores (lowest first)\\n`;\nrows.sort((a, b) => a.total - b.total).forEach(r => {\n  md += `\\n### ${r.id} \u2014 ${r.total}/${r.max}${r.flagged ? '  [flag] review' : ''}\\n`;\n  md += `**Goal:** ${r.userGoal}\\n\\n`;\n  md += `**Verdict:** ${r.verdict}\\n\\n`;\n  r.scores.forEach(d => { md += `- ${d.dimension}: ${d.score}/3 \u2014 ${d.note}\\n`; });\n});\n\nreturn [{ json: { averageScore: avg, flaggedCount: flagged.length, rows, report: md } }];\n"
+        "jsCode": "// Pair each model result with its source response, score, prioritise, render Markdown.\nconst scored = $input.all();\nconst metas = $('Build eval request').all();\nconst THRESHOLD = 12; // out of 18\n\nfunction extractJson(s) {\n  if (!s) return null;\n  let t = String(s).trim();\n  const fence = t.match(/```(?:json)?\\s*([\\s\\S]*?)```/i);\n  if (fence) t = fence[1].trim();\n  if (t[0] !== '{') { const a = t.indexOf('{'), b = t.lastIndexOf('}'); if (a >= 0 && b > a) t = t.slice(a, b + 1); }\n  try { return JSON.parse(t); } catch (e) { return null; }\n}\n\nconst rows = scored.map((item, i) => {\n  const meta = metas[i] ? metas[i].json : {};\n  const j = item.json || {};\n  // OpenAI-compatible shape first, then fall back to native-node / raw shapes.\n  const text = j.choices?.[0]?.message?.content ?? j.message?.content ?? j.content ?? j.text ?? '';\n  const parsed = extractJson(text);\n  const scores = parsed?.scores || [];\n  const total = scores.reduce((s, d) => s + (Number(d.score) || 0), 0);\n  return {\n    id: meta.id, userGoal: meta.userGoal, response: meta.response,\n    total, max: scores.length * 3, scores,\n    verdict: parsed?.verdict || (parsed ? '' : 'PARSE FAILED - check the model output'),\n    flagged: !parsed || total < THRESHOLD\n  };\n});\n\nconst avg = rows.length ? (rows.reduce((s, r) => s + r.total, 0) / rows.length).toFixed(1) : '0';\nconst flagged = rows.filter(r => r.flagged);\n\nlet md = `# Agent-Output Evaluation\\n\\n`;\nmd += `**Responses scored:** ${rows.length}\\n`;\nmd += `**Average score:** ${avg}/18\\n`;\nmd += `**Flagged for human review (< ${THRESHOLD}/18):** ${flagged.length}\\n\\n`;\nmd += `## Per-response scores (lowest first)\\n`;\nrows.sort((a, b) => a.total - b.total).forEach(r => {\n  md += `\\n### ${r.id} - ${r.total}/${r.max}${r.flagged ? '  [flag] review' : ''}\\n`;\n  md += `**Goal:** ${r.userGoal}\\n\\n`;\n  md += `**Verdict:** ${r.verdict}\\n\\n`;\n  r.scores.forEach(d => { md += `- ${d.dimension}: ${d.score}/3 - ${d.note}\\n`; });\n});\n\nreturn [{ json: { averageScore: avg, flaggedCount: flagged.length, rows, report: md } }];\n"
       }
     }
   ],
@@ -115,14 +106,14 @@
       "main": [
         [
           {
-            "node": "Score with Claude",
+            "node": "Score with OpenAI",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Score with Claude": {
+    "Score with OpenAI": {
       "main": [
         [
           {

@@ -21,20 +21,24 @@ Max 18. Anything under 12 is flagged for a person to review, which is the "human
 ## What it does
 
 ```
-When clicked → Load responses → Build eval request → Score with Claude → Aggregate + flag
+When clicked → Load responses → Build eval request → Score with OpenAI → Aggregate + flag
 ```
 
 1. **Load responses** - a sample batch of AI responses (swap for a Google Sheet / CSV / DB read).
-2. **Build eval request** - runs once per response and assembles the scoring prompt.
-3. **Score with Claude** - calls the Anthropic Messages API; the model returns per-dimension scores + notes + a one-line verdict, as strict JSON.
+2. **Build eval request** - runs once per response and assembles the chat-completions request (prompt + model).
+3. **Score with OpenAI** - calls an OpenAI-compatible chat-completions endpoint; the model returns per-dimension scores + notes + a one-line verdict as JSON (`response_format: json_object`).
 4. **Aggregate + flag** - pairs each result with its source, totals the scores, sorts weakest-first, flags sub-threshold responses, and renders a Markdown report (see [sample-report.md](sample-report.md)).
 
 ## Run it
 
+The **Score with OpenAI** node is wired to use an n8n **OpenAI credential** (`openAiApi`) via a predefined credential type, calling `/chat/completions`. It works against the real OpenAI API or any OpenAI-compatible gateway (LiteLLM, Azure OpenAI, a local proxy).
+
 1. Import `workflow.json` into n8n (Workflows → Import from File). Accept any node-version update prompts.
-2. Add your API key: paste it into the **Score with Claude** node's `x-api-key` header, or (better) create an n8n **Header Auth** credential so the key never lives in the workflow JSON.
-3. Set the model id in **Build eval request** (`model:`) to one your key can access.
+2. Open **Score with OpenAI** → under Credentials, select your OpenAI credential. If it points at a gateway (e.g. LiteLLM), the credential's Base URL is used; the node's URL is the chat-completions path on that gateway.
+3. Set the model. In **Build eval request**, change `MODEL` to a model id your credential can serve. Not sure what that is? Open `<your-base-url>/models` in a browser, or check the model dropdown of a native n8n OpenAI node.
 4. Click **Execute Workflow**. Read the `report` field on the final node.
+
+> If every response comes back `PARSE FAILED` or `0/18`, the model id is wrong for your gateway (step 3) or the credential isn't selected (step 2). A single 401 means the credential's key is missing/invalid.
 
 ## Customise
 
@@ -42,6 +46,7 @@ When clicked → Load responses → Build eval request → Score with Claude →
 - **Tune the bar.** Change `THRESHOLD` in **Aggregate + flag**.
 - **Route the output.** Add nodes to post the summary to Slack, write scores back to the sheet, or open a ticket per flagged response.
 - **A/B prompts.** Duplicate the batch with two prompt variants and compare average scores to pick the better one.
+- **Switch providers.** Any OpenAI-compatible endpoint works; just repoint the credential and the model id.
 
 ## Honest limitations
 
