@@ -378,7 +378,7 @@
           <ul class="cs-card-contributions" aria-label="Key contributions">
             <li>6-dimension agent output evaluation framework, run in reviews</li>
             <li>Trust-first automation patterns for Joule workflows</li>
-            <li>AI practice strand and Skills Registry for the CSX UX chapter</li>
+            <li>shared AI-practice patterns and a reusable skills library for the design org</li>
           </ul>
           <a href="work/agentic-ux-practice.html" class="cs-card-link" aria-label="Read case study: Building an AI-output evaluation framework for SAP Joule">Read case study <span aria-hidden="true">→</span></a>
         </div>
@@ -561,21 +561,21 @@
             <span class="capability-icon cap-purple" aria-hidden="true">01</span>
             <div>
               <p class="capability-text-head">Agent Output Evaluation</p>
-              <p class="capability-text-body">6-dimension benchmark framework (Value Alignment, Output Completeness, Format Accuracy, Cognitive Load, Trust, Interaction Efficiency) applied to Joule service result guidance.</p>
+              <p class="capability-text-body">6-dimension benchmark framework (Value Alignment, Output Completeness, Format Accuracy, Cognitive Load, Trust, Interaction Efficiency) applied to SAP Joule, a shipping enterprise AI assistant.</p>
             </div>
           </li>
           <li class="capability-item">
             <span class="capability-icon cap-purple" aria-hidden="true">02</span>
             <div>
               <p class="capability-text-head">Trust-First Automation</p>
-              <p class="capability-text-body">Interaction patterns for explainable automation: making agent decisions visible, reversible, and appropriately supervised across planning, lifecycle, and service workflows.</p>
+              <p class="capability-text-body">Interaction patterns for explainable automation: making agent decisions visible, reversible, and appropriately supervised across enterprise planning and operations workflows.</p>
             </div>
           </li>
           <li class="capability-item">
             <span class="capability-icon cap-purple" aria-hidden="true">03</span>
             <div>
-              <p class="capability-text-head">Skills Registry &amp; AI Practice</p>
-              <p class="capability-text-body">Chapter-wide capability map with AI practice strand, agentic workflow design, evaluation methodology, and trust-first pattern libraries.</p>
+              <p class="capability-text-head">Shared AI practice</p>
+              <p class="capability-text-body">A shared capability map and reusable pattern library: agentic workflow design, evaluation methodology, and trust-first interaction patterns other designers can pick up.</p>
             </div>
           </li>
         </ul>
@@ -631,12 +631,17 @@
         <svg viewBox="0 0 480 190" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
   <style>
     .r-node{fill:#241307;stroke:#e3b341;stroke-opacity:.4;stroke-width:1}
+    .r-glow{fill:#e3b341;opacity:0;animation:rglow 7s linear infinite}
+    .ga{animation-delay:0s} .gb{animation-delay:1.75s} .gc{animation-delay:3.5s} .gd{animation-delay:5.25s}
+    @keyframes rglow{0%{opacity:0}3%{opacity:.33}11%{opacity:0}100%{opacity:0}}
     .r-h{font-family:sans-serif;font-weight:700;fill:#e3b341}
     .r-s{font-family:sans-serif;fill:#8b949e}
     .r-edge{stroke:#e3b341;stroke-opacity:.5;stroke-width:1.5;stroke-dasharray:4 3;fill:none}
     .r-arr{fill:#e3b341;opacity:.6}
-    .r-pulse{animation:rloop 6s linear infinite}
+    .r-pulse{animation:rloop 7s linear infinite}
     @keyframes rloop{0%{transform:translate(0,0)}25%{transform:translate(296px,0)}50%{transform:translate(296px,84px)}75%{transform:translate(0,84px)}100%{transform:translate(0,0)}}
+    .r-div{animation:rdiv 7s linear infinite}
+    @keyframes rdiv{0%,55%{opacity:.2}62%{opacity:.9}80%,100%{opacity:.2}}
   </style>
   <rect width="480" height="190" fill="#1a0f08"/>
   <text x="240" y="20" text-anchor="middle" font-size="9" font-weight="600" fill="#e3b341" opacity=".7">Validating the measure against reality</text>
@@ -648,6 +653,10 @@
   <polygon class="r-arr" points="146,147 140,150 146,153"/>
   <line class="r-edge" x1="92" y1="131" x2="92" y2="91"/>
   <polygon class="r-arr" points="89,91 92,85 95,91"/>
+  <rect class="r-glow ga" x="44"  y="47"  width="96" height="38" rx="6"/>
+  <rect class="r-glow gb" x="340" y="47"  width="96" height="38" rx="6"/>
+  <rect class="r-glow gc" x="340" y="131" width="96" height="38" rx="6"/>
+  <rect class="r-glow gd" x="44"  y="131" width="96" height="38" rx="6"/>
   <rect class="r-node" x="44"  y="47"  width="96" height="38" rx="6"/>
   <text class="r-h" x="92"  y="64"  text-anchor="middle" font-size="8">Score</text>
   <text class="r-s" x="92"  y="75"  text-anchor="middle" font-size="7">with the rubric</text>
@@ -656,12 +665,13 @@
   <text class="r-s" x="388" y="75"  text-anchor="middle" font-size="7">real users</text>
   <rect class="r-node" x="340" y="131" width="96" height="38" rx="6"/>
   <text class="r-h" x="388" y="148" text-anchor="middle" font-size="8">Compare</text>
-  <text class="r-s" x="388" y="159" text-anchor="middle" font-size="7">score vs. experience</text>
+  <text class="r-s" x="388" y="159" text-anchor="middle" font-size="7">machine vs. human</text>
   <rect class="r-node" x="44"  y="131" width="96" height="38" rx="6"/>
   <text class="r-h" x="92"  y="148" text-anchor="middle" font-size="8">Calibrate</text>
   <text class="r-s" x="92"  y="159" text-anchor="middle" font-size="7">fix the rubric</text>
-  <text x="240" y="103" text-anchor="middle" font-size="8" font-weight="700" fill="#e3b341" opacity=".85">The measure is a hypothesis</text>
-  <text x="240" y="115" text-anchor="middle" font-size="7.5" fill="#8b949e">until real users confirm it</text>
+  <text x="240" y="100" text-anchor="middle" font-size="8" font-weight="700" fill="#e3b341" opacity=".85">The measure is a hypothesis</text>
+  <text x="240" y="112" text-anchor="middle" font-size="7.5" fill="#8b949e">until real users confirm it</text>
+  <text class="r-div" x="240" y="144" text-anchor="middle" font-size="7" fill="#e3b341">divergence drives the fix</text>
   <circle class="r-pulse" cx="92" cy="66" r="3.4" fill="#f0c050"/>
         </svg>
         <p class="visual-caption">Research as the loop that keeps evaluation honest: score, observe real users, compare, and calibrate the measure. Reconstructed for this portfolio; internal detail removed.</p>
