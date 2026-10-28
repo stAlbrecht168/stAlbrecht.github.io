@@ -1,55 +1,59 @@
 # Lernatlas
 
-Browserbasierter Lernraum für Klasse 5 am Gymnasium in Niedersachsen. Ohne Server oder API-Schlüssel nutzbar. Die Oberfläche passt sich Handy, Tablet und Laptop an.
+Lernraum für Klasse 5 am Gymnasium Niedersachsen, im Browser auf Handy, Tablet und Laptop. Die vereinfachte Oberfläche hat beim Hinzufügen neuer Seiten keine Pflichtfelder für Fach, Thema oder Quelle.
 
-## Start
+**Aktueller Stand:** Die neue Oberfläche und die sichere Serveranbindung sind implementiert. Die direkte ChatGPT-Auswertung ist noch nicht aktiviert, weil die einmalige OpenAI-Verbindung fehlt. Auf GitHub Pages ist keine Serverausführung möglich. Bis zur Aktivierung zeigt die App diesen Zustand ausdrücklich an und erstellt keine lokalen Ersatzaufgaben. Bereits gespeicherte Lernpakete und das gekennzeichnete bisherige Beispielmaterial bleiben nutzbar.
 
-1. Unter **Wissensbasis → Deine Bücher** das passende Buch auswählen.
-2. **Seiten hinzufügen**: Thema und Seitenangabe eintragen, Fotos/PDFs hochladen und **Dateien einlesen** wählen. Alternativ Text direkt einfügen.
-3. Den erkannten Text mit dem Original vergleichen. **Wissen erstellen** erzeugt Merksätze und einfache, direkt belegte Lückenaufgaben. Vorschau prüfen und speichern.
-4. **Hiermit üben** startet eine Lernrunde. **Arbeitsblatt** öffnet den Druckdialog; ein Lösungsblatt kann auf separaten Seiten ergänzt werden.
-5. Unter **Für Eltern** regelmäßig eine Sicherung herunterladen. Für ein weiteres Gerät die Sicherung dort importieren.
+## Der einfache Ablauf
 
-Die richtige Bücherliste umfasst Zeit für Geschichte 5 (2015), Spektrum Physik SI 5/6 (2025), MusiX 1 (2011), Seydlitz Erdkunde 5/6 (2022), Bioskop 5/6, Deutschbuch 5, Elemente der Mathematik 5 (2023), Camden Town Textbook 5 (2020) und LebensWert 1. Bei Bioskop, Deutschbuch und LebensWert ist der ISBN-Abgleich noch offen. Verlagslinks und entsprechend gekennzeichnete Themenübersichten sind im Bücherregal hinterlegt. Keine Ausleihcodes, Ausleihdaten oder Fotos der Bücherlisten sind Teil des veröffentlichten Quellcodes.
+1. **Seiten hinzufügen:** Fotos oder eine PDF auswählen. Alternativ Unterrichtstext einfügen. Ein Hinweis ist optional.
+2. **Mit ChatGPT auswerten:** Nach Aktivierung liest das Modell die Seiten und erkennt Fach, Thema, Buch und Quellenangaben. Daraus entstehen Merksätze, Wissenskarten und abwechslungsreiche Übungen. Bei unleserlichen oder uneindeutigen Seiten wird gezielt nachgefragt.
+3. **Kurz prüfen:** Fragen, Lösungen und Textbelege sind ohne Formulararbeit aufklappbar. Unpassende Aufgaben lassen sich abwählen. Fach, Thema und Quelle können bei Bedarf korrigiert werden.
+4. **Passt – speichern & üben:** Das Paket wird freigegeben und die Lernrunde startet. Alternativ nur speichern.
 
-## Verständnisfragen mit ChatGPT
+Alle **neu erstellten** Lernpakete werden über die OpenAI-Modellanbindung erzeugt. Der bisherige lokale Lücken-/Zahlengenerator ist im neuen Hinzufügen-Ablauf nicht verfügbar. Bei fehlender Verbindung oder API-Fehlern wird kein Modellaufruf vorgetäuscht. Der offene Dialog behält die ausgewählten Dateien.
 
-Im gespeicherten Material **Mit ChatGPT erweitern** wählen. Die vorbereitete Anfrage enthält den Unterrichtstext, Quell-IDs und das benötigte Ausgabeformat. Die Anfrage selbst in ChatGPT einfügen und die vollständige JSON-Antwort über **Für Eltern → ChatGPT-Aufgaben importieren** übernehmen. Der Text wird nur durch dieses bewusste Einfügen an ChatGPT weitergegeben.
+## Einmalig verbinden
 
-Importierte Aufgaben sind bis zur Elternprüfung vom Training ausgeschlossen. Fragen, Lösungen, Tipps, Antwortvarianten und Quellenbelege lassen sich in einer normalen Formularansicht bearbeiten. Wörtliche Quellenbelege müssen im Ausgangsmaterial vorkommen; diese Prüfung allein beurteilt noch nicht die fachliche Richtigkeit. Freie Erklärungen verwenden eine Musterlösung und eine gemeinsame Selbsteinschätzung, keine automatische Benotung.
+Die direkte Auswertung benötigt eine geschützte Serververbindung zu OpenAI. Die Einrichtung erfolgt über OpenAI Developers und dessen sicheren API-Key-Ablauf; API-Nutzung kann zusätzlich berechnet werden. Es gibt bewusst kein Schlüsselfeld im Browser und keinen API-Schlüssel im öffentlichen Repository. Genaue Bereitstellungsschritte stehen in [server/README.md](server/README.md).
 
-Es gibt **keine automatische KI-Anbindung** und keinen versteckten API-Schlüssel. Die lokale Ableitung erzeugt einfache Textlücken, keine semantische Zusammenfassung oder vollständige KI-Analyse. Der Mathegenerator unterstützt gezielt Rechengrundlagen mit neuen Zahlen.
+Die private App muss vor ihrer Veröffentlichung vollständig eingerichtet sein. Erst nach bestätigter Bereitstellung wird ihre URL in `ai-config.mjs` eingetragen. Der öffentliche GitHub-Einstieg verweist dann für neue Auswertungen auf die private App. Ein eventuell nötiger Ursprungwechsel verschiebt bestehende Browserdaten nicht automatisch; dafür eine Sicherung übertragen.
 
-## Material und Lernfortschritt
+## Lernen, Drucken und Wiederholen
 
-IndexedDB speichert Text, Aufgaben, Lernkarten, Originaldateien, Termine und Fortschritt in diesem Browser unter dieser Website. Es gibt **keine automatische Synchronisierung** oder Eltern-Authentifizierung. Eine Sicherung kann die Originalfotos/PDFs einschließen. Beim Import werden Materialien über ihre IDs zusammengeführt; Termine und Einstellungen werden übernommen. Bei Lernfortschritt wird der neuere Stand pro Aufgabe gewählt. Gleichzeitiges Lernen auf zwei Geräten lässt sich damit nicht verlustfrei zusammenrechnen.
+Gespeicherte Lernpakete können direkt geübt oder als Arbeitsblatt mit separatem Lösungsblatt gedruckt werden. Kurze Antworten werden mit Musterlösung und hinterlegten Antwortvarianten verglichen. Eigene Erklärungen haben eine Musterlösung zur gemeinsamen Kontrolle, keine automatische Benotung.
 
-Kein Tracking-Code und kein Upload der Unterrichtsseiten an GitHub, einen OCR-Server oder eine KI-API. Schriftarten und Bibliotheken werden von externen Anbietern geladen. Video- und Verlagslinks führen auf externe Seiten. Browserdaten zu löschen entfernt auch den lokalen Lernatlas. Regelmäßige Sicherungen sind deshalb sinnvoll.
+Unsichere Aufgaben sind am gleichen Tag wieder fällig. Bei sicheren Antworten wachsen die Abstände auf 1, 3, 7, 14 und 30 Tage. Die vorgegebenen Arbeitstermine sind für **2026** eingetragen und bearbeitbar: Musik 02.11., Kunst 05.11., Geschichte 10.11., Physik 13.11., Erdkunde 24.11., Werte und Normen 25.11., Mathe 11.12. ICS-Export ist verfügbar.
 
-## Buchseiten und Videos
+## Bücher und Quellen
 
-Die Bücherliste enthält Titel/Editionen und teilweise verlinkte öffentliche Verlagsübersichten, **keine vollständigen Buchinhalte**. Die behandelten Seiten und Klausurthemen müssen ergänzt werden. Beispielstoff ist ausdrücklich als Beispiel gekennzeichnet und kann abgeschaltet werden. Für Kunst ist noch kein Buch genannt; Mappenseiten können direkt hinzugefügt werden.
+Erfasst sind Zeit für Geschichte 5 (2015), Spektrum Physik SI 5/6 (2025), MusiX 1 (2011), Seydlitz Erdkunde 5/6 (2022), Bioskop 5/6, Deutschbuch 5, Elemente der Mathematik 5 (2023), Camden Town Textbook 5 (2020) und LebensWert 1. Bei Bioskop, Deutschbuch und LebensWert ist der ISBN-Abgleich offen. Verlagslinks und ausdrücklich gekennzeichnete Themenübersichten befinden sich im Bücherregal.
 
-Gedruckter Text funktioniert bei der OCR am besten. Handschrift, Formeln, Tabellen, Zeichnungen und Musiknoten benötigen eine manuelle Überprüfung. Unterstützt: JPG, PNG, WebP, GIF, BMP, PDF und TXT/Markdown als Text; HEIC vorher als JPG exportieren. Grenzen: 12 Dateien, 25 MB pro Datei, 100 MB pro Material, PDF höchstens 20 Seiten. Die Sprachdaten werden beim ersten OCR-Aufruf geladen; eine Internetverbindung wird benötigt.
+Die Bücherliste liefert Quellenangaben, keine vollständigen Buchinhalte. Aufgaben verwenden die hinzugefügten behandelten Unterrichtsseiten. Für Kunst können Mappenseiten direkt hinzugefügt werden. Lehrerschmidt und Daniel Jung sind als zusätzliche Lernvideoquellen verlinkt. Videos werden nicht automatisch transkribiert; ein Transkript kann als Textmaterial mit Quellenangabe hinzugefügt werden.
 
-Lehrerschmidt und Mathe by Daniel Jung sind als Quellen verlinkt, ergänzt um eine Themensuche innerhalb der YouTube-Kanäle. Es werden keine Videos oder Transkripte automatisch analysiert. Ein Transkript kann mit Video-URL als eigenes Material eingefügt werden. Die Wiedergabe der verlinkten Einzelvideos wurde nicht vollständig überprüft.
+## Daten und Sicherungen
 
-## Termine
+Mit **Mit ChatGPT auswerten** werden die ausgewählten Inhalte an OpenAI zur Verarbeitung übertragen. Der Server fordert Antworten mit `store:false` an und speichert die Seiten nicht selbst; die Verarbeitung bei OpenAI unterliegt den dortigen API-Datenbedingungen.
 
-Vorgegebene Termine sind als **2026** erfasst und bearbeitbar: Musik 02.11., Kunst 05.11., Geschichte 10.11., Physik 13.11., Erdkunde 24.11., Werte und Normen 25.11., Mathe 11.12. Der Lernplan priorisiert die nächste bevorstehende Arbeit. Unsichere Aufgaben werden für den gleichen Tag vorgemerkt; bei sicheren Antworten steigen die Wiederholungsabstände auf 1, 3, 7, 14 und 30 Tage. Ein ICS-Export ist verfügbar.
+Originaldateien, fertige Lernpakete, Termine und Lernfortschritt werden in IndexedDB in diesem Browser unter diesem Website-Ursprung gespeichert. Es gibt keine automatische Synchronisierung. Unter **Für Eltern** regelmäßig eine Sicherung herunterladen; sie kann die Originaldateien einschließen. Auf einem anderen Gerät die Sicherung importieren. Materialien werden über IDs zusammengeführt, Termine und Einstellungen übernommen. Beim Fortschritt gilt der neuere Stand pro Aufgabe; parallel entstandene Lernstände werden nicht addiert.
 
-## Technik und Entwicklung
+Das Löschen von Browserdaten entfernt auch den lokalen Lernatlas. Alte ChatGPT-JSON-Pakete sind über den eingeklappten Kompatibilitätsbereich in der Elternansicht weiterhin importierbar. Für den neuen Alltag sind Kopieren/Einfügen von Prompts oder JSON keine nötigen Schritte mehr.
 
-Statisches HTML/CSS und JavaScript-Module. Keine Build- oder Installationsschritte erforderlich. `app.mjs` enthält Oberfläche/Interaktionen, `engine.mjs` die Aufgabenlogik, `storage.mjs` IndexedDB, `reader.mjs` OCR/PDF-Import, `content.mjs` Beispielstoff und `books.mjs` die Quellenliste.
+## Dateien
 
-- Tesseract.js 6.0.1 und Tesseract.js Core 6.0.0, über jsDelivr; deutsche Sprachdaten von projectnaptha.com.
-- PDF.js 4.10.38, über jsDelivr; Ausführung von PDF-JavaScript wird nicht verwendet, `isEvalSupported` ist deaktiviert.
-- DM Sans / Manrope über Google Fonts, mit lokalen Systemschrift-Fallbacks.
+Fotos: JPG, PNG, WebP, GIF, BMP. PDFs und TXT/Markdown werden ebenfalls angenommen. HEIC vorher als JPG exportieren. Höchstens sechs Dateien gleichzeitig. Fotos werden für die Übertragung auf dem Gerät verkleinert. Die Anfrage darf insgesamt 8 MiB vorbereitete Daten bzw. 12 MiB JSON und höchstens 30000 Zeichen Unterrichtstext enthalten. PDFs bei Bedarf in kleine thematische Abschnitte teilen. Handschrift, Noten, Formeln und Abbildungen immer im Ergebnis gegenprüfen.
 
-Lokaler Start aus diesem Ordner: `python -m http.server 8000`. Tests: `npm test`. Syntaxprüfung: `npm run check`.
+## Entwicklung
 
-Geprüft: Termine/Berliner Tageswechsel, Rechenvarianten, strikte Kurzantwortkontrolle, Textbelege, Sperre ungeprüfter Aufgaben, Wiederholungsabstände und Backup-Validierung. Im Browser getestet: Foto-OCR, Text-PDF, Textimport, Speichern/Neuladen, KI-Import/Freigabe, Auswahlaufgabe/freie Erklärung, Druckdokument, Backup mit Originaldateien und Wiederimport sowie Layout bei 390 px.
+HTML/CSS und JavaScript-Module, ohne Frontend-Build. Lokale Vorschau über einen statischen Server; Tests `npm test`, Syntaxprüfungen `npm run check`.
 
-## GitHub Pages
+- `app.mjs`: Oberfläche, vereinfachter Upload, Prüfung und Training.
+- `ai-client.mjs`: sichere Statusabfrage, Dateivorbereitung und Auswertungsanfrage; kein Schlüssel im Browser.
+- `ai-contract.mjs`: strukturiertes Ausgabeformat und fachliche Struktur-/Belegprüfung.
+- `server/ai-api.mjs`: authentifizierter Responses-API-Handler für eine owner-private Site; Standardmodell `gpt-4.1-mini`, serverseitig konfigurierbar.
+- `scripts/compose-worker.mjs`: packt Frontend und Handler in den offiziellen Sites Worker-ESM-Starter.
+- `engine.mjs`, `storage.mjs`, `content.mjs`, `books.mjs`: vorhandene Datenformate, Fortschritt, lokale Speicherung und Quellen.
 
-Diese Anwendung liegt als eigener Ordner `lernatlas/` im bestehenden Repository. Die aktive Pages-Quelle ist der Branch `portfolio/n8n`. Die übrige Website wird nicht verändert. Relative Assetpfade unterstützen die Bereitstellung unter einem Unterverzeichnis.
+18 automatisierte Prüfungen decken unter anderem Anmeldeschutz, Ursprungskontrolle, Dateigrenzen, JSON-Ausgabe, Textbelege, verweigerte/unvollständige Modellantworten, keine Schlüsselweitergabe, ehrlichen Einrichtungsstatus sowie vorhandene Lern- und Sicherungslogik ab. Modellantworten sind in diesen Tests ausdrücklich simuliert; eine echte API-Auswertung bleibt bis zur Aktivierung ungeprüft.
+
+Die öffentliche Oberfläche liegt im Ordner `lernatlas/` des bestehenden GitHub-Repositorys, aktive Pages-Quelle `portfolio/n8n`. Die übrige Website wird nicht verändert.
