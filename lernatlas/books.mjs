@@ -1,0 +1,137 @@
+// Bestätigte Bücherliste. Verlagsquellen dienen der Orientierung, nicht als bestätigter Klausurstoff.
+export const DEFAULT_BOOKS = [
+  {
+    "id": "book-geschichte",
+    "subject": "geschichte",
+    "title": "Zeit für Geschichte – Schülerband 5",
+    "edition": "Ausgabe 2015 für Gymnasien in Niedersachsen",
+    "grade": "5",
+    "publisher": "Schroedel / Westermann",
+    "url": "https://www.westermann.de/artikel/978-3-507-36625-1/Zeit-fuer-Geschichte-Ausgabe-2015-fuer-Gymnasien-in-Niedersachsen-Schulbuch-5",
+    "isbn": "978-3-507-36625-1",
+    "match": "confirmed",
+    "topics": [],
+    "topicsSource": "https://www.westermann.de/backend/anlage/herunterladen/4572744",
+    "note": "Ausgabe 2015 und Band 5 zugeordnet. Die Verlagsübersicht ist verlinkt; behandelte Unterrichtsseiten bitte ergänzen."
+  },
+  {
+    "id": "book-physik",
+    "subject": "physik",
+    "title": "Spektrum Physik SI – Schulbuch 5/6",
+    "edition": "Ausgabe 2025 für Niedersachsen",
+    "grade": "5/6",
+    "publisher": "Westermann",
+    "url": "https://www.westermann.de/artikel/978-3-14-152260-0/Spektrum-Physik-SI-Ausgabe-2025-fuer-Niedersachsen-Schulbuch-5-6",
+    "isbn": "978-3-14-152260-0",
+    "match": "confirmed",
+    "topics": [],
+    "note": "Ausgabe 2025 und Band 5/6 zugeordnet. Behandelte Unterrichtsseiten bitte ergänzen."
+  },
+  {
+    "id": "book-musik",
+    "subject": "musik",
+    "title": "MusiX 1 – Schülerband",
+    "edition": "Ausgabe ab 2011 · Deutschland",
+    "grade": "5/6",
+    "publisher": "HELBLING",
+    "url": "https://www.helbling.com/de/de/product/musix-1-ab-2011-schulerband-s6560",
+    "isbn": "978-3-86227-060-6",
+    "match": "confirmed",
+    "topics": [
+      "Stimme und Singen",
+      "Puls, Rhythmus und Takt",
+      "Tonleitern und Tonabstände",
+      "Instrumente und Orchester",
+      "Dur, Moll und Dreiklänge",
+      "Musikalische Formen und Notation"
+    ],
+    "topicsSource": "https://www.helbling.com/sites/default/files/media/documents/S6560_DEMO_S6560_MusiX_1_SB_MS.pdf",
+    "note": "Ausgabe ab 2011 zugeordnet. Die Themenübersicht stammt aus der öffentlichen Verlagsleseprobe und ist kein bestätigter Klausurstoff."
+  },
+  {
+    "id": "book-erdkunde",
+    "subject": "erdkunde",
+    "title": "Seydlitz Erdkunde – Schülerband 5/6",
+    "edition": "Ausgabe 2022 für Gymnasien in Niedersachsen",
+    "grade": "5/6",
+    "publisher": "Westermann",
+    "url": "https://www.westermann.de/artikel/978-3-14-101570-6/Seydlitz-Erdkunde-Aktuelle-Ausgabe-fuer-Gymnasien-in-Niedersachsen-Schulbuch-5-6",
+    "isbn": "978-3-14-101570-6",
+    "match": "confirmed",
+    "topics": [],
+    "note": "Ausgabe 2022 und Band 5/6 zugeordnet. Behandelte Unterrichtsseiten bitte ergänzen."
+  },
+  {
+    "id": "book-biologie",
+    "subject": "biologie",
+    "title": "bioskop SI – Schulbuch 5/6 G9",
+    "edition": "Aktuelle Ausgabe für Niedersachsen · Abgleich mit dem eigenen Buch offen",
+    "grade": "5/6",
+    "publisher": "Westermann",
+    "url": "https://www.westermann.de/artikel/978-3-14-150620-4/bioskop-SI-Aktuelle-Ausgabe-fuer-Niedersachsen-Schulbuch-5-6-G9",
+    "isbn": "978-3-14-150620-4",
+    "match": "candidate",
+    "topics": [
+      "Haustiere, Nutztiere und Abstammung",
+      "Wirbeltiergruppen und Lebensräume",
+      "Anpassung an Jahreszeiten",
+      "Bau und Entwicklung von Blütenpflanzen",
+      "Körperbau, Bewegung und Ernährung",
+      "Pubertät und menschliche Entwicklung"
+    ],
+    "topicsSource": "https://www.westermann.de/backend/anlage/herunterladen/4621663",
+    "note": "Mögliche passende Ausgabe. Bitte die ISBN am eigenen Buch mit 978-3-14-150620-4 vergleichen. Die genannten Themen beziehen sich auf diese mögliche Ausgabe."
+  },
+  {
+    "id": "book-deutsch",
+    "subject": "deutsch",
+    "title": "Deutschbuch 5 Gymnasium Niedersachsen – Schülerbuch",
+    "edition": "Kandidat: Niedersachsen – Ausgabe 2019",
+    "grade": "5",
+    "publisher": "Cornelsen",
+    "url": "https://www.cornelsen.de/produkte/deutschbuch-gymnasium-schulbuch-5-schuljahr-9783062052224",
+    "isbn": "978-3-06-205222-4",
+    "match": "candidate",
+    "topics": [],
+    "note": "Die Liste nennt „Neue Ausgabe“. Der Link zeigt die mögliche Ausgabe 2019. Bitte die ISBN am eigenen Buch mit 978-3-06-205222-4 vergleichen."
+  },
+  {
+    "id": "book-mathe",
+    "subject": "mathe",
+    "title": "Elemente der Mathematik 5 – Schulbuch",
+    "edition": "Ausgabe 2023 für Niedersachsen",
+    "grade": "5",
+    "publisher": "Westermann",
+    "url": "https://www.westermann.de/artikel/978-3-14-109200-4/Elemente-der-Mathematik-SI-Aktuelle-Ausgabe-fuer-Niedersachsen-Schulbuch-5",
+    "isbn": "978-3-14-109200-4",
+    "match": "confirmed",
+    "topics": [],
+    "note": "Ausgabe 2023 und Band 5 zugeordnet. Behandelte Unterrichtsseiten bitte ergänzen."
+  },
+  {
+    "id": "book-englisch",
+    "subject": "englisch",
+    "title": "Camden Town – Textbook 5",
+    "edition": "Allgemeine Ausgabe 2020 für Gymnasien",
+    "grade": "5",
+    "publisher": "Westermann",
+    "url": "https://www.westermann.de/artikel/978-3-14-149220-0/Camden-Town-Allgemeine-Ausgabe-2020-fuer-Gymnasien-Textbook-5",
+    "isbn": "978-3-14-149220-0",
+    "match": "confirmed",
+    "topics": [],
+    "note": "Allgemeine Ausgabe 2020 und Textbook 5 zugeordnet. Behandelte Unterrichtsseiten bitte ergänzen."
+  },
+  {
+    "id": "book-werte",
+    "subject": "werte",
+    "title": "LebensWert 1 – neu",
+    "edition": "Kandidat: Ausgabe ab 2018",
+    "grade": "5/6",
+    "publisher": "C.C.Buchner",
+    "url": "https://www.ccbuchner.de/produkt/lebenswert-1-5476",
+    "isbn": "978-3-661-21101-5",
+    "match": "candidate",
+    "topics": [],
+    "note": "Mögliche Ausgabe ab 2018. Bitte die ISBN am eigenen Buch mit 978-3-661-21101-5 vergleichen."
+  }
+];
